@@ -1,0 +1,33 @@
+@use "/src/sass/breakpoints"as v;
+@use "/src/sass/mixins"as m;
+@use "/src/sass/helpers/functions"as f;
+
+// For responsive
+
+.hide-for-mobile {
+    @include m.breakpoint-down("small") {
+        // 375px => 767px
+        display: none !important;
+    }
+}
+
+.hide-for-tablet {
+    @include m.breakpoint-up("medium") {
+        // 768px => 1439px
+        display: none !important;
+    }
+}
+
+.hide-for-mobile-and-tablet {
+    @include m.breakpoint-up("large") {
+        // 768px => 1439px
+        display: none !important;
+    }
+}
+
+.hide-for-tablet-and-desktop {
+    @include m.breakpoint-up("medium") {
+        // 768px => 1439px
+        display: none !important;
+    }
+}

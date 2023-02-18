@@ -1,0 +1,11 @@
+@use "./helpers/functions" as f;
+
+/* Breakpoints */
+// iPad Pro 11" for tablet
+// Desktop 1440px
+$breakpoints-up: ("medium": f.toRem(834, 16),
+  "large": f.toRem(1440, 16),
+);
+$breakpoints-down: ("small": f.toRem(833, 16),
+  "medium": f.toRem(1439, 16),
+);

@@ -1,0 +1,14 @@
+@use 'breakpoints'as b;
+
+
+@mixin breakpoint-up($size) {
+  @media screen and (min-width: map-get(b.$breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media screen and (max-width: map-get(b.$breakpoints-down, $size)) {
+    @content;
+  }
+}

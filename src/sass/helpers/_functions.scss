@@ -1,0 +1,4 @@
+@function toRem($pixel, $diviseBy) {
+    $res: calc($pixel / $diviseBy * 1rem);
+    @return $res;
+}

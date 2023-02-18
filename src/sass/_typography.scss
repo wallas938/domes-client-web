@@ -1,0 +1,52 @@
+@use "helpers/functions"as f;
+@use "mixins"as m;
+
+@mixin largeHeading {
+  font-size: f.toRem(32, 16);
+  font-weight: 300;
+  font-style: normal;
+  line-height: f.toRem(40.32, 18);
+  letter-spacing: -.5px;
+}
+
+@mixin mediumHeading {
+  font-size: f.toRem(28, 16);
+  font-weight: 700;
+  font-style: normal;
+  //line-height: f.toRem(30.24, 18);
+}
+
+@mixin smallHeading {
+  font-size: f.toRem(18, 16);
+  font-weight: 600;
+  font-style: normal;
+  line-height: f.toRem(25, 18);
+}
+
+//@mixin XSmallHeading {
+//  font-size: f.toRem(18, 16);
+//  font-weight: 500;
+//  font-style: normal;
+//  //line-height: f.toRem(22.68, 18);
+//}
+
+@mixin bodyLarge {
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: f.toRem(25, 16);
+}
+
+@mixin bodyMedium {
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: f.toRem(25, 16);
+}
+
+@mixin bodySmall {
+  font-size: f.toRem(12, 16);
+  font-weight: 400;
+  font-style: normal;
+  line-height: f.toRem(20, 16);
+}

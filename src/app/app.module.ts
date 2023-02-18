@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {SharedModule} from "./shared/shared.module";
+import { HeaderMobileComponent } from './layout/header-mobile/header-mobile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderMobileComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

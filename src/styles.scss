@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "sass/reset";
+@import "sass/global";
+@import "sass/breakpoints";
+@import "sass/mixins";
+@import "sass/colors";
+@import "sass/typography";
+@import "sass/helpers/functions";
+@import "sass/helpers/class";
+@import "sass/layout";

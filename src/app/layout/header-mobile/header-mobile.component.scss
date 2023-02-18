@@ -1,0 +1,26 @@
+@use "/src/sass/helpers/functions" as f;
+@use "/src/sass/colors" as c;
+@use "/src/sass/typography" as t;
+
+.mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: f.toRem(38, 16) f.toRem(24, 16) f.toRem(32, 16) f.toRem(20, 16);
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-size: f.toRem(14, 16);
+      font-weight: bold;
+      line-height: f.toRem(16.41, 16);
+    }
+  }
+
+  img {
+    width: f.toRem(40, 16);
+  }
+}
