@@ -2,11 +2,11 @@
 @use "/src/sass/colors" as c;
 @use "/src/sass/typography" as t;
 
-.mobile-header {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: f.toRem(38, 16) f.toRem(24, 16) f.toRem(32, 16) f.toRem(20, 16);
+  padding: f.toRem(42, 16) f.toRem(37, 16) f.toRem(39, 16) f.toRem(37, 16);
 
   .logo {
     display: flex;
@@ -21,6 +21,16 @@
       font-size: f.toRem(14, 16);
       font-weight: bold;
       line-height: f.toRem(16.41, 16);
+    }
+  }
+  nav {
+    a {
+      font-size: f.toRem(16, 16);
+      font-weight: bold;
+      line-height: f.toRem(18.75, 16);
+    }
+    a:not(:last-child) {
+      margin-right: f.toRem(10, 16);
     }
   }
 }
