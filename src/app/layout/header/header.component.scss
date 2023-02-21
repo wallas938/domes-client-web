@@ -1,36 +1,140 @@
 @use "/src/sass/helpers/functions" as f;
 @use "/src/sass/colors" as c;
 @use "/src/sass/typography" as t;
+@use "/src/sass/mixins" as m;
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: f.toRem(42, 16) f.toRem(37, 16) f.toRem(39, 16) f.toRem(37, 16);
 
-  .logo {
+
+@include m.breakpoint-up(medium) {
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: f.toRem(42, 16) f.toRem(37, 16) f.toRem(39, 16) f.toRem(37, 16);
 
-    img {
-      width: f.toRem(40, 16);
+    .logo, .cart {
+      cursor: pointer;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      img {
+        width: f.toRem(40, 16);
+      }
+
+      span {
+        font-size: f.toRem(14, 16);
+        font-weight: bold;
+        line-height: f.toRem(16.41, 16);
+      }
     }
 
-    span {
-      font-size: f.toRem(14, 16);
-      font-weight: bold;
-      line-height: f.toRem(16.41, 16);
+    nav {
+      a {
+        font-size: f.toRem(12, 16);
+        color: #696969;
+        line-height: f.toRem(18.75, 16);
+      }
+
+      a.active {
+        font-weight: bold;
+        color: #000000;
+      }
+
+      a:not(:last-child) {
+        margin-right: f.toRem(10, 16);
+      }
+    }
+
+    .actions {
+      display: flex;
+      align-items: flex-end;
+
+      .cart {
+        margin-right: f.toRem(33, 16);
+      }
+
+      .connect {
+        filter: drop-shadow(8px 8px 0px #000000);
+        background: rgba(255, 139, 0, 1);
+        border: 1px solid #000000;
+        border-radius: 4px;
+        font-size: f.toRem(10, 16);
+        line-height: f.toRem(20, 16);
+        font-weight: bold;
+        letter-spacing: .05em;
+        color: #ffffff;
+        padding: f.toRem(6, 16) f.toRem(33, 16);
+      }
     }
   }
-  nav {
-    a {
-      font-size: f.toRem(16, 16);
-      font-weight: bold;
-      line-height: f.toRem(18.75, 16);
+}
+
+@include m.breakpoint-up(large) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: f.toRem(42, 16) f.toRem(37, 16) f.toRem(39, 16) f.toRem(37, 16);
+
+    .logo, .cart {
+      cursor: pointer;
     }
-    a:not(:last-child) {
-      margin-right: f.toRem(10, 16);
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      img {
+        width: f.toRem(40, 16);
+      }
+
+      span {
+        font-size: f.toRem(14, 16);
+        font-weight: bold;
+        line-height: f.toRem(16.41, 16);
+      }
+    }
+
+    nav {
+      a {
+        font-size: f.toRem(12, 16);
+        color: #696969;
+        line-height: f.toRem(18.75, 16);
+      }
+
+      a.active {
+        font-weight: bold;
+        color: #000000;
+      }
+
+      a:not(:last-child) {
+        margin-right: f.toRem(10, 16);
+      }
+    }
+
+    .actions {
+      display: flex;
+      align-items: flex-end;
+
+      .cart {
+        margin-right: f.toRem(33, 16);
+      }
+
+      .connect {
+        filter: drop-shadow(8px 8px 0px #000000);
+        background: rgba(255, 139, 0, 1);
+        border: 1px solid #000000;
+        border-radius: 4px;
+        font-size: f.toRem(10, 16);
+        line-height: f.toRem(20, 16);
+        font-weight: bold;
+        letter-spacing: .05em;
+        color: #ffffff;
+        padding: f.toRem(6, 16) f.toRem(33, 16);
+      }
     }
   }
 }
