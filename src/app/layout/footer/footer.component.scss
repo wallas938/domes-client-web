@@ -1,0 +1,57 @@
+@use "/src/sass/helpers/functions" as f;
+@use "/src/sass/colors" as c;
+@use "/src/sass/typography" as t;
+@use "/src/sass/mixins" as m;
+
+footer {
+  padding: f.toRem(30, 16);
+  border-top: 1px solid #000000;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  background-color: c.$orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-size: f.toRem(28, 16);
+    color: white;
+    font-weight: bold;
+    line-height: f.toRem(25, 16);
+    margin-bottom: f.toRem(41, 16);
+  }
+
+  ul {
+    li {
+      @include t.textBody;
+      color: white;
+      font-size: f.toRem(18, 16);
+    }
+
+    li:not(:last-of-type) {
+      margin-bottom: f.toRem(22, 16);
+    }
+
+    li:last-of-type {
+      margin-bottom: f.toRem(55, 16);
+    }
+  }
+
+  .socials {
+    display: flex;
+    justify-content: center;
+    margin-bottom: f.toRem(35, 16);;
+
+    .twt-icon {
+      margin: 0 f.toRem(16, 16);
+    }
+  }
+
+  .cpy-rights {
+    @include t.textBody;
+    color: white;
+    line-height: f.toRem(25, 16);
+    letter-spacing: 1.2px;
+  }
+}

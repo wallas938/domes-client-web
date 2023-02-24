@@ -1,27 +1,67 @@
 @use "helpers/functions"as f;
 @use "mixins"as m;
+@use "colors"as c;
 
-@mixin largeHeading {
-  font-size: f.toRem(32, 16);
-  font-weight: 300;
-  font-style: normal;
-  line-height: f.toRem(40.32, 18);
-  letter-spacing: -.5px;
-}
-
-@mixin mediumHeading {
-  font-size: f.toRem(28, 16);
-  font-weight: 700;
-  font-style: normal;
-  //line-height: f.toRem(30.24, 18);
-}
-
-@mixin smallHeading {
+@mixin headings {
   font-size: f.toRem(18, 16);
   font-weight: 600;
   font-style: normal;
-  line-height: f.toRem(25, 18);
+  line-height: f.toRem(21, 16);
+  text-align: center;
+
+  @include m.breakpoint-up(medium) {
+    font-size: f.toRem(28, 16);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @include m.breakpoint-up(large) {
+    font-size: f.toRem(32, 16);
+    font-weight: 300;
+    font-style: normal;
+    line-height: f.toRem(40.32, 16);
+    letter-spacing: -.5px;
+  }
+
 }
+@mixin textBody {
+  font-size: f.toRem(12, 16);
+  font-weight: 400;
+  font-style: normal;
+  line-height: f.toRem(20, 16);
+  text-align: center;
+  color: c.$grayText;
+
+  @include m.breakpoint-up(medium) {
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: f.toRem(25, 16);
+  }
+
+  @include m.breakpoint-up(large) {
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: f.toRem(25, 16);
+  }
+
+}
+
+//@mixin largeHeading {
+//  font-size: f.toRem(32, 16);
+//  font-weight: 300;
+//  font-style: normal;
+//  line-height: f.toRem(40.32, 18);
+//  letter-spacing: -.5px;
+//}
+//
+//@mixin mediumHeading {
+//  font-size: f.toRem(28, 16);
+//  font-weight: 700;
+//  font-style: normal;
+//  //line-height: f.toRem(30.24, 18);
+//}
 
 //@mixin XSmallHeading {
 //  font-size: f.toRem(18, 16);
@@ -30,23 +70,17 @@
 //  //line-height: f.toRem(22.68, 18);
 //}
 
-@mixin bodyLarge {
-  font-size: 1rem;
-  font-weight: 400;
-  font-style: normal;
-  line-height: f.toRem(25, 16);
-}
+//@mixin bodyLarge {
+//  font-size: 1rem;
+//  font-weight: 400;
+//  font-style: normal;
+//  line-height: f.toRem(25, 16);
+//}
+//
+//@mixin bodyMedium {
+//  font-size: 1rem;
+//  font-weight: 400;
+//  font-style: normal;
+//  line-height: f.toRem(25, 16);
+//}
 
-@mixin bodyMedium {
-  font-size: 1rem;
-  font-weight: 400;
-  font-style: normal;
-  line-height: f.toRem(25, 16);
-}
-
-@mixin bodySmall {
-  font-size: f.toRem(12, 16);
-  font-weight: 400;
-  font-style: normal;
-  line-height: f.toRem(20, 16);
-}
