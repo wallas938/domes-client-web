@@ -1,0 +1,239 @@
+@use "/src/sass/helpers/functions" as f;
+@use "/src/sass/colors" as c;
+@use "/src/sass/typography" as t;
+@use "/src/sass/mixins" as m;
+@use "/src/sass/layout/index" as l;
+
+main {
+  padding: f.toRem(64, 16) f.toRem(16, 16) f.toRem(0, 16) f.toRem(16, 16);
+  border: 2px solid #000000;
+  border-radius: f.toRem(4, 16) f.toRem(4, 16) 0 0;
+
+  .first-section {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: f.toRem(100, 16);
+
+    h1 {
+      @include t.headings;
+      margin-bottom: f.toRem(39, 16);
+    }
+
+    p {
+      @include t.textBody;
+      width: f.toRem(256, 16);
+      margin: 0 auto f.toRem(41, 16) auto;
+    }
+
+    .cta {
+      margin-bottom: f.toRem(100, 16);
+      display: flex;
+      justify-content: center;
+    }
+
+    .figures {
+      display: flex;
+      justify-content: center;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: f.toRem(120, 16);
+
+        .figure {
+          font-style: normal;
+          font-weight: 700;
+          font-size: 42px;
+          line-height: 20px;
+          letter-spacing: .05em;
+          color: c.$orange;
+          margin-bottom: f.toRem(14, 16);
+        }
+
+
+        span:last-child {
+          width: f.toRem(100, 16);
+          @include t.textBody;
+          font-size: f.toRem(14, 16);
+        }
+      }
+
+      div:first-child {
+        margin-right: f.toRem(20, 16);
+      }
+    }
+  }
+
+  .commitments {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: f.toRem(59, 16);
+
+    h2 {
+      @include t.headings;
+      margin-bottom: f.toRem(54, 16);
+    }
+
+    .commitment {
+      display: flex;
+      justify-content: space-between;
+      border: 2px solid #000000;
+      border-radius: 4px;
+      height: f.toRem(110, 16);
+      padding: f.toRem(15, 16) f.toRem(13, 16) f.toRem(14, 16) f.toRem(19, 16);
+
+      .icon {
+        img {
+          width: f.toRem(50, 16);
+        }
+      }
+
+      p {
+        @include t.textBody;
+        width: f.toRem(200, 16);
+      }
+    }
+
+    .commitment:not(:last-of-type) {
+      margin-bottom: f.toRem(28, 16);
+    }
+
+    .commitment:last-of-type {
+      margin-bottom: f.toRem(38, 16);
+    }
+
+    > p:last-child {
+      @include t.textBody;
+      color: #000000;
+      font-weight: 600;
+    }
+  }
+
+  .categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: f.toRem(151, 16);
+
+    h2 {
+      @include t.headings;
+      margin-bottom: f.toRem(113, 16);
+    }
+
+    .category {
+      width: f.toRem(260, 16);
+      border: 3px solid #000000;
+      border-radius: 4px;
+      padding: f.toRem(10, 16) f.toRem(16, 16) f.toRem(47, 16) f.toRem(17, 16);
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: f.toRem(17, 16);
+
+        img {
+          width: f.toRem(90, 16);
+          height: f.toRem(95, 16);
+        }
+      }
+
+      p {
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        font-size: f.toRem(18, 16);
+        line-height: f.toRem(21.09, 16);
+      }
+    }
+
+    .category:not(:last-of-type) {
+      margin-bottom: f.toRem(110, 16);
+    }
+
+    .cat {
+      background-color: c.$strongGrey;
+    }
+
+    .dog {
+      background-color: c.$brown;
+    }
+
+    .bird {
+      background-color: c.$grey;
+    }
+
+    .fish {
+      background-color: c.$blue;
+    }
+
+    .reptile {
+      background-color: c.$green;
+    }
+
+
+  }
+
+  .partners {
+    margin-bottom: f.toRem(151, 16);
+
+    h2 {
+      @include t.headings;
+      margin-bottom: f.toRem(73, 16);
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .card {
+        width: f.toRem(255, 16);
+        padding: f.toRem(24, 16) f.toRem(9, 16) f.toRem(18, 16) f.toRem(15, 16);
+        @include l.domes-card;
+
+        .card-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: f.toRem(10, 16);
+
+          img {
+            width: f.toRem(50, 16);
+            height: f.toRem(50, 16);
+          }
+
+          .slogan {
+            @include t.textBody;
+            text-align: start;
+            font-weight: bold;
+            color: #ffffff;
+            margin-left: f.toRem(12, 16);
+          }
+        }
+
+        .card-body {
+          p {
+            @include t.textBody;
+            text-align: start;
+            color: #ffffff;
+          }
+        }
+      }
+
+      .card:not(:last-of-type) {
+        margin-bottom: f.toRem(73, 16);
+      }
+
+      .transex {
+        background-color: c.$blue;
+      }
+
+      .bp {
+        background-color: c.$pink;
+      }
+    }
+  }
+}

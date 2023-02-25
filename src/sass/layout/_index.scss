@@ -1,16 +1,9 @@
-//@use 'colors'as c;
-//@use 'typography'as t;
-//@use 'helpers/functions'as f;
-//
-//@mixin app-button {
-//  background-color: c.$Red;
-//  border-radius: 6px;
-//  border: none;
-//  color: c.$PureWhite;
-//  @include t.bodyMedium;
-//
-//  &:hover {
-//    background-color: c.$PureWhite;
-//    color: c.$SemiDarkBlue;
-//  }
-//}
+@use '/src/sass/colors'as c;
+@use '/src/sass/typography'as t;
+@use '/src/sass/helpers/functions'as f;
+
+@mixin domes-card {
+  filter: drop-shadow(8px 8px 0px #000000);
+  border: 2px solid #000000;
+  border-radius: 4px;
+}
