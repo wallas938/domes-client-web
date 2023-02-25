@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: f.toRem(38, 16) f.toRem(24, 16) f.toRem(32, 16) f.toRem(20, 16);
+  padding: f.toRem(38, 16) 0 f.toRem(32, 16) 0;
 
   .logo {
     display: flex;

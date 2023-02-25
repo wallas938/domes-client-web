@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: f.toRem(42, 16) f.toRem(37, 16) f.toRem(39, 16) f.toRem(37, 16);
+    padding: f.toRem(42, 16) 0 f.toRem(39, 16) 0;
 
     .logo, .cart {
       cursor: pointer;
@@ -60,55 +60,5 @@
 }
 
 @include m.breakpoint-up(large) {
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: f.toRem(42, 16) f.toRem(37, 16) f.toRem(39, 16) f.toRem(37, 16);
 
-    .logo, .cart {
-      cursor: pointer;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      img {
-        width: f.toRem(40, 16);
-      }
-
-      span {
-        font-size: f.toRem(14, 16);
-        font-weight: bold;
-        line-height: f.toRem(16.41, 16);
-      }
-    }
-
-    nav {
-      a {
-        font-size: f.toRem(12, 16);
-        color: #696969;
-        line-height: f.toRem(18.75, 16);
-      }
-
-      a.active {
-        font-weight: bold;
-        color: #000000;
-      }
-
-      a:not(:last-child) {
-        margin-right: f.toRem(10, 16);
-      }
-    }
-
-    .actions {
-      display: flex;
-      align-items: flex-end;
-
-      .cart {
-        margin-right: f.toRem(33, 16);
-      }
-    }
-  }
 }
