@@ -8,60 +8,122 @@ main {
   padding: f.toRem(64, 16) f.toRem(16, 16) f.toRem(0, 16) f.toRem(16, 16);
   border: 2px solid #000000;
   border-radius: f.toRem(4, 16) f.toRem(4, 16) 0 0;
+  @include m.breakpoint-up(medium) {
+    padding: f.toRem(60, 16) f.toRem(28, 16) f.toRem(0, 16) f.toRem(27, 16);
+  }
 
-  .first-section {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: f.toRem(100, 16);
+  .showcase {
 
-    h1 {
-      @include t.headings;
-      margin-bottom: f.toRem(39, 16);
-    }
-
-    p {
-      @include t.textBody;
-      width: f.toRem(256, 16);
-      margin: 0 auto f.toRem(41, 16) auto;
-    }
-
-    .cta {
-      margin-bottom: f.toRem(100, 16);
+    @include m.breakpoint-up(medium) {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      padding-bottom: f.toRem(111, 16);
     }
 
-    .figures {
+    .left {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      padding-bottom: f.toRem(100, 16);
 
-      div {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        width: f.toRem(120, 16);
+      @include m.breakpoint-up(medium) {
+        padding-bottom: unset;
+      }
 
-        .figure {
-          font-style: normal;
-          font-weight: 700;
-          font-size: 42px;
-          line-height: 20px;
-          letter-spacing: .05em;
-          color: c.$orange;
-          margin-bottom: f.toRem(14, 16);
-        }
-
-
-        span:last-child {
-          width: f.toRem(100, 16);
-          @include t.textBody;
-          font-size: f.toRem(14, 16);
+      h1 {
+        @include t.headings;
+        margin-bottom: f.toRem(39, 16);
+        @include m.breakpoint-up(medium) {
+          margin-bottom: f.toRem(19, 16);
+          text-align: left;
         }
       }
 
-      div:first-child {
-        margin-right: f.toRem(20, 16);
+      p {
+        @include t.textBody;
+        width: f.toRem(256, 16);
+        margin: 0 auto f.toRem(41, 16) auto;
+        @include m.breakpoint-up(medium) {
+          text-align: left;
+          margin: 0 0 f.toRem(70, 16) 0;
+          width: f.toRem(360, 16);
+        }
+      }
+
+
+      .left-bottom-part {
+        @include m.breakpoint-up(medium) {
+          display: flex;
+        }
+
+        .cta {
+          margin-bottom: f.toRem(100, 16);
+          display: flex;
+          justify-content: center;
+
+          @include m.breakpoint-up(medium) {
+            margin-right: f.toRem(40, 16);
+            margin-bottom: unset;
+          }
+        }
+
+        .figures {
+          display: flex;
+          justify-content: center;
+
+          @include m.breakpoint-up(medium) {
+            justify-content: left;
+          }
+
+          div {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: unset;
+            width: f.toRem(120, 16);
+            @include m.breakpoint-up(medium) {
+              width: f.toRem(96, 16);
+            }
+
+            .figure {
+              font-style: normal;
+              font-weight: 700;
+              font-size: f.toRem(42, 16);
+              line-height: f.toRem(20, 16);
+              letter-spacing: .05em;
+              color: c.$orange;
+              margin-bottom: f.toRem(14, 16);
+
+              @include m.breakpoint-up(medium) {
+                font-size: f.toRem(32, 16);
+                margin-bottom: f.toRem(5, 16);
+              }
+            }
+
+            span:last-child {
+              width: f.toRem(100, 16);
+              @include t.textBody;
+              @include m.breakpoint-up(medium) {
+                font-size: f.toRem(14, 16);
+                line-height: f.toRem(20, 16);
+                width: auto;
+              }
+            }
+          }
+
+          div:first-child {
+            margin-right: f.toRem(20, 16);
+            @include m.breakpoint-up(medium) {
+              margin-right: f.toRem(17, 16);
+            }
+          }
+        }
+      }
+    }
+
+    .right {
+      .expo {
+        width: f.toRem(250, 16);
+        height: f.toRem(330, 16);
       }
     }
   }
@@ -71,18 +133,37 @@ main {
     flex-direction: column;
     padding-bottom: f.toRem(59, 16);
 
+    @include m.breakpoint-up(medium) {
+      padding-bottom: f.toRem(106, 16);
+    }
+
     h2 {
       @include t.headings;
       margin-bottom: f.toRem(54, 16);
+
+      @include m.breakpoint-up(medium) {
+        margin-bottom: f.toRem(61, 16);
+      }
     }
 
     .commitment {
       display: flex;
       justify-content: space-between;
+      align-self: center;
       border: 2px solid #000000;
       border-radius: 4px;
       height: f.toRem(110, 16);
       padding: f.toRem(15, 16) f.toRem(13, 16) f.toRem(14, 16) f.toRem(19, 16);
+      width: 78vw;
+      max-width: f.toRem(350, 16);
+      @include m.breakpoint-up(medium) {
+        align-items: center;
+        margin-bottom: f.toRem(61, 16);
+        max-width: f.toRem(550, 16);
+        height: f.toRem(145, 16);
+        padding: f.toRem(15, 16) f.toRem(24, 16) f.toRem(14, 16) f.toRem(34, 16);
+        /*HERE !!!*/
+      }
 
       .icon {
         img {
@@ -93,95 +174,169 @@ main {
       p {
         @include t.textBody;
         width: f.toRem(200, 16);
+        @include m.breakpoint-up(medium) {
+          width: f.toRem(360, 16);
+        }
+      }
+    }
+
+    .vaccination {
+      flex-direction: row-reverse;
+
+      p {
+        @include m.breakpoint-up(medium) {
+          text-align: right;
+        }
       }
     }
 
     .commitment:not(:last-of-type) {
       margin-bottom: f.toRem(28, 16);
+
+      @include m.breakpoint-up(medium) {
+        margin-bottom: f.toRem(61, 16);
+      }
     }
 
     .commitment:last-of-type {
       margin-bottom: f.toRem(38, 16);
+
+      @include m.breakpoint-up(medium) {
+        margin-bottom: f.toRem(59, 16);
+      }
     }
 
     > p:last-child {
       @include t.textBody;
       color: #000000;
       font-weight: 600;
+
+      @include m.breakpoint-up(medium) {
+        line-height: f.toRem(35, 16);
+        text-align: center;
+        font-weight: 600;
+        padding: 0 f.toRem(128, 16);
+      }
     }
   }
 
   .categories {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
     padding-bottom: f.toRem(151, 16);
+    @include m.breakpoint-up(medium) {
+      padding-bottom: unset;
+    }
 
     h2 {
       @include t.headings;
       margin-bottom: f.toRem(113, 16);
     }
 
-    .category {
-      width: f.toRem(260, 16);
-      border: 3px solid #000000;
-      border-radius: 4px;
-      padding: f.toRem(10, 16) f.toRem(16, 16) f.toRem(47, 16) f.toRem(17, 16);
+    .categories_cont {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @include m.breakpoint-up(medium) {
+        flex-direction: unset;
+        align-items: unset;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas:
+        "cat  dog"
+        "bird fish"
+        "reptile  reptile";
+      }
 
-      div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: f.toRem(17, 16);
 
-        img {
-          width: f.toRem(90, 16);
-          height: f.toRem(95, 16);
+      .category {
+        width: f.toRem(260, 16);
+        border: 3px solid #000000;
+        border-radius: 4px;
+        padding: f.toRem(10, 16) f.toRem(16, 16) f.toRem(47, 16) f.toRem(17, 16);
+
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: f.toRem(17, 16);
+
+          img {
+            width: f.toRem(90, 16);
+            height: f.toRem(95, 16);
+          }
+        }
+
+        p {
+          text-align: center;
+          font-weight: bold;
+          color: white;
+          font-size: f.toRem(18, 16);
+          line-height: f.toRem(21.09, 16);
         }
       }
 
-      p {
-        text-align: center;
-        font-weight: bold;
-        color: white;
-        font-size: f.toRem(18, 16);
-        line-height: f.toRem(21.09, 16);
+      .category:not(:last-of-type) {
+        margin-bottom: f.toRem(110, 16);
+      }
+
+      .cat {
+        background-color: c.$strongGrey;
+        @include m.breakpoint-up(medium) {
+          grid-area: cat;
+          justify-self: flex-end;
+          margin-right: f.toRem(42, 16);
+        }
+      }
+
+      .dog {
+        background-color: c.$brown;
+        @include m.breakpoint-up(medium) {
+          grid-area: dog;
+          @include m.breakpoint-up(medium) {
+            grid-area: dog;
+            margin-left: f.toRem(42, 16);
+          }
+        }
+      }
+
+      .bird {
+        background-color: c.$grey;
+        @include m.breakpoint-up(medium) {
+          grid-area: bird;
+          justify-self: flex-end;
+          margin-right: f.toRem(42, 16);
+        }
+      }
+
+      .fish {
+        background-color: c.$blue;
+        @include m.breakpoint-up(medium) {
+          grid-area: fish;
+          margin-left: f.toRem(42, 16);
+        }
+      }
+
+      .reptile {
+        background-color: c.$green;
+        @include m.breakpoint-up(medium) {
+          grid-area: reptile;
+          margin-bottom: f.toRem(133, 16);
+          justify-self: center;
+        }
       }
     }
-
-    .category:not(:last-of-type) {
-      margin-bottom: f.toRem(110, 16);
-    }
-
-    .cat {
-      background-color: c.$strongGrey;
-    }
-
-    .dog {
-      background-color: c.$brown;
-    }
-
-    .bird {
-      background-color: c.$grey;
-    }
-
-    .fish {
-      background-color: c.$blue;
-    }
-
-    .reptile {
-      background-color: c.$green;
-    }
-
-
   }
 
   .partners {
-    margin-bottom: f.toRem(151, 16);
+    padding-bottom: f.toRem(151, 16);
+    @include m.breakpoint-up(medium) {
+      padding-bottom: f.toRem(95, 16);
+    }
 
     h2 {
       @include t.headings;
-      margin-bottom: f.toRem(73, 16);
+      margin-bottom: f.toRem(75, 16);
     }
 
     .cards {
@@ -190,10 +345,19 @@ main {
       justify-content: center;
       align-items: center;
 
+      @include m.breakpoint-up(medium) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
       .card {
+        @include l.domes-card;
         width: f.toRem(255, 16);
         padding: f.toRem(24, 16) f.toRem(9, 16) f.toRem(18, 16) f.toRem(15, 16);
-        @include l.domes-card;
+        @include m.breakpoint-up(medium) {
+          width: f.toRem(295, 16);
+          padding: f.toRem(17, 16) f.toRem(6, 16) f.toRem(18, 16) f.toRem(15, 16);
+        }
 
         .card-header {
           display: flex;
@@ -225,6 +389,10 @@ main {
 
       .card:not(:last-of-type) {
         margin-bottom: f.toRem(73, 16);
+
+        @include m.breakpoint-up(medium) {
+          margin-bottom: unset;
+        }
       }
 
       .transex {

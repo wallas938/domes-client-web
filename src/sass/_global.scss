@@ -1,8 +1,12 @@
-@forward "breakpoints";
+@use "/src/sass/breakpoints"as v;
+@use "/src/sass/mixins"as m;
+@use "/src/sass/helpers/functions"as f;
+@use "/src/sass/layout/index"as l;
 
 * {
   font-family: 'Roboto', sans-serif;
 }
+
 body,
 html,
 #app {
@@ -20,6 +24,16 @@ a {
 }
 
 .container {
+  margin: 0 auto;
+  max-width: f.toRem(576, 16);
+
+  @include m.breakpoint-up(medium) {
+    max-width: f.toRem(900, 16);
+  }
+
+  @include m.breakpoint-up(large) {
+    max-width: f.toRem(1280, 16);
+  }
   // A définir
   // 576px
   //max-width: 38.4rem;

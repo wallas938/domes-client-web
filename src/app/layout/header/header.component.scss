@@ -3,8 +3,6 @@
 @use "/src/sass/typography" as t;
 @use "/src/sass/mixins" as m;
 
-
-
 @include m.breakpoint-up(medium) {
   .header {
     display: flex;

@@ -10,8 +10,9 @@
   text-align: center;
 
   @include m.breakpoint-up(medium) {
-    font-size: f.toRem(28, 16);
+    font-size: f.toRem(24, 16);
     font-weight: 700;
+    line-height: f.toRem(28, 16);
     font-style: normal;
   }
 
@@ -36,6 +37,7 @@
     font-size: 1rem;
     font-weight: 400;
     font-style: normal;
+    text-align: left;
     line-height: f.toRem(25, 16);
   }
 

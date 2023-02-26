@@ -14,34 +14,78 @@ footer {
   flex-direction: column;
   align-items: center;
 
+  @include m.breakpoint-up(medium) {
+    flex-direction: unset;
+    align-items: unset;
+    padding: f.toRem(65, 16) f.toRem(28, 16) f.toRem(26, 16) f.toRem(38, 16);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    row-gap: f.toRem(49, 16);
+    grid-template-areas:
+      "domes    nav   nav"
+      "socials  cpy-r cpy-r";
+  }
+
   h1 {
     font-size: f.toRem(28, 16);
     color: white;
     font-weight: bold;
     line-height: f.toRem(25, 16);
     margin-bottom: f.toRem(41, 16);
+    @include m.breakpoint-up(medium) {
+      margin-bottom: unset;
+    }
   }
 
-  ul {
-    li {
-      @include t.textBody;
-      color: white;
-      font-size: f.toRem(18, 16);
+  nav {
+    @include m.breakpoint-up(medium) {
+      grid-area: nav;
     }
 
-    li:not(:last-of-type) {
-      margin-bottom: f.toRem(22, 16);
-    }
+    ul {
+      @include m.breakpoint-up(medium) {
+        display: flex;
+        justify-content: flex-end;
+      }
 
-    li:last-of-type {
-      margin-bottom: f.toRem(55, 16);
+      li {
+        @include t.textBody;
+        color: white;
+        font-size: f.toRem(18, 16);
+        @include m.breakpoint-up(medium) {
+          text-align: unset;
+        }
+      }
+
+      li:not(:last-of-type) {
+        margin-bottom: f.toRem(22, 16);
+        @include m.breakpoint-up(medium) {
+          margin-bottom: unset;
+          margin-right: f.toRem(17, 16);
+        }
+      }
+
+      li:last-of-type {
+        margin-bottom: f.toRem(55, 16);
+        @include m.breakpoint-up(medium) {
+          margin-bottom: unset;
+        }
+      }
     }
   }
 
   .socials {
     display: flex;
     justify-content: center;
-    margin-bottom: f.toRem(35, 16);;
+    margin-bottom: f.toRem(35, 16);
+
+    @include m.breakpoint-up(medium) {
+      margin-bottom: unset;
+      grid-area: socials;
+      justify-content: flex-start;
+    }
+
 
     .twt-icon {
       margin: 0 f.toRem(16, 16);
@@ -53,5 +97,11 @@ footer {
     color: white;
     line-height: f.toRem(25, 16);
     letter-spacing: 1.2px;
+
+    @include m.breakpoint-up(medium) {
+      grid-area: cpy-r;
+      text-align: right;
+    }
   }
+
 }
