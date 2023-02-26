@@ -1,0 +1,41 @@
+<main>
+  <h1>Nos Produits</h1>
+  <nav>
+    <ul>
+      <li class="dog orange"><span>Chien</span></li>
+      <li class="cat"><span>Chat</span></li>
+      <li class="bird"><span>Oiseau</span></li>
+      <li class="reptile"><span>Reptile</span></li>
+      <li class="fish"><span>Poisson</span></li>
+    </ul>
+  </nav>
+  <div class="scrolling-banner hide-for-mobile"></div>
+  <div class="filter">
+    <div class="select-categories">
+      <mat-form-field appearance="outline">
+        <mat-label>Selectionnez une catégorie</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let category of categoryList" [value]="category">{{category}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="ranges">
+      <div class="range price">
+        <mat-slider min="200" max="500">
+          <input value="300" matSliderStartThumb>
+          <input value="400" matSliderEndThumb>
+        </mat-slider>
+      </div>
+      <div class="range age">
+        <mat-slider min="200" max="500">
+          <input value="300" matSliderStartThumb>
+          <input value="400" matSliderEndThumb>
+        </mat-slider>
+      </div>
+    </div>
+    <div class="cta">
+      <button class="domes-btn blue">Filtrer</button>
+    </div>
+    <div class="search-bar"></div>
+  </div>
+</main>

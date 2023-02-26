@@ -5,15 +5,7 @@
 @use "/src/sass/layout/index" as l;
 
 main {
-  padding: f.toRem(64, 16) f.toRem(16, 16) f.toRem(0, 16) f.toRem(16, 16);
-  border: 2px solid #000000;
-  border-radius: f.toRem(4, 16) f.toRem(4, 16) 0 0;
-  @include m.breakpoint-up(medium) {
-    padding: f.toRem(60, 16) f.toRem(28, 16) f.toRem(0, 16) f.toRem(27, 16);
-  }
-
   .showcase {
-
     @include m.breakpoint-up(medium) {
       display: flex;
       justify-content: space-between;

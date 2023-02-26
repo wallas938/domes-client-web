@@ -7,3 +7,62 @@
   border: 2px solid #000000;
   border-radius: 4px;
 }
+
+.domes-btn {
+  filter: drop-shadow(8px 8px 0px #000000);
+  border: 1px solid #000000;
+  border-radius: 4px;
+  font-size: f.toRem(10, 16);
+  line-height: f.toRem(20, 16);
+  font-weight: bold;
+  letter-spacing: .05em;
+  color: #ffffff;
+  padding: f.toRem(6, 16) f.toRem(33, 16);
+}
+
+.orange {
+  & > * {
+    color: white !important;
+  }
+
+  background: rgba(255, 139, 0, 1);
+}
+
+.blue {
+  & > * {
+    color: white !important;
+  }
+
+  background: c.$blue;
+}
+
+.green {
+  & > * {
+    color: white !important;
+  }
+
+  background: c.$green;
+}
+
+.brown {
+  & > * {
+    color: white !important;
+  }
+  background: c.$brown;
+}
+
+.pink {
+  & > * {
+    color: white !important;
+  }
+
+  background: c.$pink;
+}
+
+.grey {
+  & > * {
+    color: white !important;
+  }
+
+  background: c.$grey;
+}
