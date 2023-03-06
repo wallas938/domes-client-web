@@ -2,8 +2,63 @@
 @use '/src/sass/typography'as t;
 @use '/src/sass/helpers/functions'as f;
 
-@mixin domes-card {
-  filter: drop-shadow(8px 8px 0px #000000);
+.domes-shadow {
   border: 2px solid #000000;
   border-radius: 4px;
+
+  &.orange {
+    filter: drop-shadow(8px 8px 0px c.$orange);
+  }
+
+  &.brown {
+    filter: drop-shadow(8px 8px 0px c.$brown);
+  }
+
+  &.blue {
+    filter: drop-shadow(8px 8px 0px c.$blue);
+  }
+
+  &.green {
+    filter: drop-shadow(8px 8px 0px c.$green);
+  }
+
+  &.grey {
+    filter: drop-shadow(8px 8px 0px c.$grey);
+  }
+}
+
+.domes-btn {
+  filter: drop-shadow(8px 8px 0px #000000);
+  border: 1px solid #000000;
+  border-radius: 4px;
+  font-size: f.toRem(10, 16);
+  line-height: f.toRem(20, 16);
+  font-weight: bold;
+  letter-spacing: .05em;
+  color: #ffffff;
+  padding: f.toRem(6, 16) f.toRem(33, 16);
+}
+
+.orange {
+  background: rgba(255, 139, 0, 1);
+}
+
+.blue {
+  background: c.$blue;
+}
+
+.green {
+  background: c.$green;
+}
+
+.brown {
+  background: c.$brown;
+}
+
+.pink {
+  background: c.$pink;
+}
+
+.grey {
+  background: c.$grey;
 }

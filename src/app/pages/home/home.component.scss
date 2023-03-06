@@ -5,15 +5,7 @@
 @use "/src/sass/layout/index" as l;
 
 main {
-  padding: f.toRem(64, 16) f.toRem(16, 16) f.toRem(0, 16) f.toRem(16, 16);
-  border: 2px solid #000000;
-  border-radius: f.toRem(4, 16) f.toRem(4, 16) 0 0;
-  @include m.breakpoint-up(medium) {
-    padding: f.toRem(60, 16) f.toRem(28, 16) f.toRem(0, 16) f.toRem(27, 16);
-  }
-
   .showcase {
-
     @include m.breakpoint-up(medium) {
       display: flex;
       justify-content: space-between;
@@ -59,7 +51,7 @@ main {
           margin-bottom: f.toRem(100, 16);
           display: flex;
           justify-content: center;
-
+          align-items: center;
           @include m.breakpoint-up(medium) {
             margin-right: f.toRem(40, 16);
             margin-bottom: unset;
@@ -351,7 +343,6 @@ main {
       }
 
       .card {
-        @include l.domes-card;
         width: f.toRem(255, 16);
         padding: f.toRem(24, 16) f.toRem(9, 16) f.toRem(18, 16) f.toRem(15, 16);
         @include m.breakpoint-up(medium) {

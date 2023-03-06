@@ -1,0 +1,86 @@
+<main>
+  <h1>Nos Produits</h1>
+  <nav>
+    <ul>
+      <li class="dog active"><button class="brown">Chien</button></li>
+      <li class="cat"><button>Chat</button></li>
+      <li class="bird"><button>Oiseau</button></li>
+      <li class="reptile"><button>Reptile</button></li>
+      <li class="fish"><button>Poisson</button></li>
+    </ul>
+  </nav>
+  <div class="scrolling-banner hide-for-mobile">
+    <div class="banner-bg"></div>
+    <div class="banner">
+    <span class="specie-name" *ngFor="let name of currentCategoryNames">
+      {{name}}
+    </span>
+    </div>
+  </div>
+  <div class="filter">
+    <div class="select-specie">
+      <mat-form-field appearance="outline">
+        <mat-label>Selectionnez une catégorie</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let category of categoryList" [value]="category">{{category}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="ranges">
+      <div class="range price">
+        <mat-slider min="200" max="500">
+          <input value="300" matSliderStartThumb>
+          <input value="400" matSliderEndThumb>
+        </mat-slider>
+      </div>
+      <div class="range age">
+        <mat-slider>
+          <input value="300" matSliderStartThumb>
+          <input value="400" matSliderEndThumb>
+        </mat-slider>
+      </div>
+    </div>
+    <div class="cta">
+      <button class="domes-btn blue">Rechercher</button>
+    </div>
+  </div>
+  <div class="search-bar">
+    <mat-form-field appearance="outline">
+      <mat-label>Tapez votre recherche</mat-label>
+      <input type="search" matInput placeholder="ex: Yorkshire">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="products">
+    <div class="product domes-shadow brown" *ngFor="let product of products">
+      <div class="main-picture">
+        <img [src]="product.mainPicture" alt="main picture of the current product">
+        <button class="cart_btn pink">
+          <img src="assets/images/shopping_bag.png" alt="bag shopping icon">
+        </button>
+      </div>
+      <div class="info">
+        <div class="specie">
+          <span> {{product.specie}} </span>
+        </div>
+        <div class="age">
+          <span> {{product.age}} mois</span>
+        </div>
+        <div class="more">
+          <mat-icon>info</mat-icon>
+        </div>
+        <div class="price">
+          <mat-icon>euro_symbol</mat-icon>
+          <span> {{product.price}} </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagination">
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   aria-label="Select page">
+    </mat-paginator>
+  </div>
+</main>
