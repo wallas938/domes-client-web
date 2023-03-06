@@ -15,4 +15,5 @@ import {ReactiveFormsModule} from "@angular/forms";
   exports: [ProductsComponent]
 })
 export class ProductModule {
+
 }

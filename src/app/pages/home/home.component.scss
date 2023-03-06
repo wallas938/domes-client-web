@@ -51,7 +51,7 @@ main {
           margin-bottom: f.toRem(100, 16);
           display: flex;
           justify-content: center;
-
+          align-items: center;
           @include m.breakpoint-up(medium) {
             margin-right: f.toRem(40, 16);
             margin-bottom: unset;
@@ -343,7 +343,6 @@ main {
       }
 
       .card {
-        @include l.domes-card;
         width: f.toRem(255, 16);
         padding: f.toRem(24, 16) f.toRem(9, 16) f.toRem(18, 16) f.toRem(15, 16);
         @include m.breakpoint-up(medium) {

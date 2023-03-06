@@ -7,10 +7,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {MatSelectModule} from '@angular/material/select';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
 @NgModule({
   declarations: [
     DomesButtonComponent,
-
   ],
   imports: [
     CommonModule,
@@ -20,6 +24,9 @@ import {MatSliderModule} from '@angular/material/slider';
     FormsModule,
     MatSelectModule,
     MatSliderModule,
+    MatInputModule,
+    MatIconModule,
+    MatPaginatorModule
   ],
   exports: [
     CommonModule,
@@ -29,6 +36,9 @@ import {MatSliderModule} from '@angular/material/slider';
     FormsModule,
     MatSelectModule,
     MatSliderModule,
+    MatInputModule,
+    MatIconModule,
+    MatPaginatorModule
   ],
   providers: [],
 })

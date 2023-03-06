@@ -13,13 +13,12 @@
     font-size: f.toRem(24, 16);
     font-weight: 700;
     line-height: f.toRem(28, 16);
-    font-style: normal;
+    text-align: left;
   }
 
   @include m.breakpoint-up(large) {
     font-size: f.toRem(32, 16);
     font-weight: 300;
-    font-style: normal;
     line-height: f.toRem(40.32, 16);
     letter-spacing: -.5px;
   }
