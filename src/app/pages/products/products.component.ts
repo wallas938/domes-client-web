@@ -2,6 +2,7 @@ import {Component, Injectable, ViewEncapsulation} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MatPaginatorIntl, PageEvent} from "@angular/material/paginator";
 import {Subject} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable()
 export class MyCustomPaginatorIntl implements MatPaginatorIntl {
@@ -105,8 +106,7 @@ export class ProductsComponent {
 
   pageEvent: PageEvent = new PageEvent();
 
-  public constructor() {
-
+  public constructor(private router: Router, private route: ActivatedRoute) {
   }
 
   handlePageEvent(e: PageEvent) {
@@ -120,5 +120,9 @@ export class ProductsComponent {
     if (setPageSizeOptionsInput) {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
+  }
+
+  showDetail(id: String) {
+    if (id) this.router.navigate([id], {relativeTo: this.route})
   }
 }

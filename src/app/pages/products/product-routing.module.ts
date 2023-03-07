@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ProductsComponent} from "./products.component";
+import {ProductComponent} from "./product/product.component";
 
 const routes: Routes = [
   {
-    path: '', component: ProductsComponent,
+    path: "", component: ProductsComponent,
     // children: [
     //   {
     //     path: 'new-feedback', component: FeedbackFormComponent
@@ -19,6 +20,9 @@ const routes: Routes = [
     //     component: FeedbackFormComponent,
     //   },
     // ]
+  },
+  {
+    path: ":id", component: ProductComponent
   }
 ];
 @NgModule({
