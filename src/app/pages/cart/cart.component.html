@@ -109,7 +109,14 @@
           </div>
           <div class="field expiration">
             <label>Date d'expiration</label>
-            <input class="domes-input" type="date"/>
+            <div class="select-fields">
+              <select class="month-select domes-select">
+                <option *ngFor="let month of months" [value]="month">{{month}}</option>
+              </select>
+              <select class="year-select domes-select">
+                <option *ngFor="let year of years" [value]="year">{{year}}</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
