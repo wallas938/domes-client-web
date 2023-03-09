@@ -6,159 +6,327 @@
 
 .cart {
   padding: f.toRem(30, 16) f.toRem(15, 16) f.toRem(100, 16) f.toRem(15, 16);
-
+  @include m.breakpoint-up(medium) {
+    padding-top: unset;
+  }
   h1 {
     @include t.headings;
     margin-bottom: f.toRem(50, 16);
-  }
-
-  .section-title {
-    font-style: normal;
-    font-weight: 600;
-    font-size: f.toRem(12, 16);
-    line-height: f.toRem(25, 16);
-    text-align: center;
-    margin-bottom: f.toRem(12, 16);
-  }
-
-  .toggle-bar {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: f.toRem(28, 16);
-
-    .bar {
-      height: f.toRem(3, 16);
-      width: f.toRem(235, 16);
-      background-color: c.$orange;
-    }
-
-    .arrow {
-      position: relative;
-      bottom: 6px;
-      width: f.toRem(15, 16);
-      height: f.toRem(15, 16);
+    @include m.breakpoint-up(medium) {
+      margin-bottom: f.toRem(33, 16);
     }
   }
 
-  .container {
-    filter: drop-shadow(-8px 8px 0px #000000);
-    border: 1px solid #000000;
-    border-radius: 4px;
-    background-color: white;
-    margin-bottom: f.toRem(75, 16);
-  }
+  .layout {
+    @include m.breakpoint-up(medium) {
+      display: grid;
+      grid-template-columns: f.toRem(410, 16) f.toRem(285, 16);
+      grid-template-rows: auto auto;
+      column-gap: f.toRem(25, 16);
+      grid-template-areas:
+      "shipping-info  resume"
+      "payment        resume";
+    }
 
-  .resume {
-    padding: f.toRem(30, 16) f.toRem(11, 16) f.toRem(11, 16) f.toRem(19, 16);
-    .articles {
-      overflow: auto;
-      max-height: 500px;
+    section {
+      .section-title {
+        font-style: normal;
+        font-weight: 600;
+        font-size: f.toRem(12, 16);
+        line-height: f.toRem(25, 16);
+        text-align: center;
+        margin-bottom: f.toRem(12, 16);
 
-      .article {
-        border-bottom: 1px solid #000000;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        grid-template-areas:
+        @include m.breakpoint-up(medium) {
+          text-align: left;
+          margin-bottom: f.toRem(13, 16);
+        }
+      }
+    }
+
+    .toggle-bar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: f.toRem(28, 16);
+      cursor: pointer;
+
+      .bar {
+        height: f.toRem(3, 16);
+        width: f.toRem(235, 16);
+        background-color: c.$orange;
+      }
+
+      .arrow {
+        position: relative;
+        bottom: 6px;
+        width: f.toRem(15, 16);
+        height: f.toRem(15, 16);
+      }
+    }
+
+    .section-container {
+      filter: drop-shadow(-8px 8px 0px #000000);
+      border: 1px solid #000000;
+      border-radius: 4px;
+      background-color: white;
+    }
+
+    .resume {
+      grid-area: resume;
+      margin-bottom: f.toRem(75, 16);
+
+      & > .section-container {
+        padding: f.toRem(30, 16) f.toRem(11, 16) f.toRem(11, 16) f.toRem(19, 16);
+      }
+
+      .articles {
+        overflow: auto;
+        max-height: 500px;
+
+        .article {
+          border-bottom: 1px solid #000000;
+          display: grid;
+          grid-template-columns: auto auto auto;
+          grid-template-rows: repeat(2, 1fr);
+          grid-template-areas:
           "specie age price"
           "ref    ref ref";
+        }
+
+        .article:not(:last-of-type) {
+          margin-bottom: f.toRem(44, 16);
+        }
+
+        .article:last-of-type {
+          margin-bottom: f.toRem(80, 16);
+          @include m.breakpoint-up(medium) {
+            margin-bottom: f.toRem(200, 16);
+          }
+        }
+
+        .article > .specie-name {
+          grid-area: specie;
+          @include t.textBody;
+          line-height: f.toRem(25, 16);
+          color: black;
+          text-align: left;
+        }
+
+        .article > .age {
+          grid-area: age;
+          @include t.textBody;
+          line-height: f.toRem(25, 16);
+          text-align: left;
+        }
+
+        .article > .reference {
+          grid-area: ref;
+          font-style: normal;
+          font-weight: 300;
+          font-size: f.toRem(8, 16);
+          line-height: f.toRem(25, 16);
+          color: #000000;
+          letter-spacing: .4px;
+        }
+
+        .article > .price {
+          grid-area: price;
+          @include t.textBody;
+          line-height: f.toRem(25, 16);
+          color: c.$orange;
+          text-align: right;
+        }
       }
 
-      .article:not(:last-of-type) {
-        margin-bottom: f.toRem(44, 16);
-      }
-
-      .article:last-of-type {
-        margin-bottom: f.toRem(80, 16);
-      }
-
-      .article > .specie-name {
-        grid-area: specie;
-        @include t.textBody;
-        line-height: f.toRem(25, 16);
-        color: black;
-        text-align: left;
-      }
-
-      .article > .age {
-        grid-area: age;
-        @include t.textBody;
-        line-height: f.toRem(25, 16);
-        text-align: left;
-      }
-
-      .article > .reference {
-        grid-area: ref;
-        font-style: normal;
-        font-weight: 300;
-        font-size: f.toRem(8, 16);
-        line-height: f.toRem(25, 16);
-        color: #000000;
-        letter-spacing: .4px;
-      }
-
-      .article > .price {
-        grid-area: price;
-        @include t.textBody;
-        line-height: f.toRem(25, 16);
-        color: c.$orange;
-        text-align: right;
-      }
-    }
-
-    .total {
-      padding-top: f.toRem(24, 16);
-      padding-bottom: f.toRem(46, 16);
-      border-top: 1px solid #000000;
-      display: flex;
-      justify-content: space-between;
-
-      span {
-        @include t.textBody;
-        color: black;
-        font-weight: 600;
-      }
-    }
-
-    .cta {
-      display: flex;
-      justify-content: center;
-
-      & > button {
-        flex: 1;
-        padding: f.toRem(5, 16) 0;
-        background-color: c.$orange;
-        border: none;
-        font-weight: 500;
-        color: white;
-        font-size: f.toRem(12, 16);
-      }
-    }
-  }
-
-  .shipping-info {
-    .fields {
-      padding: f.toRem(47, 16) f.toRem(22, 16) f.toRem(11, 16) f.toRem(22, 16);
-
-      .field {
+      .total {
+        padding: f.toRem(24, 16) 0 f.toRem(46, 16) 0;
+        border-top: 1px solid #000000;
         display: flex;
-        flex-direction: column;
-        margin-bottom: f.toRem(21, 16);
+        justify-content: space-between;
+
+        span {
+          @include t.textBody;
+          color: black;
+          font-weight: 600;
+        }
       }
 
-      .field > label {
-        margin-bottom: f.toRem(12, 16);
+      .cta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & > button {
+          flex: 1;
+          height: f.toRem(35, 16);
+          background-color: c.$orange;
+          border: none;
+          font-weight: 500;
+          color: white;
+          font-size: f.toRem(12, 16);
+        }
+      }
+    }
+
+    .shipping-info {
+      grid-area: shipping-info;
+      margin-bottom: f.toRem(75, 16);
+
+      @include m.breakpoint-up(medium) {
+        margin-bottom: f.toRem(33, 16);
       }
 
-      .field > input {
-        padding-left: f.toRem(12, 16);
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        height: f.toRem(35,16);
-        @include t.textBody;
-        font-weight: 600;
-        text-align: left;
+      .fields {
+        padding: f.toRem(30, 16) f.toRem(11, 16) f.toRem(11, 16) f.toRem(19, 16);
+        @include m.breakpoint-up(medium) {
+          padding: f.toRem(30, 16) f.toRem(24, 16) f.toRem(45, 16) f.toRem(17, 16);
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto;
+          column-gap: f.toRem(9, 16);
+          grid-template-areas:
+            "lastname firstname"
+            "phone    email"
+            "country  city"
+            "street   zipcode";
+        }
+
+        .field {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .field > label {
+          margin-bottom: f.toRem(12, 16);
+        }
+
+        .field > input {
+          @include m.breakpoint-up(medium) {
+            width: f.toRem(180, 16);
+          }
+        }
+
+        .lastname {
+          margin-bottom: f.toRem(21, 16);
+          @include m.breakpoint-up(medium) {
+            grid-area: lastname;
+          }
+        }
+
+        .firstname {
+          margin-bottom: f.toRem(21, 16);
+          @include m.breakpoint-up(medium) {
+            grid-area: firstname;
+          }
+        }
+
+        .phone {
+          margin-bottom: f.toRem(21, 16);
+          @include m.breakpoint-up(medium) {
+            grid-area: phone;
+          }
+        }
+
+        .email {
+          margin-bottom: f.toRem(21, 16);
+          @include m.breakpoint-up(medium) {
+            grid-area: email;
+          }
+        }
+
+        .country {
+          margin-bottom: f.toRem(21, 16);
+          @include m.breakpoint-up(medium) {
+            grid-area: country;
+          }
+        }
+
+        .city {
+          margin-bottom: f.toRem(21, 16);
+          @include m.breakpoint-up(medium) {
+            grid-area: city;
+          }
+        }
+
+        .street {
+          margin-bottom: f.toRem(21, 16);
+          @include m.breakpoint-up(medium) {
+            grid-area: street;
+            margin-bottom: unset;
+          }
+        }
+
+        .zipcode {
+          @include m.breakpoint-up(medium) {
+            grid-area: zipcode;
+          }
+        }
+      }
+    }
+
+    .payment {
+      grid-area: payment;
+      margin-bottom: f.toRem(75, 16);
+      @include m.breakpoint-up(medium) {
+        margin-bottom: unset;
+      }
+      .fields {
+        padding: f.toRem(30, 16) f.toRem(11, 16) f.toRem(11, 16) f.toRem(19, 16);
+        @include m.breakpoint-up(medium) {
+          padding: f.toRem(49, 16) f.toRem(24, 16) f.toRem(49, 16) f.toRem(17, 16);
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto;
+          column-gap: f.toRem(9, 16);
+          grid-template-areas:
+            "card-n   owner"
+            "cvv      expiration";
+        }
+
+        .field {
+          display: flex;
+          flex-direction: column;
+          @include m.breakpoint-up(medium) {
+            margin-bottom: unset;
+          }
+        }
+
+        .field > label {
+          margin-bottom: f.toRem(12, 16);
+        }
+
+        .field > input {
+          @include m.breakpoint-up(medium) {
+            width: f.toRem(180, 16);
+          }
+        }
+
+        .card-number, .owner, .cvv {
+          margin-bottom: f.toRem(21, 16);
+        }
+
+        .card-number {
+          grid-area: card-n;
+        }
+
+        .owner {
+          grid-area: owner;
+        }
+
+        .cvv {
+          grid-area: cvv;
+          @include m.breakpoint-up(medium) {
+            margin-bottom: unset;
+          }
+        }
+
+        .expiration {
+          grid-area: expiration;
+          @include m.breakpoint-up(medium) {
+            margin-bottom: unset;
+          }
+        }
       }
     }
   }
