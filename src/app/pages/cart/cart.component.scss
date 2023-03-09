@@ -47,14 +47,16 @@
     .toggle-bar {
       display: flex;
       align-items: flex-start;
-      justify-content: space-between;
+      justify-content: center;
       margin-bottom: f.toRem(28, 16);
       cursor: pointer;
 
       .bar {
         height: f.toRem(3, 16);
-        width: f.toRem(235, 16);
+        width: 100%;
+        min-width: f.toRem(235, 16);
         background-color: c.$orange;
+        margin-right: f.toRem(20, 16);
       }
 
       .arrow {
