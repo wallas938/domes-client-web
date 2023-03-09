@@ -28,6 +28,46 @@
   }
 }
 
+.domes-select {
+  & {
+    appearance: none;
+    border: none;
+    background: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #000000;
+    cursor: pointer;
+  }
+
+  /* Add custom styling */
+  & {
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+  }
+
+  /* Style the dropdown arrow */
+  &::after {
+    content: "\25BC";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #000000;
+  }
+
+  /* Style the options */
+  & option {
+    background-color: #fff;
+    color: #000000;
+  }
+
+  /* Style the selected option */
+  & option:checked {
+    background-color: #000000;
+  }
+}
+
 .domes-input {
   @include t.textBody;
   padding-left: f.toRem(12, 16);

@@ -9,6 +9,7 @@
   @include m.breakpoint-up(medium) {
     padding-top: unset;
   }
+
   h1 {
     @include t.headings;
     margin-bottom: f.toRem(50, 16);
@@ -273,6 +274,7 @@
       @include m.breakpoint-up(medium) {
         margin-bottom: unset;
       }
+
       .fields {
         padding: f.toRem(30, 16) f.toRem(11, 16) f.toRem(11, 16) f.toRem(19, 16);
         @include m.breakpoint-up(medium) {
@@ -325,9 +327,22 @@
 
         .expiration {
           grid-area: expiration;
+          display: flex;
           @include m.breakpoint-up(medium) {
             margin-bottom: unset;
           }
+        }
+
+        .expiration > label {
+          margin-right: f.toRem(10, 16);
+        }
+
+        .expiration > .select-fields > .month-select {
+          margin-right: f.toRem(10, 16);
+        }
+
+        .expiration > .select-fields > .month-select {
+
         }
       }
     }
