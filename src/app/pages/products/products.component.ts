@@ -3,6 +3,7 @@ import {FormControl} from "@angular/forms";
 import {MatPaginatorIntl, PageEvent} from "@angular/material/paginator";
 import {Subject} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Animal} from "../../models/animal";
 
 @Injectable()
 export class MyCustomPaginatorIntl implements MatPaginatorIntl {
@@ -38,19 +39,7 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
 export class ProductsComponent {
   categories = new FormControl('');
   categoryList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-  products: {
-    id: String,
-    description: String;
-    mainPicture: String;
-    secondPicture: String;
-    thirdPicture: String;
-    fourthPicture: String;
-    category: String;
-    specie: String;
-    age: number;
-    price: number;
-    sold: boolean;
-  }[] = [
+  products: Animal [] = [
     {
       id: 'item1',
       description: 'This is the first item',
