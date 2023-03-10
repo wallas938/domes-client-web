@@ -3,7 +3,8 @@
   <div class="layout">
     <section class="resume">
       <p class="section-title">Récapitulatif de la commande</p>
-      <div class="toggle-bar hide-for-tablet-and-desktop">
+      <!-- RESUME ORDER DROPDOWN BAR -->
+      <div (click)="toggleSection(SECTION_NAMES.RESUME)" class="toggle-bar hide-for-tablet-and-desktop">
         <div class="bar"></div>
         <div class="arrow">
           <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -13,6 +14,7 @@
           </svg>
         </div>
       </div>
+      <!-- RESUME ORDER DROPDOWN BAR -->
       <div class="section-container">
         <div class="articles">
           <div class="article" *ngFor="let article of articles">
@@ -34,7 +36,8 @@
     </section>
     <section class="shipping-info">
       <p class="section-title">Information de livraison</p>
-      <div class="toggle-bar hide-for-tablet-and-desktop">
+      <!-- SHIPPING INFO DROPDOWN BAR -->
+      <div (click)="toggleSection(SECTION_NAMES.SHIPPING_INFO)" class="toggle-bar hide-for-tablet-and-desktop">
         <div class="bar"></div>
         <div class="arrow">
           <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -44,6 +47,7 @@
           </svg>
         </div>
       </div>
+      <!-- SHIPPING INFO DROPDOWN BAR -->
       <div class="section-container">
         <div class="fields">
           <div class="field lastname">
@@ -83,7 +87,8 @@
     </section>
     <section class="payment">
       <p class="section-title">Information de paiement</p>
-      <div class="toggle-bar hide-for-tablet-and-desktop">
+      <!-- PAYMENT DROPDOWN BAR -->
+      <div (click)="toggleSection(SECTION_NAMES.PAYMENT)" class="toggle-bar hide-for-tablet-and-desktop">
         <div class="bar"></div>
         <div class="arrow">
           <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -93,6 +98,7 @@
           </svg>
         </div>
       </div>
+      <!-- PAYMENT DROPDOWN BAR -->
       <div class="section-container">
         <div class="fields">
           <div class="field card-number">
