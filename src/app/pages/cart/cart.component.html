@@ -6,7 +6,7 @@
       <!-- RESUME ORDER DROPDOWN BAR -->
       <div (click)="toggleSection(SECTION_NAMES.RESUME)" class="toggle-bar hide-for-tablet-and-desktop">
         <div class="bar"></div>
-        <div class="arrow">
+        <div [@rotate180deg]="sectionStates.resume ? 'up' : 'down'" class="arrow">
           <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M16,1A15,15,0,1,1,1,16,15,15,0,0,1,16,1Zm0,28A13,13,0,1,0,3,16,13,13,0,0,0,16,29Z"/>
             <path
@@ -15,7 +15,7 @@
         </div>
       </div>
       <!-- RESUME ORDER DROPDOWN BAR -->
-      <div class="section-container">
+      <div @openClose *ngIf="sectionStates.resume" class="section-container">
         <div class="articles">
           <div class="article" *ngFor="let article of articles">
           <span
@@ -39,7 +39,7 @@
       <!-- SHIPPING INFO DROPDOWN BAR -->
       <div (click)="toggleSection(SECTION_NAMES.SHIPPING_INFO)" class="toggle-bar hide-for-tablet-and-desktop">
         <div class="bar"></div>
-        <div class="arrow">
+        <div [@rotate180deg]="sectionStates.shippingInfo ? 'up' : 'down'" class="arrow">
           <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M16,1A15,15,0,1,1,1,16,15,15,0,0,1,16,1Zm0,28A13,13,0,1,0,3,16,13,13,0,0,0,16,29Z"/>
             <path
@@ -48,7 +48,7 @@
         </div>
       </div>
       <!-- SHIPPING INFO DROPDOWN BAR -->
-      <div class="section-container">
+      <div @openClose *ngIf="sectionStates.shippingInfo" class="section-container">
         <div class="fields">
           <div class="field lastname">
             <label>Nom</label>
@@ -90,7 +90,7 @@
       <!-- PAYMENT DROPDOWN BAR -->
       <div (click)="toggleSection(SECTION_NAMES.PAYMENT)" class="toggle-bar hide-for-tablet-and-desktop">
         <div class="bar"></div>
-        <div class="arrow">
+        <div [@rotate180deg]="sectionStates.payment ? 'up' : 'down'" class="arrow">
           <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M16,1A15,15,0,1,1,1,16,15,15,0,0,1,16,1Zm0,28A13,13,0,1,0,3,16,13,13,0,0,0,16,29Z"/>
             <path
@@ -99,7 +99,7 @@
         </div>
       </div>
       <!-- PAYMENT DROPDOWN BAR -->
-      <div class="section-container">
+      <div @openClose *ngIf="sectionStates.payment" class="section-container">
         <div class="fields">
           <div class="field card-number">
             <label>N° carte bancaire</label>
