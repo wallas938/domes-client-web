@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'products', loadChildren: () => import('src/app/pages/products/product.module').then(m => m.ProductModule) },
-  // { path: 'roadmap', loadChildren: () => import('@/app/pages/roadmap-page/roadmap.module').then(m => m.RoadmapModule) },
+  { path: 'cart', loadChildren: () => import('src/app/pages/cart/cart.module').then(m => m.CartModule) },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

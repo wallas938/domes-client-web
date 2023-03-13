@@ -1,0 +1,20 @@
+<div class="root">
+  <div class="menu-content">
+    <p (click)="closeMenu()" class="close">X</p>
+    <nav>
+      <li (click)="closeMenu()">
+        <a routerLink="/home">Accueil</a>
+      </li>
+      <li (click)="closeMenu()">
+        <a routerLink="/products">Nos Produits</a>
+      </li>
+      <li (click)="closeMenu()">
+        <a routerLink="/cart">Votre Panier</a>
+      </li>
+    </nav>
+    <div class="cta">
+      <button class="orange">Se connecter</button>
+      <p (click)="closeMenu()"><a routerLink="/sign-up">Pas encore inscrit ?</a></p>
+    </div>
+  </div>
+</div>

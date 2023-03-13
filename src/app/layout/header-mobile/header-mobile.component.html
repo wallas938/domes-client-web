@@ -3,11 +3,15 @@
     <img src="assets/images/logo.png">
     <span>Domes</span>
   </div>
-  <div class="hamburger">
+  <div (click)="openMenu()" class="hamburger">
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="20" height="4" fill="#5597FF"/>
       <rect y="8" width="20" height="4" fill="#5597FF"/>
       <rect y="16" width="20" height="4" fill="#5597FF"/>
     </svg>
+  </div>
+  <div *ngIf="mobileMenuOpened | async" class="menu-container hide-for-tablet-and-desktop">
+    <div (click)="closeMenu()" class="menu-backdrop"></div>
+    <app-menu></app-menu>
   </div>
 </header>
