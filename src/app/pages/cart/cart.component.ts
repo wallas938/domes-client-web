@@ -23,10 +23,10 @@ import {SECTION_NAMES} from "src/app/constants/index";
     trigger('openClose', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(-100px)' }),
-        animate('.3s', style({opacity: 1, transform: 'translateY(0px)'})),
+        animate('.4s', style({opacity: 1, transform: 'translateY(0px)'})),
       ]),
       transition(':leave', [
-        animate('.3s', style({opacity: 0, transform: 'translateY(-200px)'}))
+        animate('.4s', style({opacity: 0, transform: 'translateY(-100px)'}))
       ])
     ]),
     trigger('rotate180deg', [

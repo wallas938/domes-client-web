@@ -1,0 +1,83 @@
+@use "/src/sass/helpers/functions" as f;
+@use "/src/sass/colors" as c;
+@use "/src/sass/typography" as t;
+@use "/src/sass/mixins" as m;
+
+.root {
+  background-color: white;
+  position: absolute;
+  border-radius: 2px;
+  border: 1px solid #000000;
+  top: f.toRem(80, 16);
+  right: 50%;
+  transform: translateX(50%);
+  width: f.toRem(250, 16);
+  height: f.toRem(230, 16);
+
+  .menu-content {
+    padding: f.toRem(37, 16) f.toRem(23, 16) f.toRem(47, 16) f.toRem(23, 16);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    .close {
+      text-align: right;
+      position: absolute;
+      top: f.toRem(10, 16);
+      right: f.toRem(10, 16);
+      color: red;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    nav {
+      padding-bottom: f.toRem(20, 16);
+      border-bottom: 2px solid rgba(#000000, .1);
+      margin-bottom: f.toRem(14, 16);
+
+      li {
+        text-align: center;
+        &:hover {
+          color: c.$blue;
+        }
+      }
+
+      li:not(:last-of-type) {
+        margin-bottom: f.toRem(14, 16);
+      }
+    }
+
+    .cta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        @include t.textBody;
+        color: white;
+        filter: drop-shadow(-4px 4px 0px #000000);
+        border: 1px solid #000000;
+        border-radius: 4px;
+        font-size: f.toRem(10, 16);
+        line-height: f.toRem(20, 16);
+        font-weight: bold;
+        letter-spacing: .05em;
+        color: #ffffff;
+        padding: f.toRem(6, 16) f.toRem(33, 16);
+        margin-bottom: f.toRem(9, 16);
+      }
+
+      p {
+        text-align: center;
+        font-style: normal;
+        font-weight: 400;
+        font-size: f.toRem(14, 16);
+        line-height: f.toRem(16, 16);
+
+        &:hover {
+          color: c.$blue;
+        }
+      }
+    }
+  }
+}

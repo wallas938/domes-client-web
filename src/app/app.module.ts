@@ -6,15 +6,19 @@ import {SharedModule} from "./shared/shared.module";
 import {HeaderMobileComponent} from './layout/header-mobile/header-mobile.component';
 import {HeaderComponent} from './layout/header/header.component';
 import {FooterComponent} from './layout/footer/footer.component';
+import { MenuComponent } from './layout/header-mobile/components/menu/menu.component';
 import {HomeComponent} from "./pages/home/home.component";
-import {CommonModule} from "@angular/common";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { CartComponent } from './pages/cart/cart.component';
+
+/*
+* STORE IMPORTS
+* */
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { reducers } from "src/store/reducers";
+import { StoreRouterConnectingModule } from '@ngrx/router-store'
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,16 +26,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    CartComponent
+    MenuComponent
   ],
   imports: [
     SharedModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
