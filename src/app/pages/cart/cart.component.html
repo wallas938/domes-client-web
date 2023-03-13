@@ -3,9 +3,10 @@
   <div class="layout">
     <section class="resume">
       <p class="section-title">Récapitulatif de la commande</p>
-      <div class="toggle-bar hide-for-tablet-and-desktop">
+      <!-- RESUME ORDER DROPDOWN BAR -->
+      <div (click)="toggleSection(SECTION_NAMES.RESUME)" class="toggle-bar hide-for-tablet-and-desktop">
         <div class="bar"></div>
-        <div class="arrow">
+        <div [@rotate180deg]="sectionStates.resume ? 'up' : 'down'" class="arrow">
           <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M16,1A15,15,0,1,1,1,16,15,15,0,0,1,16,1Zm0,28A13,13,0,1,0,3,16,13,13,0,0,0,16,29Z"/>
             <path
@@ -13,7 +14,8 @@
           </svg>
         </div>
       </div>
-      <div class="section-container">
+      <!-- RESUME ORDER DROPDOWN BAR -->
+      <div @openClose *ngIf="sectionStates.resume" class="section-container">
         <div class="articles">
           <div class="article" *ngFor="let article of articles">
           <span
@@ -34,9 +36,10 @@
     </section>
     <section class="shipping-info">
       <p class="section-title">Information de livraison</p>
-      <div class="toggle-bar hide-for-tablet-and-desktop">
+      <!-- SHIPPING INFO DROPDOWN BAR -->
+      <div (click)="toggleSection(SECTION_NAMES.SHIPPING_INFO)" class="toggle-bar hide-for-tablet-and-desktop">
         <div class="bar"></div>
-        <div class="arrow">
+        <div [@rotate180deg]="sectionStates.shippingInfo ? 'up' : 'down'" class="arrow">
           <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M16,1A15,15,0,1,1,1,16,15,15,0,0,1,16,1Zm0,28A13,13,0,1,0,3,16,13,13,0,0,0,16,29Z"/>
             <path
@@ -44,7 +47,8 @@
           </svg>
         </div>
       </div>
-      <div class="section-container">
+      <!-- SHIPPING INFO DROPDOWN BAR -->
+      <div @openClose *ngIf="sectionStates.shippingInfo" class="section-container">
         <div class="fields">
           <div class="field lastname">
             <label>Nom</label>
@@ -83,9 +87,10 @@
     </section>
     <section class="payment">
       <p class="section-title">Information de paiement</p>
-      <div class="toggle-bar hide-for-tablet-and-desktop">
+      <!-- PAYMENT DROPDOWN BAR -->
+      <div (click)="toggleSection(SECTION_NAMES.PAYMENT)" class="toggle-bar hide-for-tablet-and-desktop">
         <div class="bar"></div>
-        <div class="arrow">
+        <div [@rotate180deg]="sectionStates.payment ? 'up' : 'down'" class="arrow">
           <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M16,1A15,15,0,1,1,1,16,15,15,0,0,1,16,1Zm0,28A13,13,0,1,0,3,16,13,13,0,0,0,16,29Z"/>
             <path
@@ -93,7 +98,8 @@
           </svg>
         </div>
       </div>
-      <div class="section-container">
+      <!-- PAYMENT DROPDOWN BAR -->
+      <div @openClose *ngIf="sectionStates.payment" class="section-container">
         <div class="fields">
           <div class="field card-number">
             <label>N° carte bancaire</label>
