@@ -21,7 +21,7 @@
   .layout {
     @include m.breakpoint-up(medium) {
       display: grid;
-      grid-template-columns: f.toRem(410, 16) f.toRem(285, 16);
+      grid-template-columns: minmax(f.toRem(410, 16), auto) f.toRem(285, 16);
       grid-template-rows: auto auto;
       column-gap: f.toRem(25, 16);
       grid-template-areas:
