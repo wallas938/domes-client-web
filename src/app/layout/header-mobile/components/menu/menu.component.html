@@ -14,7 +14,9 @@
     </nav>
     <div class="cta">
       <button class="orange">Se connecter</button>
-      <p><a routerLink="/signup">Pas encore inscrit ?</a></p>
+      <p *ngIf="(currentPath | async) != DOMES_BASE_PATHS.SIGNUP"><a routerLink="/signup">Pas encore inscrit ?</a></p>
+      <p ><a routerLink="/signup">Pas encore inscrit ?</a></p>
+
     </div>
   </div>
 </div>

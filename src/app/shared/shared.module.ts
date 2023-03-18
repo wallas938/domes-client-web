@@ -26,7 +26,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSliderModule,
     MatInputModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+
   ],
   exports: [
     CommonModule,
