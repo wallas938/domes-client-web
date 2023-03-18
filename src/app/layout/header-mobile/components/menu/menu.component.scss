@@ -74,7 +74,8 @@
         font-size: f.toRem(14, 16);
         line-height: f.toRem(16, 16);
 
-        &:hover {
+        a {
+          text-decoration: underline;
           color: c.$blue;
         }
       }

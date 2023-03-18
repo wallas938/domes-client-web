@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {
   trigger,
   state,
@@ -14,6 +14,11 @@ import {
 
 import {Article} from "../../models/animal";
 import {SECTION_NAMES} from "src/app/constants/index";
+import {selectRouterUrl} from "../../../store/selectors/router.selectors";
+import {DOMES_BASE_PATHS} from "../../models/domes-url";
+import {LayoutActions} from "../../../store/actions/layout.actions";
+import {Store} from "@ngrx/store";
+import * as fromApp from "../../../store/reducers";
 
 @Component({
   selector: 'app-cart',
@@ -22,7 +27,7 @@ import {SECTION_NAMES} from "src/app/constants/index";
   animations: [
     trigger('openClose', [
       transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(-100px)' }),
+        style({opacity: 0, transform: 'translateY(-100px)'}),
         animate('.4s', style({opacity: 1, transform: 'translateY(0px)'})),
       ]),
       transition(':leave', [
@@ -46,7 +51,7 @@ import {SECTION_NAMES} from "src/app/constants/index";
     ]),
   ]
 })
-export class CartComponent {
+export class CartComponent implements OnInit, OnDestroy {
 
   sectionStates = {
     resume: true,
@@ -79,7 +84,16 @@ export class CartComponent {
   years: string[] = ["2032", "2031", "2030", "2029", "2028", "2027", "2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012"];
 
 
-  constructor() {
+  constructor(private store: Store<fromApp.AppState>) {
+  }
+
+  ngOnInit(): void {
+    this.store.select(selectRouterUrl).subscribe(value => {
+      if (DOMES_BASE_PATHS.CART == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
+    })
+  }
+
+  ngOnDestroy(): void {
   }
 
   toggleSection(section: string) {

@@ -76,6 +76,10 @@
   height: f.toRem(35,16);
   font-weight: 600;
   text-align: left;
+
+  &.errorField {
+    border: 2px solid red;
+  }
 }
 
 .domes-btn {
@@ -91,7 +95,10 @@
 }
 
 .orange {
-  background: rgba(255, 139, 0, 1);
+  background: c.$orange;
+  &:hover {
+    background-color: orange;
+  }
 }
 
 .blue {

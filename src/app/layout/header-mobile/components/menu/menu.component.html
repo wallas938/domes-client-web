@@ -14,7 +14,14 @@
     </nav>
     <div class="cta">
       <button class="orange">Se connecter</button>
-      <p (click)="closeMenu()"><a routerLink="/sign-up">Pas encore inscrit ?</a></p>
+      <ng-container *ngIf="(currentPath | async) != DOMES_BASE_PATHS.SIGNUP; else elseBlock">
+        <p ><a routerLink="/signup">Pas encore inscrit ?</a></p>
+      </ng-container>
+      <ng-template #elseBlock>
+        <!-- content to render if condition is false -->
+      <p ><a routerLink="/login">Vous avez déja un compte ?</a></p>
+      </ng-template>
+
     </div>
   </div>
 </div>

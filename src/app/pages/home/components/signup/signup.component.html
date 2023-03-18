@@ -1,0 +1,74 @@
+<div class="root">
+  <h1>Inscription</h1>
+  <form [formGroup]="signupForm" (ngSubmit)="submit()">
+    <div class="fields">
+      <div class="field">
+        <label>Nom</label>
+        <input class="domes-input" type="text" formControlName="lastname"/>
+        <small *ngIf="signupForm.get('lastname')?.invalid &&
+          signupForm.get('lastname')?.touched">Champ obligatoire</small>
+      </div>
+      <div class="field">
+        <label>Prénom</label>
+        <input class="domes-input" type="text" formControlName="firstname"/>
+        <small *ngIf="signupForm.get('firstname')?.invalid &&
+          signupForm.get('firstname')?.touched">Champ obligatoire</small>
+      </div>
+      <div class="field">
+        <label>Tél</label>
+        <input class="domes-input" type="tel" formControlName="phoneNumber"/>
+        <small *ngIf="signupForm.get('phoneNumber')?.invalid &&
+          signupForm.get('phoneNumber')?.touched">Champ obligatoire</small>
+      </div>
+      <div class="field">
+        <label>Pays</label>
+        <input class="domes-input" type="text" formControlName="country"/>
+        <small *ngIf="signupForm.get('country')?.invalid &&
+          signupForm.get('country')?.touched">Champ obligatoire</small>
+      </div>
+      <div class="field">
+        <label>Ville</label>
+        <input class="domes-input" type="text" formControlName="city"/>
+        <small *ngIf="signupForm.get('city')?.invalid &&
+          signupForm.get('city')?.touched">Champ obligatoire</small>
+      </div>
+      <div class="field">
+        <label>Rue</label>
+        <input class="domes-input" type="text" formControlName="street"/>
+        <small *ngIf="signupForm.get('street')?.invalid &&
+          signupForm.get('street')?.touched">Champ obligatoire</small>
+      </div>
+      <div class="field">
+        <label>Code Postale</label>
+        <input class="domes-input" type="text" formControlName="zipCode"/>
+        <small *ngIf="signupForm.get('zipCode')?.invalid &&
+          signupForm.get('zipCode')?.touched">Champ obligatoire</small>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input class="domes-input" type="email" formControlName="email"/>
+        <small *ngIf="signupForm.controls.email.invalid && signupForm.controls.email.touched">Email non conforme</small>
+      </div>
+      <div class="field">
+        <label>Mot de passe</label>
+        <input class="domes-input" type="password" formControlName="password"/>
+        <small *ngIf="signupForm.get('password')?.invalid &&
+          signupForm.get('password')?.touched">Doit contenir au moins 8 caractères et une majuscule et un
+          chiffre</small>
+      </div>
+      <div class="field">
+        <label>Confirmation du mot de passe</label>
+        <input class="domes-input" type="password" formControlName="passwordConfirmation"/>
+        <small *ngIf="signupForm.hasError('passwordMismatch')&& (signupForm.get('passwordConfirmation')?.invalid &&
+          signupForm.get('passwordConfirmation')?.touched)">les mots de passes ne sont pas identiques</small>
+      </div>
+    </div>
+    <div class="cta">
+      <button class="domes-btn">
+        <a routerLink="/home">Annuler</a>
+      </button>
+      <button class="domes-btn orange" type="submit" [disabled]="this.signupForm.errors">Envoyer</button>
+    </div>
+    <p><a routerLink="/login">Vous avez déja un compte ?</a></p>
+  </form>
+</div>

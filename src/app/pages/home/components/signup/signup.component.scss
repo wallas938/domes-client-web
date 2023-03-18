@@ -1,0 +1,103 @@
+@use "/src/sass/helpers/functions" as f;
+@use "/src/sass/colors" as c;
+@use "/src/sass/typography" as t;
+@use "/src/sass/mixins" as m;
+
+.root {
+
+  h1 {
+    @include t.headings;
+    margin-bottom: f.toRem(39, 16);
+    @include m.breakpoint-up(medium) {
+      margin-bottom: f.toRem(19, 16);
+      text-align: left;
+    }
+  }
+
+  .fields {
+    .field {
+      //display: flex;
+      //flex-direction: column;
+
+      label {
+        margin-bottom: f.toRem(12, 16);
+        position: relative;
+        display: inline-block;
+        &:after {
+          position: absolute;
+          content: "*";
+          top: -5px;
+          right: -8px;
+          color: red;
+        }
+      }
+
+      input {
+        margin-bottom: f.toRem(5, 16);
+        display: block;
+        width: 100%;
+      }
+
+      small {
+        color: red;
+        font-size: f.toRem(11, 16);
+        font-weight: 500;
+      }
+    }
+
+    .field:not(:last-of-type) {
+      margin-bottom: f.toRem(21, 16);
+    }
+
+    .field:last-child {
+      margin-bottom: f.toRem(67, 16);
+    }
+  }
+
+  .cta {
+    display: flex;
+    flex-direction: column;
+
+    @include m.breakpoint-up(medium) {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+
+    button {
+      margin-bottom: f.toRem(22, 16);
+      padding: f.toRem(10, 16) 0;
+
+      @include m.breakpoint-up(medium) {
+        width: f.toRem(180, 16);
+      }
+    }
+
+    button:first-child {
+      @include m.breakpoint-up(medium) {
+        margin-right: f.toRem(10, 16);
+      }
+
+      a {
+        color: c.$grayText;
+      }
+
+      &:hover {
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+
+  p {
+    text-align: center;
+    @include t.textBody;
+    color: c.$blue;
+    text-decoration: underline;
+    margin-bottom: f.toRem(95, 16);
+    @include m.breakpoint-up(medium) {
+      text-align: right;
+    }
+  }
+
+}
