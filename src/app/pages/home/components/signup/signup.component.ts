@@ -6,6 +6,8 @@ import * as fromApp from "../../../../../store/reducers";
 import {selectRouterParams, selectRouterUrl} from 'src/store/selectors/router.selectors';
 import {DOMES_BASE_PATHS} from "../../../../models/domes-url";
 import {LayoutActions} from 'src/store/actions/layout.actions';
+import {ClientPostDTO} from "../../../../models/client";
+import {ClientService} from "../../../../services/client/client.service";
 
 
 export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -40,7 +42,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     validators: passwordMatchValidator
   });
 
-  constructor(private store: Store<fromApp.AppState>, private fb: FormBuilder) {
+  constructor(private store: Store<fromApp.AppState>, private fb: FormBuilder, private clientService: ClientService) {
   }
 
   ngOnInit(): void {
@@ -49,13 +51,39 @@ export class SignupComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy(): void {
-  }
-
   submit() {
-    if(this.signupForm.valid) {
-      const user = this.signupForm.value;
-      console.log(user)
+    if (this.signupForm.valid) {
+      const user: ClientPostDTO = {
+        lastname: this.signupForm.get('lastname')?.value,
+        firstname: this.signupForm.get('firstname')?.value,
+        phoneNumber: this.signupForm.get('phoneNumber')?.value,
+        address: {
+          country: this.signupForm.get('country')?.value,
+          city: this.signupForm.get('city')?.value,
+          street: this.signupForm.get('street')?.value,
+          zipCode: this.signupForm.get('zipCode')?.value,
+        },
+        email: this.signupForm.get('email')?.value,
+        password: this.signupForm.get('password')?.value
+      };
+      const test: ClientPostDTO = {
+        lastname: "Dramé",
+        firstname: "Sissako",
+        phoneNumber: "0607289121",
+        address: {
+          country: "France",
+          city: "Montmagny",
+          street: "3 rue des loups",
+          zipCode: "93800",
+        },
+        email: "sissako@email.fr",
+        password: "Password123"
+      };
+      this.clientService.postClient(test).subscribe(value => {
+        console.log("SUCCESS")
+      });
     }
+  }
+  ngOnDestroy(): void {
   }
 }
