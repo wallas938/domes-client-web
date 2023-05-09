@@ -9,7 +9,7 @@ import {ClientActions} from "src/store/actions/client.actions"
 import {ClientPostDTO} from "../../app/models/client";
 
 @Injectable()
-export class SuggestionEffects implements OnDestroy {
+export class ClientEffects implements OnDestroy {
 
   allSubscriptions = new Subscription();
 
@@ -26,7 +26,7 @@ export class SuggestionEffects implements OnDestroy {
     () => this.actions$.pipe(
       ofType(ClientActions.PostClientStart),
       switchMap(({client}) => this.clientService.postClient(client)
-        .pipe(map(() => {
+        .pipe(map((client) => {
             console.log(client)
           }),
           switchMap(() => of(ClientActions.PostClientSucceeded())),

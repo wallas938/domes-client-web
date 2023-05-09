@@ -8,6 +8,7 @@ import {DOMES_BASE_PATHS} from "../../../../models/domes-url";
 import {LayoutActions} from 'src/store/actions/layout.actions';
 import {ClientPostDTO} from "../../../../models/client";
 import {ClientService} from "../../../../services/client/client.service";
+import {ClientActions} from "../../../../../store/actions/client.actions";
 
 
 export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -52,19 +53,19 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    if (this.signupForm.valid) {
+    // if (this.signupForm.valid) { to uncomment
       const user: ClientPostDTO = {
-        lastname: this.signupForm.get('lastname')?.value,
-        firstname: this.signupForm.get('firstname')?.value,
-        phoneNumber: this.signupForm.get('phoneNumber')?.value,
+        lastname: this.signupForm.get('lastname')?.value?.toLowerCase(),
+        firstname: this.signupForm.get('firstname')?.value?.toLowerCase(),
+        phoneNumber: this.signupForm.get('phoneNumber')?.value?.toLowerCase(),
         address: {
-          country: this.signupForm.get('country')?.value,
-          city: this.signupForm.get('city')?.value,
-          street: this.signupForm.get('street')?.value,
-          zipCode: this.signupForm.get('zipCode')?.value,
+          country: this.signupForm.get('country')?.value?.toLowerCase(),
+          city: this.signupForm.get('city')?.value?.toLowerCase(),
+          street: this.signupForm.get('street')?.value?.toLowerCase(),
+          zipCode: this.signupForm.get('zipCode')?.value?.toLowerCase(),
         },
-        email: this.signupForm.get('email')?.value,
-        password: this.signupForm.get('password')?.value
+        email: this.signupForm.get('email')?.value?.toLowerCase(),
+        password: this.signupForm.get('password')?.value?.toLowerCase()
       };
       const test: ClientPostDTO = {
         lastname: "Dramé",
@@ -79,10 +80,8 @@ export class SignupComponent implements OnInit, OnDestroy {
         email: "sissako@email.fr",
         password: "Password123"
       };
-      this.clientService.postClient(test).subscribe(value => {
-        console.log("SUCCESS")
-      });
-    }
+    this.store.dispatch(ClientActions.PostClientStart({client: test}))
+    // } to uncomment
   }
   ngOnDestroy(): void {
   }

@@ -1,12 +1,15 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { ClientActions } from "src/store/actions/client.actions";
+import {ClientGetDTO} from "../../app/models/client";
 
 export interface State {
   loadingState: boolean,
+  client : ClientGetDTO | null | undefined
 }
 
 const initialState: State = {
   loadingState: false,
+  client: null
 }
 
 
