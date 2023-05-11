@@ -3,7 +3,9 @@ import {Store} from "@ngrx/store";
 import {AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 
 import * as fromApp from "../../../../../store/reducers";
-import {selectRouterParams, selectRouterUrl} from 'src/store/selectors/router.selectors';
+import {selectRouterUrl} from 'src/store/selectors/router.selectors';
+import {selectAuthenticationToken} from 'src/store/selectors/authentication.selectors';
+import {selectClient} from 'src/store/selectors/client.selectors';
 import {DOMES_BASE_PATHS} from "../../../../models/domes-url";
 import {LayoutActions} from 'src/store/actions/layout.actions';
 import {ClientPostDTO} from "../../../../models/client";
@@ -50,22 +52,30 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.store.select(selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.SIGNUP == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
     })
+
+    this.store.select(selectClient).subscribe(value => {
+      console.log(value)
+    })
+
+    this.store.select(selectAuthenticationToken).subscribe(value => {
+      console.log(value)
+    })
   }
 
   submit() {
     // if (this.signupForm.valid) { to uncomment
       const user: ClientPostDTO = {
-        lastname: this.signupForm.get('lastname')?.value?.toLowerCase(),
-        firstname: this.signupForm.get('firstname')?.value?.toLowerCase(),
-        phoneNumber: this.signupForm.get('phoneNumber')?.value?.toLowerCase(),
+        lastname: this.signupForm.get('lastname')!.value!.toLowerCase(),
+        firstname: this.signupForm.get('firstname')!.value!.toLowerCase(),
+        phoneNumber: this.signupForm.get('phoneNumber')!.value!.toLowerCase(),
         address: {
-          country: this.signupForm.get('country')?.value?.toLowerCase(),
-          city: this.signupForm.get('city')?.value?.toLowerCase(),
-          street: this.signupForm.get('street')?.value?.toLowerCase(),
-          zipCode: this.signupForm.get('zipCode')?.value?.toLowerCase(),
+          country: this.signupForm.get('country')!.value!.toLowerCase(),
+          city: this.signupForm.get('city')!.value!.toLowerCase(),
+          street: this.signupForm.get('street')!.value!.toLowerCase(),
+          zipCode: this.signupForm.get('zipCode')!.value!.toLowerCase(),
         },
-        email: this.signupForm.get('email')?.value?.toLowerCase(),
-        password: this.signupForm.get('password')?.value?.toLowerCase()
+        email: this.signupForm.get('email')!.value!.toLowerCase(),
+        password: this.signupForm.get('password')!.value!.toLowerCase()
       };
       const test: ClientPostDTO = {
         lastname: "Dramé",

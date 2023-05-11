@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import {HttpErrorResponse} from "@angular/common/http";
-import {ClientPostDTO} from "../../app/models/client";
+import {ClientGetDTO, ClientPostDTO} from "../../app/models/client";
 
 /*******
  *
@@ -23,7 +23,7 @@ const POST_CLIENT_FAILED = '[Client]  POST_CLIENT_FAILED';
 /* CLIENT ACTIONS */
 
 const PostClientStart = createAction(POST_CLIENT_START, props<{ clientPostDTO: ClientPostDTO }>());
-const PostClientSucceeded = createAction(POST_CLIENT_SUCCEEDED);
+const PostClientSucceeded = createAction(POST_CLIENT_SUCCEEDED, props<{ clientGetDTO: ClientGetDTO }>());
 const PostClientFailed = createAction(POST_CLIENT_FAILED, props<{ error: HttpErrorResponse }>());
 
 

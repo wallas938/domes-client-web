@@ -1,6 +1,8 @@
-import {ClientEffects} from "./ClientEffects";
+import {ClientEffects} from "./clientEffects";
+import {AuthenticationEffects} from "./authenticationEffects";
 
 
 export const AppEffects = [
-  ClientEffects
+  ClientEffects,
+  AuthenticationEffects
 ]
