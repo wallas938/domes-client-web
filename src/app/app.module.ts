@@ -20,6 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from "src/store/reducers";
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { SignupComponent } from './pages/home/components/signup/signup.component'
+import {AppEffects} from "../store/effects";
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,7 @@ import { SignupComponent } from './pages/home/components/signup/signup.component
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers, {}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(AppEffects),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     StoreRouterConnectingModule.forRoot(),
   ],

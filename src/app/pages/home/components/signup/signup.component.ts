@@ -6,6 +6,9 @@ import * as fromApp from "../../../../../store/reducers";
 import {selectRouterParams, selectRouterUrl} from 'src/store/selectors/router.selectors';
 import {DOMES_BASE_PATHS} from "../../../../models/domes-url";
 import {LayoutActions} from 'src/store/actions/layout.actions';
+import {ClientPostDTO} from "../../../../models/client";
+import {ClientService} from "../../../../services/client/client.service";
+import {ClientActions} from "../../../../../store/actions/client.actions";
 
 
 export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -40,7 +43,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     validators: passwordMatchValidator
   });
 
-  constructor(private store: Store<fromApp.AppState>, private fb: FormBuilder) {
+  constructor(private store: Store<fromApp.AppState>, private fb: FormBuilder, private clientService: ClientService) {
   }
 
   ngOnInit(): void {
@@ -49,13 +52,37 @@ export class SignupComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy(): void {
-  }
-
   submit() {
-    if(this.signupForm.valid) {
-      const user = this.signupForm.value;
-      console.log(user)
-    }
+    // if (this.signupForm.valid) { to uncomment
+      const user: ClientPostDTO = {
+        lastname: this.signupForm.get('lastname')?.value?.toLowerCase(),
+        firstname: this.signupForm.get('firstname')?.value?.toLowerCase(),
+        phoneNumber: this.signupForm.get('phoneNumber')?.value?.toLowerCase(),
+        address: {
+          country: this.signupForm.get('country')?.value?.toLowerCase(),
+          city: this.signupForm.get('city')?.value?.toLowerCase(),
+          street: this.signupForm.get('street')?.value?.toLowerCase(),
+          zipCode: this.signupForm.get('zipCode')?.value?.toLowerCase(),
+        },
+        email: this.signupForm.get('email')?.value?.toLowerCase(),
+        password: this.signupForm.get('password')?.value?.toLowerCase()
+      };
+      const test: ClientPostDTO = {
+        lastname: "Dramé",
+        firstname: "Sissako",
+        phoneNumber: "0607289121",
+        address: {
+          country: "France",
+          city: "Montmagny",
+          street: "3 rue des loups",
+          zipCode: "93800",
+        },
+        email: "sissako@email.fr",
+        password: "Password123"
+      };
+    this.store.dispatch(ClientActions.PostClientStart({clientPostDTO: test}));
+    // } to uncomment
+  }
+  ngOnDestroy(): void {
   }
 }
