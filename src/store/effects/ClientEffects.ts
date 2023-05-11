@@ -25,9 +25,9 @@ export class ClientEffects implements OnDestroy {
   postOneSuggestion$ = createEffect(
     () => this.actions$.pipe(
       ofType(ClientActions.PostClientStart),
-      switchMap(({client}) => this.clientService.postClient(client)
-        .pipe(map((client) => {
-            console.log(client)
+      switchMap(({clientPostDTO}) => this.clientService.postClient(clientPostDTO)
+        .pipe(map((clientGetDTO) => {
+            console.log(clientGetDTO)
           }),
           switchMap(() => of(ClientActions.PostClientSucceeded())),
           catchError((error) => of(ClientActions.PostClientFailed(error)))

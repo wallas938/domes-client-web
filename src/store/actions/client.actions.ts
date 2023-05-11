@@ -22,7 +22,7 @@ const POST_CLIENT_FAILED = '[Client]  POST_CLIENT_FAILED';
 
 /* CLIENT ACTIONS */
 
-const PostClientStart = createAction(POST_CLIENT_START, props<{ client: ClientPostDTO }>());
+const PostClientStart = createAction(POST_CLIENT_START, props<{ clientPostDTO: ClientPostDTO }>());
 const PostClientSucceeded = createAction(POST_CLIENT_SUCCEEDED);
 const PostClientFailed = createAction(POST_CLIENT_FAILED, props<{ error: HttpErrorResponse }>());
 

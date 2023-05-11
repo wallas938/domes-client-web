@@ -80,7 +80,7 @@ export class SignupComponent implements OnInit, OnDestroy {
         email: "sissako@email.fr",
         password: "Password123"
       };
-    this.store.dispatch(ClientActions.PostClientStart({client: test}))
+    this.store.dispatch(ClientActions.PostClientStart({clientPostDTO: test}));
     // } to uncomment
   }
   ngOnDestroy(): void {
