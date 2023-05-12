@@ -4,12 +4,12 @@ import {AuthenticationTokenResponse} from "../../app/models/authentication";
 
 export interface State {
   loadingState: boolean,
-  authenticationToken: AuthenticationTokenResponse | null
+  authenticationToken: AuthenticationTokenResponse
 }
 
 const initialState: State = {
   loadingState: false,
-  authenticationToken: null
+  authenticationToken: {} as AuthenticationTokenResponse
 }
 
 

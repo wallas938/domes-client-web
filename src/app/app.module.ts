@@ -21,6 +21,8 @@ import { reducers } from "src/store/reducers";
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { SignupComponent } from './pages/home/components/signup/signup.component'
 import {AppEffects} from "../store/effects";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {TokenInterceptor} from "./core/token.interceptor";
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,9 @@ import {AppEffects} from "../store/effects";
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     StoreRouterConnectingModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
