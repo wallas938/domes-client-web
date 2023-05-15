@@ -29,6 +29,7 @@ export const _authenticationReducer = createReducer(
     }
   }),
   on(AuthenticationActions.GetAuthenticationTokenFromSignupFailed, (state, {error}) => {
+    console.log(error)
     return {
       ...state,
       loadingState: false,

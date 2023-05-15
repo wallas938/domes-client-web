@@ -1,5 +1,5 @@
 import {Params} from '@angular/router';
-import {ActionReducerMap, createFeatureSelector, createSelector} from '@ngrx/store';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 
 export interface RouterStateUrl {
@@ -8,19 +8,19 @@ export interface RouterStateUrl {
   params: Params;
 }
 
-export const selectRouterState = createFeatureSelector<fromRouter.RouterReducerState<RouterStateUrl>>('router');
+const selectRouterState = createFeatureSelector<fromRouter.RouterReducerState<RouterStateUrl>>('router');
 
-export const selectRouterUrl = createSelector(
+const selectRouterUrl = createSelector(
   selectRouterState,
   (state) => state.state.url
 );
 
-export const selectRouterParams = createSelector(
+const selectRouterParams = createSelector(
   selectRouterState,
   (state) => state.state.params
 );
 
-export const selectRouterQueryParams = createSelector(
+const selectRouterQueryParams = createSelector(
   selectRouterState,
   (state) => state.state.queryParams
 );

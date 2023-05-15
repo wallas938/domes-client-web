@@ -4,14 +4,15 @@ import {createFeatureSelector, createSelector} from "@ngrx/store";
 
 const authentication = createFeatureSelector<fromAuthentication.State>('authentication');
 
-export const selectLoading = createSelector(authentication, (state) => {
+const selectLoading = createSelector(authentication, (state) => {
   return state.loadingState;
 });
 
-export const selectAuthenticationToken = createSelector(authentication, (state) => {
+const selectAuthenticationToken = createSelector(authentication, (state) => {
   return state.authenticationToken;
 });
 
-// const selectClientErrorMessageState = createSelector(authentication, (state) => {
-//   return state.errorMessage;
-// });
+export const AuthenticationSelectors = {
+  selectLoading,
+  selectAuthenticationToken
+};

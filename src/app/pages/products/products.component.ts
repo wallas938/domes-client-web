@@ -4,7 +4,7 @@ import {MatPaginatorIntl, PageEvent} from "@angular/material/paginator";
 import {Subject} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Animal} from "../../models/animal";
-import {selectRouterUrl} from "../../../store/selectors/router.selectors";
+import {RouterSelectors} from "../../../store/selectors/router.selectors";
 import {DOMES_BASE_PATHS} from "../../models/domes-url";
 import {LayoutActions} from "../../../store/actions/layout.actions";
 import {Store} from "@ngrx/store";
@@ -102,7 +102,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.select(selectRouterUrl).subscribe(value => {
+    this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.PRODUCTS == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
     })
   }

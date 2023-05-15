@@ -4,13 +4,13 @@ import {ClientGetDTO} from "../../app/models/client";
 
 export interface State {
   loadingState: boolean,
-  client: ClientGetDTO | null | undefined,
+  client: ClientGetDTO,
   errorMessage: any,
 }
 
 const initialState: State = {
   loadingState: false,
-  client: null,
+  client: {} as ClientGetDTO,
   errorMessage: '',
 }
 

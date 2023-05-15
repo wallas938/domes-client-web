@@ -5,6 +5,11 @@ import {Store} from "@ngrx/store";
 import * as fromApp from 'src/store/reducers';
 import {LayoutSelectors} from 'src/store/selectors/layout.selectors';
 import {LayoutActions} from 'src/store/actions/layout.actions';
+import {ClientSelectors} from "../../../store/selectors/client.selectors";
+import {ClientGetDTO} from "../../models/client";
+import {RouterSelectors} from "../../../store/selectors/router.selectors";
+import {DOMES_BASE_PATHS} from "../../models/domes-url";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header-mobile',
@@ -15,11 +20,11 @@ export class HeaderMobileComponent implements OnInit, OnDestroy {
 
   mobileMenuOpened: Observable<boolean> | undefined;
 
-  constructor(private store: Store<fromApp.AppState>) {
+  constructor(private store: Store<fromApp.AppState>, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.mobileMenuOpened = this.store.select(LayoutSelectors.selectMobileMenuOpened)
+    this.mobileMenuOpened = this.store.select(LayoutSelectors.selectMobileMenuOpened);
   }
 
   ngOnDestroy(): void {

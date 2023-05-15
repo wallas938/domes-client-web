@@ -14,7 +14,7 @@ import {
 
 import {Article} from "../../models/animal";
 import {SECTION_NAMES} from "src/app/constants/index";
-import {selectRouterUrl} from "../../../store/selectors/router.selectors";
+import {RouterSelectors} from "../../../store/selectors/router.selectors";
 import {DOMES_BASE_PATHS} from "../../models/domes-url";
 import {LayoutActions} from "../../../store/actions/layout.actions";
 import {Store} from "@ngrx/store";
@@ -88,7 +88,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.select(selectRouterUrl).subscribe(value => {
+    this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.CART == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
     })
   }
