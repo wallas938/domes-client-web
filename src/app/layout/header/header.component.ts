@@ -3,6 +3,7 @@ import {ClientSelectors} from "../../../store/selectors/client.selectors";
 import {ClientGetDTO} from "../../models/client";
 import {Store} from "@ngrx/store";
 import * as fromApp from "../../../store/reducers";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -10,14 +11,12 @@ import * as fromApp from "../../../store/reducers";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit{
-  isConnected: boolean = false;
+  client$: Observable<ClientGetDTO> | undefined
   constructor(private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit(): void {
-    this.store.select(ClientSelectors.selectClient).subscribe((clientGetDTO: ClientGetDTO) => {
-      this.isConnected = !!clientGetDTO.id;
-    });
+    this.client$ = this.store.select(ClientSelectors.selectClient)
   }
 
 }

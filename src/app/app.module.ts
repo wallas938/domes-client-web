@@ -11,6 +11,7 @@ import {HomeComponent} from "./pages/home/home.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
+
 /*
 * STORE IMPORTS
 * */
@@ -23,6 +24,7 @@ import {SignupComponent} from './pages/home/components/signup/signup.component'
 import {AppEffects} from "../store/effects";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./core/token.interceptor";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import {TokenInterceptor} from "./core/token.interceptor";
     EffectsModule.forRoot(AppEffects),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
     StoreRouterConnectingModule.forRoot(),
+    NgOptimizedImage,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},

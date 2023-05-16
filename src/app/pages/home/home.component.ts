@@ -19,14 +19,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.HOME == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
     });
-
-    this.route.fragment.subscribe(value => {
-      // if (value?.toLowerCase() === 'home') {
-      //   console.log(value)
-      //   this.router.navigate(['home'], {fragment: 'home', preserveFragment: true}).then(r => {
-      //   });
-      // }
-    })
   }
 
   ngOnDestroy(): void {

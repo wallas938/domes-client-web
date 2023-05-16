@@ -1,15 +1,19 @@
 <header class="header hide-for-mobile container">
   <div class="logo">
-    <img src="assets/images/logo.png">
+    <img ngSrc="assets/images/logo.png" height="500" width="500" alt="Domes Logo">
     <span>Domes</span>
   </div>
   <nav>
-    <a routerLink="/user-account" routerLinkActive="active">Mon Compte</a>
     <a routerLink="/home" routerLinkActive="active">Accueil</a>
     <a routerLink="/products" routerLinkActive="active">Nos Produits</a>
-    <a *ngIf="!isConnected" routerLink="/signup" routerLinkActive="active">Pas encore inscrit ?</a>
+    <a *ngIf="(client$ | async)?.id; else noAccount;"  routerLink="/user-account" routerLinkActive="active">Mon Compte</a>
+
+    <ng-template #noAccount>
+    <a  routerLink="/signup" routerLinkActive="active">Pas encore inscrit ?</a>
+    </ng-template>
   </nav>
   <div class="actions">
+    <p *ngIf="(client$ | async)?.id" class="welcome-message"><i>Bonjour, </i> <b>{{client$ | async | getPropertyValueByName: 'firstname' | titlecase}}</b></p>
     <a routerLink="/cart">
       <div class="cart">
         <svg width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,6 +23,6 @@
         </svg>
       </div>
     </a>
-    <a class="domes-btn orange" routerLink="/login">{{isConnected ? 'Se déconnecter' : 'Se connecter'}}</a>
+    <a class="domes-btn orange" routerLink="/login">{{(client$ | async)?.id ? 'Se déconnecter' : 'Se connecter'}}</a>
   </div>
 </header>

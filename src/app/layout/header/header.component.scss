@@ -20,6 +20,7 @@
 
       img {
         width: f.toRem(40, 16);
+        height: auto;
       }
 
       span {
@@ -48,10 +49,17 @@
 
     .actions {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
 
       .cart {
         margin-right: f.toRem(33, 16);
+      }
+
+      .welcome-message {
+        font-size: f.toRem(12, 16);
+        line-height: f.toRem(16.41, 16);
+        margin-right: f.toRem(24, 16);
+        margin-bottom: f.toRem(4, 16);
       }
     }
   }

@@ -56,12 +56,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.SIGNUP == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
     });
-
-    this.store.select(ClientSelectors.selectClient).subscribe((client: ClientGetDTO) => {
-      if (client.id) {
-        this.router.navigate(['home'], {fragment: 'home', preserveFragment: true}).then(r => {});
-      }
-    });
   }
 
   submit() {
@@ -93,6 +87,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       password: "Password123"
     };
     this.store.dispatch(ClientActions.PostClientStart({clientPostDTO: test}));
+    this.router.navigate(['home#home']).then(value => {})
     // } to uncomment
   }
 

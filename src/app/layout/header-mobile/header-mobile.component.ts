@@ -18,13 +18,16 @@ import {Router} from "@angular/router";
 })
 export class HeaderMobileComponent implements OnInit, OnDestroy {
 
-  mobileMenuOpened: Observable<boolean> | undefined;
+  mobileMenuOpened$: Observable<boolean> | undefined;
+  client$: Observable<ClientGetDTO> | undefined
 
   constructor(private store: Store<fromApp.AppState>, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.mobileMenuOpened = this.store.select(LayoutSelectors.selectMobileMenuOpened);
+    this.mobileMenuOpened$ = this.store.select(LayoutSelectors.selectMobileMenuOpened);
+    this.client$ = this.store.select(ClientSelectors.selectClient)
+
   }
 
   ngOnDestroy(): void {
