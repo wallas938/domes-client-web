@@ -3,12 +3,15 @@ import {Store} from "@ngrx/store";
 import {AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 
 import * as fromApp from "../../../../../store/reducers";
-import {selectRouterParams, selectRouterUrl} from 'src/store/selectors/router.selectors';
+import {RouterSelectors} from 'src/store/selectors/router.selectors';
+import {AuthenticationSelectors} from 'src/store/selectors/authentication.selectors';
+import {ClientSelectors} from 'src/store/selectors/client.selectors';
 import {DOMES_BASE_PATHS} from "../../../../models/domes-url";
 import {LayoutActions} from 'src/store/actions/layout.actions';
-import {ClientPostDTO} from "../../../../models/client";
+import {ClientGetDTO, ClientPostDTO} from "../../../../models/client";
 import {ClientService} from "../../../../services/client/client.service";
 import {ClientActions} from "../../../../../store/actions/client.actions";
+import {Router} from "@angular/router";
 
 
 export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -43,46 +46,51 @@ export class SignupComponent implements OnInit, OnDestroy {
     validators: passwordMatchValidator
   });
 
-  constructor(private store: Store<fromApp.AppState>, private fb: FormBuilder, private clientService: ClientService) {
+  constructor(private store: Store<fromApp.AppState>,
+              private fb: FormBuilder,
+              private clientService: ClientService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.store.select(selectRouterUrl).subscribe(value => {
+    this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.SIGNUP == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
-    })
+    });
   }
 
   submit() {
     // if (this.signupForm.valid) { to uncomment
-      const user: ClientPostDTO = {
-        lastname: this.signupForm.get('lastname')?.value?.toLowerCase(),
-        firstname: this.signupForm.get('firstname')?.value?.toLowerCase(),
-        phoneNumber: this.signupForm.get('phoneNumber')?.value?.toLowerCase(),
-        address: {
-          country: this.signupForm.get('country')?.value?.toLowerCase(),
-          city: this.signupForm.get('city')?.value?.toLowerCase(),
-          street: this.signupForm.get('street')?.value?.toLowerCase(),
-          zipCode: this.signupForm.get('zipCode')?.value?.toLowerCase(),
-        },
-        email: this.signupForm.get('email')?.value?.toLowerCase(),
-        password: this.signupForm.get('password')?.value?.toLowerCase()
-      };
-      const test: ClientPostDTO = {
-        lastname: "Dramé",
-        firstname: "Sissako",
-        phoneNumber: "0607289121",
-        address: {
-          country: "France",
-          city: "Montmagny",
-          street: "3 rue des loups",
-          zipCode: "93800",
-        },
-        email: "sissako@email.fr",
-        password: "Password123"
-      };
+    const user: ClientPostDTO = {
+      lastname: this.signupForm.get('lastname')!.value!.toLowerCase(),
+      firstname: this.signupForm.get('firstname')!.value!.toLowerCase(),
+      phoneNumber: this.signupForm.get('phoneNumber')!.value!.toLowerCase(),
+      address: {
+        country: this.signupForm.get('country')!.value!.toLowerCase(),
+        city: this.signupForm.get('city')!.value!.toLowerCase(),
+        street: this.signupForm.get('street')!.value!.toLowerCase(),
+        zipCode: this.signupForm.get('zipCode')!.value!.toLowerCase(),
+      },
+      email: this.signupForm.get('email')!.value!.toLowerCase(),
+      password: this.signupForm.get('password')!.value!.toLowerCase()
+    };
+    const test: ClientPostDTO = {
+      lastname: "Dramé",
+      firstname: "Sissako",
+      phoneNumber: "0607289121",
+      address: {
+        country: "France",
+        city: "Montmagny",
+        street: "3 rue des loups",
+        zipCode: "93800",
+      },
+      email: "sissako@email.fr",
+      password: "Password123"
+    };
     this.store.dispatch(ClientActions.PostClientStart({clientPostDTO: test}));
+    this.router.navigate(['home#home']).then(value => {})
     // } to uncomment
   }
+
   ngOnDestroy(): void {
   }
 }

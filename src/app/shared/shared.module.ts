@@ -10,11 +10,13 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {GetPropertyValueByName} from "./pipes/GetPropertyValueByName";
 
 
 @NgModule({
   declarations: [
     DomesButtonComponent,
+    GetPropertyValueByName
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSliderModule,
     MatInputModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    GetPropertyValueByName
   ],
   providers: [],
 })

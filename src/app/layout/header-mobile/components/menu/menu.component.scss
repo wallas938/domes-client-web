@@ -1,7 +1,7 @@
-@use "/src/sass/helpers/functions" as f;
-@use "/src/sass/colors" as c;
-@use "/src/sass/typography" as t;
-@use "/src/sass/mixins" as m;
+@use "../../../../../sass/helpers/functions" as f;
+@use "../../../../../sass/colors" as c;
+@use "../../../../../sass/typography" as t;
+@use "../../../../../sass/mixins" as m;
 
 .root {
   background-color: white;
@@ -12,7 +12,7 @@
   right: 50%;
   transform: translateX(50%);
   width: f.toRem(250, 16);
-  height: f.toRem(230, 16);
+  height: f.toRem(250, 16);
 
   .menu-content {
     padding: f.toRem(37, 16) f.toRem(23, 16) f.toRem(47, 16) f.toRem(23, 16);

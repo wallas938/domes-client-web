@@ -1,20 +1,20 @@
 export interface ClientPostDTO {
-  lastname: string | null | undefined;
-  firstname:string | null | undefined;
-  phoneNumber: string | null | undefined;
-  address: Address | null | undefined;
-  email: string | null | undefined;
-  password: string | null | undefined;
+  lastname: string;
+  firstname:string;
+  phoneNumber: string;
+  address: Address;
+  email: string;
+  password: string;
 }
 
 export interface ClientGetDTO {
-  id: string | null | undefined;
-  lastname: string | null | undefined;
-  firstname:string | null | undefined;
-  phoneNumber: string | null | undefined;
-  address: Address | null | undefined;
-  email: string | null | undefined;
-  password: string | null | undefined;
+  id: string;
+  lastname: string;
+  firstname:string;
+  phoneNumber: string;
+  address: Address;
+  email: string;
+  password: string;
 }
 
 export interface Address {

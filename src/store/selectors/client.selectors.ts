@@ -2,13 +2,23 @@ import {createFeatureSelector, createSelector} from "@ngrx/store";
 import * as fromClient from 'src/store/reducers/client.reducer';
 
 
-const layout = createFeatureSelector<fromClient.State>('client');
+const client = createFeatureSelector<fromClient.State>('client');
 
-const selectLoadingState = createSelector(layout, (state) => {
+const selectLoading = createSelector(client, (state) => {
   return state.loadingState;
 });
 
+const selectClient = createSelector(client, (state) => {
+  return state.client;
+});
+
+const selectClientErrorMessage = createSelector(client, (state) => {
+  return state.errorMessage;
+});
+
 export const ClientSelectors = {
-  selectLoadingState
+  selectLoading,
+  selectClient,
+  selectClientErrorMessage
 }
 

@@ -15,6 +15,7 @@
 
     img {
       width: f.toRem(40, 16);
+      height: auto;
     }
 
     span {
@@ -22,6 +23,17 @@
       font-weight: bold;
       line-height: f.toRem(16.41, 16);
     }
+  }
+
+  .mobile-header-right {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .welcome-message {
+    font-size: f.toRem(12, 16);
+    line-height: f.toRem(16.41, 16);
+    margin-right: f.toRem(24, 16);
   }
 
   .hamburger {
