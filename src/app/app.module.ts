@@ -25,6 +25,7 @@ import {AppEffects} from "../store/effects";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./core/token.interceptor";
 import {NgOptimizedImage} from "@angular/common";
+import { LoginComponent } from './pages/home/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {NgOptimizedImage} from "@angular/common";
     FooterComponent,
     HomeComponent,
     MenuComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     SharedModule,

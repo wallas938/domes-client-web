@@ -33,4 +33,8 @@ export class MenuComponent implements OnInit {
   closeMenu() {
     this.store.dispatch(LayoutActions.MobileMenuClosed());
   }
+
+  login() {
+    this.router.navigate(['login']).then(value => {})
+  }
 }
