@@ -1,0 +1,50 @@
+@use "/src/sass/helpers/functions" as f;
+@use "/src/sass/colors" as c;
+@use "/src/sass/typography" as t;
+@use "/src/sass/mixins" as m;
+@use "/src/sass/layout/index" as l;
+
+#mobile-login {
+  padding-top: f.toRem(44, 16);
+  form {
+    .field, p {
+      margin-bottom: f.toRem(44, 16);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin-bottom: f.toRem(12, 16);
+        //position: relative;
+        //display: inline-block;
+        //&:after {
+        //  position: absolute;
+        //  content: "*";
+        //  top: -5px;
+        //  right: -8px;
+        //  color: red;
+        //}
+      }
+    }
+
+    .cta {
+      display: flex;
+      justify-content: center;
+      button {
+        margin-bottom: f.toRem(9, 16);
+      }
+    }
+
+    p {
+      text-align: center;
+      @include t.textBody;
+      color: c.$blue;
+      text-decoration: underline;
+      @include m.breakpoint-up(medium) {
+        text-align: right;
+      }
+    }
+  }
+}

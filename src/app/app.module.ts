@@ -26,6 +26,7 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./core/token.interceptor";
 import {NgOptimizedImage} from "@angular/common";
 import { LoginComponent } from './pages/home/components/login/login.component';
+import { MobileLoginComponent } from './pages/home/components/mobile-login/mobile-login.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LoginComponent } from './pages/home/components/login/login.component';
     HomeComponent,
     MenuComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    MobileLoginComponent
   ],
   imports: [
     SharedModule,

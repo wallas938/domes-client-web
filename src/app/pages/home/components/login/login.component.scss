@@ -1,0 +1,22 @@
+@use "/src/sass/helpers/functions" as f;
+@use "/src/sass/colors" as c;
+@use "/src/sass/typography" as t;
+@use "/src/sass/mixins" as m;
+@use "/src/sass/layout/index" as l;
+
+
+main {
+  .logo {
+    display: flex;
+    justify-content: center;
+
+    img {
+      height: auto;
+      width: f.toRem(82, 16);
+    }
+  }
+
+  h1 {
+    @include t.headings;
+  }
+}
