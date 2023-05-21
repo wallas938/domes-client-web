@@ -4,11 +4,9 @@ import {AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators}
 
 import * as fromApp from "../../../../../store/reducers";
 import {RouterSelectors} from 'src/store/selectors/router.selectors';
-import {AuthenticationSelectors} from 'src/store/selectors/authentication.selectors';
-import {ClientSelectors} from 'src/store/selectors/client.selectors';
 import {DOMES_BASE_PATHS} from "../../../../models/domes-url";
 import {LayoutActions} from 'src/store/actions/layout.actions';
-import {ClientGetDTO, ClientPostDTO} from "../../../../models/client";
+import {ClientPostDTO} from "../../../../models/client";
 import {ClientService} from "../../../../services/client/client.service";
 import {ClientActions} from "../../../../../store/actions/client.actions";
 import {Router} from "@angular/router";

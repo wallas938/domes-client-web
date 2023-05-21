@@ -8,12 +8,37 @@
     </h1>
   </div>
   <app-mobile-login></app-mobile-login>
-  <section id="main-login" class="hide-for-mobile">
-    <div class="main-login_left">
-
+  <section class="hide-for-mobile main-login">
+    <div class="main-login__left">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Domes Logo">
+      </div>
     </div>
-    <div class="main-login_right">
+    <div class="main-login__right">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Domes Logo">
+      </div>
+      <form>
+        <div class="fields">
+        <div class="field">
+          <label>
+            Email
+          </label>
+          <input type="email" class="domes-input">
+        </div>
+        <div class="field">
+          <label>
+            Mot de passe
+          </label>
+          <input type="password" class="domes-input">
+        </div>
+        </div>
 
+        <div class="cta">
+          <button class="domes-btn orange">Se connecter</button>
+          <p><a routerLink="/signup">Pas encore de compte?</a></p>
+        </div>
+      </form>
     </div>
   </section>
 </main>

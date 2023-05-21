@@ -6,6 +6,7 @@ import * as fromApp from "../../../../../store/reducers";
 import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RouterSelectors} from "../../../../../store/selectors/router.selectors";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,11 @@ import {RouterSelectors} from "../../../../../store/selectors/router.selectors";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
-
+  currentPath: Observable<string>;
   constructor(private store: Store<fromApp.AppState>,
               private fb: FormBuilder,
               private router: Router) {
+    this.currentPath = this.store.select(RouterSelectors.selectRouterUrl)
   }
 
   ngOnInit(): void {

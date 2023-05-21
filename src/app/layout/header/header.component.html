@@ -23,6 +23,6 @@
         </svg>
       </div>
     </a>
-    <a class="domes-btn orange" routerLink="/login">{{(client$ | async)?.id ? 'Se déconnecter' : 'Se connecter'}}</a>
+      <a *ngIf="currentPath != DOMES_BASE_PATHS.LOGIN;" class="domes-btn orange" routerLink="/login">{{(client$ | async)?.id ? 'Se déconnecter' : 'Se connecter'}}</a>
   </div>
 </header>
