@@ -4,7 +4,7 @@ import * as fromApp from 'src/store/reducers';
 import {LayoutActions} from 'src/store/actions/layout.actions';
 import {DOMES_BASE_PATHS} from "../../../../models/domes-url";
 import {RouterSelectors} from "../../../../../store/selectors/router.selectors";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {ClientSelectors} from "../../../../../store/selectors/client.selectors";
 import {ClientGetDTO} from "../../../../models/client";
 import {Router} from "@angular/router";
@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
   isConnected: boolean = false;
 
   constructor(private store: Store<fromApp.AppState>, private router: Router) {
-    this.currentPath = this.store.select(RouterSelectors.selectRouterUrl)
+    this.currentPath = this.store.select(RouterSelectors.selectRouterUrl).pipe(tap(source => console.log(source)))
   }
 
   ngOnInit(): void {
@@ -32,5 +32,9 @@ export class MenuComponent implements OnInit {
 
   closeMenu() {
     this.store.dispatch(LayoutActions.MobileMenuClosed());
+  }
+
+  login() {
+    this.router.navigate(['login']).then(value => {})
   }
 }

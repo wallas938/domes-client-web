@@ -1,0 +1,96 @@
+@use "/src/sass/helpers/functions" as f;
+@use "../../.././../../../src/sass/colors" as c;
+@use "/src/sass/typography" as t;
+@use "/src/sass/mixins" as m;
+@use "/src/sass/layout/index" as l;
+
+
+main {
+  .logo {
+    display: flex;
+    justify-content: center;
+
+    img {
+      height: auto;
+      width: f.toRem(82, 16);
+    }
+  }
+
+  h1 {
+    @include t.headings;
+    @include m.breakpoint-up(medium) {
+      margin-bottom: f.toRem(55, 16);
+    }
+  }
+
+  .main-login {
+    filter: drop-shadow(-8px 8px 0px #000000);
+    border: 1px solid #000000;
+    border-radius: 4px;
+    background-color: white;
+    width: f.toRem(700, 16);
+    margin: 0 auto;
+    display: flex;
+    margin-bottom: f.toRem(62, 16);
+    &__left, &__right {
+      width: 50%;
+    }
+
+    &__left {
+      height: f.toRem(570, 16);
+      background-color: rgba(c.$blue, .65);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__left > .logo > img {
+      width: f.toRem(250, 16);
+    }
+
+    &__right {
+      height: f.toRem(570, 16);
+      padding-top: f.toRem(41, 16);
+    }
+
+    &__right > .logo {
+      display: flex;
+      justify-content: center;
+    }
+
+    &__right > .logo > img {
+      width: f.toRem(125, 16);
+    }
+
+    &__right > form {
+      padding: 0 f.toRem(24, 16);
+
+      .field:first-child {
+        margin-bottom: f.toRem(48, 16);
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .field:last-child {
+        margin-bottom: f.toRem(31, 16);
+      }
+
+      .field > label {
+        margin-bottom: f.toRem(15, 16);
+      }
+
+      .cta {
+        button {
+          width: 100%;
+          margin-bottom: f.toRem(10, 16);
+        }
+        p {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
