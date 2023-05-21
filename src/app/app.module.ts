@@ -25,8 +25,8 @@ import {AppEffects} from "../store/effects";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./core/token.interceptor";
 import {NgOptimizedImage} from "@angular/common";
-import { LoginComponent } from './pages/home/components/login/login.component';
-import { MobileLoginComponent } from './pages/home/components/mobile-login/mobile-login.component';
+import {LoginComponent} from './pages/home/components/login/login.component';
+import {MobileLoginComponent} from './pages/home/components/mobile-login/mobile-login.component';
 
 @NgModule({
   declarations: [
@@ -45,10 +45,21 @@ import { MobileLoginComponent } from './pages/home/components/mobile-login/mobil
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(reducers, {}),
+    StoreModule.forRoot(reducers, {
+      metaReducers: [],
+      initialState: {
+        router: {
+          state: {
+            url: window.location.pathname,
+            params: {},
+            queryParams: {}
+          },
+          navigationId: 0
+        }
+      }
+    }),
     EffectsModule.forRoot(AppEffects),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
-    StoreRouterConnectingModule.forRoot(),
     NgOptimizedImage,
   ],
   providers: [
