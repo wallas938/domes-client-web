@@ -1,5 +1,5 @@
-import { Action, createReducer, on } from "@ngrx/store";
-import { AuthenticationActions } from "src/store/actions/authentication.actions";
+import {Action, createReducer, on} from "@ngrx/store";
+import {AuthenticationActions} from "src/store/actions/authentication.actions";
 import {AuthenticationTokenResponse} from "../../app/models/authentication";
 
 export interface State {
@@ -29,6 +29,27 @@ export const _authenticationReducer = createReducer(
     }
   }),
   on(AuthenticationActions.GetAuthenticationTokenFromSignupFailed, (state, {error}) => {
+    console.log(error)
+    return {
+      ...state,
+      loadingState: false,
+      errorMessage: error,
+    }
+  }),
+  on(AuthenticationActions.GetAuthenticationTokenFromLoginStart, (state, {credentials}) => {
+    return {
+      ...state,
+      loadingState: true
+    }
+  }),
+  on(AuthenticationActions.GetAuthenticationTokenFromLoginSucceeded, (state, {authenticationTokenResponse}) => {
+    return {
+      ...state,
+      loadingState: false,
+      authenticationToken: authenticationTokenResponse
+    }
+  }),
+  on(AuthenticationActions.GetAuthenticationTokenFromLoginFailed, (state, {error}) => {
     console.log(error)
     return {
       ...state,

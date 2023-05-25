@@ -42,4 +42,22 @@ export class AuthenticationEffects implements OnDestroy {
       })
     )
   )
+
+  authenticateClient = createEffect(
+    () => this.actions$.pipe(
+      ofType(AuthenticationActions.GetAuthenticationTokenFromLoginStart),
+      switchMap(({credentials}) => {
+        return this.authService.login({email: credentials.email, password: credentials.password}).pipe(
+          switchMap((authenticationToken) => {
+            this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromLoginSucceeded({authenticationTokenResponse: authenticationToken}))
+            return of(ClientActions.GetClientStart({email: credentials.email}))
+          }),
+          catchError((err: HttpErrorResponse) => {
+            this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromSignupFailed({error: err})) // Ajouter dans l'effect de l'authentication le refreshAction
+            return EMPTY
+          })
+        )
+      })
+    )
+  )
 }

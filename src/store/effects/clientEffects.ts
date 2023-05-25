@@ -40,6 +40,19 @@ export class ClientEffects implements OnDestroy {
           })),
       )));
 
+
+  login$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(ClientActions.GetClientStart),
+      switchMap(value => this.clientService.getClient(value.email)),
+      map(clientGetDTO => ClientActions.GetClientSucceeded({clientGetDTO})),
+      catchError((err: HttpErrorResponse) => {
+        this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromSignupFailed({error: err}))
+        return EMPTY
+      })
+    )
+  )
+
   // signup$ = createEffect(
   //   () => this.actions$.pipe(
   //     ofType(ClientActions.PostClientStart),
