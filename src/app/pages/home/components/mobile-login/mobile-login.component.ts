@@ -33,7 +33,7 @@ export class MobileLoginComponent implements OnInit, OnDestroy {
 
     const credentials: Credentials = {
       email: this.loginForm.get('email')!.value!.toLowerCase(),
-      password: this.loginForm.get('password')!.value!.toLowerCase(),
+      password: this.loginForm.get('password')!.value!,
     }
 
     this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromLoginStart({credentials}))
