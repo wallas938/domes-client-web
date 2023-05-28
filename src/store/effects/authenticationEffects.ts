@@ -49,6 +49,7 @@ export class AuthenticationEffects implements OnDestroy {
       switchMap(({credentials}) => {
         return this.authService.login({email: credentials.email, password: credentials.password}).pipe(
           switchMap((authenticationToken) => {
+            localStorage.setItem("token_id", authenticationToken.accessToken);
             this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromLoginSucceeded({authenticationTokenResponse: authenticationToken}))
             return of(ClientActions.GetClientStart({email: credentials.email}))
           }),

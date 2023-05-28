@@ -17,6 +17,7 @@ export class AuthService {
   }
 
   login(credentials: Credentials): Observable<AuthenticationTokenResponse> {
+
     return this.http.post<AuthenticationTokenResponse>(`${this.authenticationUrl}`,
       credentials,
       {
@@ -24,4 +25,6 @@ export class AuthService {
       }
     )
   }
+
+
 }

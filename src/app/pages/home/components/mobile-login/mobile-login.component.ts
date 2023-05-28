@@ -7,6 +7,8 @@ import {ClientService} from "../../../../services/client/client.service";
 import {Router} from "@angular/router";
 import {Credentials} from "../../../../models/authentication";
 import {AuthenticationActions} from "../../../../../store/actions/authentication.actions";
+import {ClientActions} from "../../../../../store/actions/client.actions";
+import {ClientSelectors} from "../../../../../store/selectors/client.selectors";
 
 @Component({
   selector: 'app-mobile-login',
@@ -14,7 +16,7 @@ import {AuthenticationActions} from "../../../../../store/actions/authentication
   styleUrls: ['./mobile-login.component.scss']
 })
 export class MobileLoginComponent implements OnInit, OnDestroy {
-  loginForm = this.fb.group({
+  mobileLoginForm = this.fb.group({
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
@@ -26,18 +28,21 @@ export class MobileLoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.store.select(ClientSelectors.selectClient).subscribe(value => {
+      if(value.id) {
+        this.router.navigate(['home']).then();
+      }
+    })
   }
 
   submit() {
-    if (this.loginForm.invalid) return;
+    if (this.mobileLoginForm.invalid) return;
 
     const credentials: Credentials = {
-      email: this.loginForm.get('email')!.value!.toLowerCase(),
-      password: this.loginForm.get('password')!.value!,
+      email: this.mobileLoginForm.get('email')!.value!.toLowerCase(),
+      password: this.mobileLoginForm.get('password')!.value!,
     }
-
     this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromLoginStart({credentials}))
-
   }
 
   ngOnDestroy(): void {

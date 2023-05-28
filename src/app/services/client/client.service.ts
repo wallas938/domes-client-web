@@ -12,7 +12,7 @@ import {AuthenticationTokenResponse} from "../../models/authentication";
 })
 export class ClientService {
   private authUrl = environment.apiURL + '/auth';
-  private clientUrl = environment.apiURL + 'api/clients';
+  private clientUrl = environment.apiURL + '/clients';
 
   constructor(private http: HttpClient, private store: Store<fromApp.AppState>) {
   }
@@ -27,7 +27,7 @@ export class ClientService {
   }
 
   getClient(email: string): Observable<ClientGetDTO> {
-    return this.http.get<ClientGetDTO>(`${this.clientUrl}/${email}`,
+    return this.http.get<ClientGetDTO>(`${this.clientUrl}?email=${email}`,
       {
         headers: {'Content-Type': 'application/json'}
       }

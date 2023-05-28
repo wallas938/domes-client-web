@@ -1,12 +1,6 @@
 import {Injectable} from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-  HttpHeaders
-} from '@angular/common/http';
-import {first, Observable} from 'rxjs';
+import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {first, last, Observable} from 'rxjs';
 import {Store} from "@ngrx/store";
 import * as fromApp from "../../store/reducers";
 import {AuthenticationSelectors} from 'src/store/selectors/authentication.selectors';
@@ -20,33 +14,28 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.store.select(AuthenticationSelectors.selectAuthenticationToken)
-      .pipe(first())
-      .subscribe(
-        (authenticationToken: AuthenticationTokenResponse) => {
-          if (authenticationToken) {
-            const token = authenticationToken.accessToken;
-            const headers = new HttpHeaders({
-              "Authorization": token,
-            });
-            const clone = req.clone({headers});
+    const token = localStorage.getItem("token_id");
 
-            return next.handle(clone);
-          }
-          return next.handle(req);
-        });
-    // if(this.store.select(selectAuthenticationToken)) {
-    //   console.log(this.store.select(selectAuthenticationToken))
-    //   //  const token = this.appStore.getToken();
-    //   //
-    //   // const headers = new HttpHeaders({
-    //   //   "Authorization": "token",
-    //   // });
-    //   //
-    //   // const clone = req.clone({ headers });
-    //   //
-    //   // return next.handle(clone);
-    // }
+    if(token) {
+      const headers = new HttpHeaders({
+        Authorization: token,
+      });
+
+      const clone = req.clone({ headers });
+
+      return next.handle(clone);
+    }
+    // this.store.select(AuthenticationSelectors.selectAuthenticationToken)
+    //   .pipe(last())
+    //   .subscribe(
+    //     (authenticationToken: AuthenticationTokenResponse) => {
+    //       if (authenticationToken) {
+    //         const token = authenticationToken.accessToken;
+    //         const headers: HttpHeaders = new HttpHeaders();
+    //         return req.clone({headers});
+    //       }
+    //       return;
+    //     });
     return next.handle(req);
   }
 }
