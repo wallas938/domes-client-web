@@ -15,13 +15,31 @@ const GET_AUTHENTICATION_TOKEN_FROM_SIGNUP_START = '[AuthenticationTokenFromSign
 const GET_AUTHENTICATION_TOKEN_FROM_SIGNUP_SUCCEEDED = '[AuthenticationTokenFromSignup]  GET_AUTHENTICATION_TOKEN_FROM_SIGNUP_SUCCEEDED';
 const GET_AUTHENTICATION_TOKEN_FROM_SIGNUP_FAILED = '[AuthenticationTokenFromSignup]  GET_AUTHENTICATION_TOKEN_FROM_SIGNUP_FAILED';
 
+/* POST CLIENT AUTHENTICATION IDENTIFIERS */
+
+const GET_AUTHENTICATION_TOKEN_FROM_LOGIN_START = '[AuthenticationTokenFromLogin]  GET_AUTHENTICATION_TOKEN_FROM_LOGIN_START';
+const GET_AUTHENTICATION_TOKEN_FROM_LOGIN_SUCCEEDED = '[AuthenticationTokenFromLogin]  GET_AUTHENTICATION_TOKEN_FROM_LOGIN_SUCCEEDED';
+const GET_AUTHENTICATION_TOKEN_FROM_LOGIN_FAILED = '[AuthenticationTokenFromLogin]  GET_AUTHENTICATION_TOKEN_FROM_LOGIN_FAILED';
+
 /*******
  *
  * ACTIONS
  *
  *******/
 
-/* AUTHENTICATION TOKEN ACTIONS */
+/* CLIENT AUTHENTICATION ACTIONS */
+
+const GetAuthenticationTokenFromLoginStart = createAction(GET_AUTHENTICATION_TOKEN_FROM_LOGIN_START, props<{
+  credentials: Credentials
+}>());
+const GetAuthenticationTokenFromLoginSucceeded = createAction(GET_AUTHENTICATION_TOKEN_FROM_LOGIN_SUCCEEDED, props<{
+  authenticationTokenResponse: AuthenticationTokenResponse
+}>());
+const GetAuthenticationTokenFromLoginFailed = createAction(GET_AUTHENTICATION_TOKEN_FROM_LOGIN_FAILED, props<{
+  error: HttpErrorResponse
+}>());
+
+/* AUTHENTICATION TOKEN ACTIONS FROM SIGNUP */
 
 const GetAuthenticationTokenFromSignupStart = createAction(GET_AUTHENTICATION_TOKEN_FROM_SIGNUP_START, props<{
   clientPostDTO: ClientPostDTO
@@ -37,5 +55,8 @@ const GetAuthenticationTokenFromSignupFailed = createAction(GET_AUTHENTICATION_T
 export const AuthenticationActions = {
   GetAuthenticationTokenFromSignupStart,
   GetAuthenticationTokenFromSignupSucceeded,
-  GetAuthenticationTokenFromSignupFailed
+  GetAuthenticationTokenFromSignupFailed,
+  GetAuthenticationTokenFromLoginStart,
+  GetAuthenticationTokenFromLoginSucceeded,
+  GetAuthenticationTokenFromLoginFailed
 };

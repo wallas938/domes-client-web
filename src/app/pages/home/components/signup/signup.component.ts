@@ -37,9 +37,9 @@ export class SignupComponent implements OnInit, OnDestroy {
     city: ['', Validators.required],
     street: ['', Validators.required],
     zipCode: ['', Validators.required],
-    email: ['', Validators.pattern(new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))],
-    password: ['', Validators.pattern(new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/))],
-    passwordConfirmation: ['', Validators.pattern(new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/))],
+    email: ['', [Validators.required, Validators.pattern(new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/))]],
+    passwordConfirmation: ['', [Validators.required]],
   }, {
     validators: passwordMatchValidator
   });
@@ -57,36 +57,37 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    // if (this.signupForm.valid) { to uncomment
-    const user: ClientPostDTO = {
-      lastname: this.signupForm.get('lastname')!.value!.toLowerCase(),
-      firstname: this.signupForm.get('firstname')!.value!.toLowerCase(),
-      phoneNumber: this.signupForm.get('phoneNumber')!.value!.toLowerCase(),
-      address: {
-        country: this.signupForm.get('country')!.value!.toLowerCase(),
-        city: this.signupForm.get('city')!.value!.toLowerCase(),
-        street: this.signupForm.get('street')!.value!.toLowerCase(),
-        zipCode: this.signupForm.get('zipCode')!.value!.toLowerCase(),
-      },
-      email: this.signupForm.get('email')!.value!.toLowerCase(),
-      password: this.signupForm.get('password')!.value!.toLowerCase()
-    };
-    const test: ClientPostDTO = {
-      lastname: "Dramé",
-      firstname: "Sissako",
-      phoneNumber: "0607289121",
-      address: {
-        country: "France",
-        city: "Montmagny",
-        street: "3 rue des loups",
-        zipCode: "93800",
-      },
-      email: "sissako@email.fr",
-      password: "Password123"
-    };
-    this.store.dispatch(ClientActions.PostClientStart({clientPostDTO: test}));
-    this.router.navigate(['home#home']).then(value => {})
-    // } to uncomment
+    if (this.signupForm.valid) {
+      const client: ClientPostDTO = {
+        lastname: this.signupForm.get('lastname')!.value!.toLowerCase(),
+        firstname: this.signupForm.get('firstname')!.value!.toLowerCase(),
+        phoneNumber: this.signupForm.get('phoneNumber')!.value!.toLowerCase(),
+        address: {
+          country: this.signupForm.get('country')!.value!.toLowerCase(),
+          city: this.signupForm.get('city')!.value!.toLowerCase(),
+          street: this.signupForm.get('street')!.value!.toLowerCase(),
+          zipCode: this.signupForm.get('zipCode')!.value!.toLowerCase(),
+        },
+        email: this.signupForm.get('email')!.value!.toLowerCase(),
+        password: this.signupForm.get('password')!.value!
+      };
+      // const test: ClientPostDTO = {
+      //   lastname: "Dramé",
+      //   firstname: "Sissako",
+      //   phoneNumber: "0607289121",
+      //   address: {
+      //     country: "France",
+      //     city: "Montmagny",
+      //     street: "3 rue des loups",
+      //     zipCode: "93800",
+      //   },
+      //   email: "sissako@email.fr",
+      //   password: "Password123"
+      // };
+      this.store.dispatch(ClientActions.PostClientStart({clientPostDTO: client}));
+      this.router.navigate(['home#home']).then(value => {
+      })
+    }
   }
 
   ngOnDestroy(): void {

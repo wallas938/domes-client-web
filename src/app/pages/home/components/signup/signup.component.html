@@ -52,22 +52,22 @@
       <div class="field">
         <label>Mot de passe</label>
         <input class="domes-input" type="password" formControlName="password"/>
+        <p>invalid: {{signupForm.get('password')?.invalid}} / dirty: {{signupForm.get('password')?.dirty}}</p>
         <small *ngIf="signupForm.get('password')?.invalid &&
-          signupForm.get('password')?.touched">Doit contenir au moins 8 caractères et une majuscule et un
+          signupForm.get('password')?.dirty">Doit contenir au moins 8 caractères et une majuscule et un
           chiffre</small>
       </div>
       <div class="field">
         <label>Confirmation du mot de passe</label>
         <input class="domes-input" type="password" formControlName="passwordConfirmation"/>
-        <small *ngIf="signupForm.hasError('passwordMismatch')&& (signupForm.get('passwordConfirmation')?.invalid &&
-          signupForm.get('passwordConfirmation')?.touched)">les mots de passes ne sont pas identiques</small>
+        <small *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('passwordConfirmation')?.dirty">les mots de passes ne sont pas identiques</small>
       </div>
     </div>
     <div class="cta">
       <button class="domes-btn">
         <a routerLink="/home">Annuler</a>
       </button>
-      <button class="domes-btn orange" type="submit" [disabled]="false">Envoyer</button>
+      <button class="domes-btn orange" type="submit" [disabled]="signupForm.invalid">Envoyer</button>
     </div>
     <p><a routerLink="/login">Vous avez déja un compte ?</a></p>
   </form>

@@ -18,24 +18,24 @@
       <div class="logo">
         <img src="assets/images/logo.png" alt="Domes Logo">
       </div>
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="submit()">
         <div class="fields">
-        <div class="field">
-          <label>
-            Email
-          </label>
-          <input type="email" class="domes-input">
-        </div>
-        <div class="field">
-          <label>
-            Mot de passe
-          </label>
-          <input type="password" class="domes-input">
-        </div>
+          <div class="field">
+            <label>
+              Email
+            </label>
+            <input type="email" class="domes-input" formControlName="email">
+          </div>
+          <div class="field">
+            <label>
+              Mot de passe
+            </label>
+            <input type="password" class="domes-input" formControlName="password">
+          </div>
         </div>
 
         <div class="cta">
-          <button class="domes-btn orange">Se connecter</button>
+          <button class="domes-btn orange" [disabled]="loginForm.invalid">Se connecter</button>
           <p><a routerLink="/signup">Pas encore de compte?</a></p>
         </div>
       </form>

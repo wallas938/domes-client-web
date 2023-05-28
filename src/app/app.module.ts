@@ -27,6 +27,7 @@ import {TokenInterceptor} from "./core/token.interceptor";
 import {NgOptimizedImage} from "@angular/common";
 import {LoginComponent} from './pages/home/components/login/login.component';
 import {MobileLoginComponent} from './pages/home/components/mobile-login/mobile-login.component';
+import {CoreModule} from "./core/core.modules";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {MobileLoginComponent} from './pages/home/components/mobile-login/mobile-
     SharedModule,
     AppRoutingModule,
     BrowserModule,
+    CoreModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers, {
       metaReducers: [],
@@ -61,9 +63,6 @@ import {MobileLoginComponent} from './pages/home/components/mobile-login/mobile-
     EffectsModule.forRoot(AppEffects),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
     NgOptimizedImage,
-  ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

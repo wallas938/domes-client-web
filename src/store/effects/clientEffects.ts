@@ -40,26 +40,21 @@ export class ClientEffects implements OnDestroy {
           })),
       )));
 
-  // signup$ = createEffect(
-  //   () => this.actions$.pipe(
-  //     ofType(ClientActions.PostClientStart),
-  //     switchMap(({clientPostDTO}) => this.clientService.postClient(clientPostDTO).pipe(
-  //       switchMap(clientGetDTO => {
-  //           this.store.dispatch(ClientActions.PostClientSucceeded({clientGetDTO}))
-  //           return this.authService.login({email: clientGetDTO.email, password: clientGetDTO.password}).pipe(
-  //             map(authenticationTokenResponse => AuthenticationActions.GetAuthenticationTokenSucceeded(
-  //               {authenticationTokenResponse: authenticationTokenResponse})
-  //             ),
-  //             catchError((err: HttpErrorResponse) => {
-  //               this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFailed({error: err})) // Ajouter dans l'effect de l'authentication le refreshAction
-  //               return EMPTY
-  //             })
-  //           )
-  //         },
-  //       ),
-  //       catchError((err: HttpErrorResponse) => {
-  //         this.store.dispatch(ClientActions.PostClientFailed({error: err}))
-  //         return EMPTY
-  //       })),
-  //     )));
+
+  login$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(ClientActions.GetClientStart),
+      switchMap(({email}) => {
+        return this.clientService.getClient(email).pipe(
+          switchMap((clientGetDTO) => {
+            return of(ClientActions.GetClientSucceeded({clientGetDTO: clientGetDTO}))
+          }),
+          catchError((err: HttpErrorResponse) => {
+            this.store.dispatch(ClientActions.GetClientFailed({error: err})) // Ajouter dans l'effect de l'authentication le refreshAction
+            return EMPTY
+          })
+        )
+      })
+    )
+  )
 }

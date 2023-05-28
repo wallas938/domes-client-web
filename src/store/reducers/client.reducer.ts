@@ -38,6 +38,28 @@ export const _clientReducer = createReducer(
       errorMessage: error,
     }
   }),
+  on(ClientActions.GetClientStart, (state) => {
+    return {
+      ...state,
+      loadingState: true
+    }
+  }),
+  on(ClientActions.GetClientSucceeded, (state, {clientGetDTO}) => {
+    console.log(clientGetDTO)
+    return {
+      ...state,
+      client: clientGetDTO,
+      errorMessage: '',
+      loadingState: false,
+    }
+  }),
+  on(ClientActions.GetClientFailed, (state, {error}) => {
+    return {
+      ...state,
+      loadingState: false,
+      errorMessage: error,
+    }
+  }),
 )
 
 export function clientReducer(state: State | undefined, action: Action) {
