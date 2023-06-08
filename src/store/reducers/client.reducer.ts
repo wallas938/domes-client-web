@@ -6,12 +6,14 @@ export interface State {
   loadingState: boolean,
   client: ClientGetDTO,
   errorMessage: any,
+  hasJustSignedUp: boolean | null
 }
 
 const initialState: State = {
   loadingState: false,
   client: {} as ClientGetDTO,
-  errorMessage: '',
+  errorMessage: {},
+  hasJustSignedUp: null
 }
 
 
@@ -29,9 +31,11 @@ export const _clientReducer = createReducer(
       client: clientGetDTO,
       errorMessage: '',
       loadingState: false,
+      hasJustSignedUp: true
     }
   }),
   on(ClientActions.PostClientFailed, (state, {error}) => {
+    console.log(error, "lkcecinq")
     return {
       ...state,
       loadingState: false,
@@ -45,7 +49,6 @@ export const _clientReducer = createReducer(
     }
   }),
   on(ClientActions.GetClientSucceeded, (state, {clientGetDTO}) => {
-    console.log(clientGetDTO)
     return {
       ...state,
       client: clientGetDTO,
@@ -58,6 +61,13 @@ export const _clientReducer = createReducer(
       ...state,
       loadingState: false,
       errorMessage: error,
+    }
+  }),
+  on(ClientActions.Logout, (state) => {
+    return {
+      ...state,
+      loadingState: false,
+      client: {} as ClientGetDTO,
     }
   }),
 )

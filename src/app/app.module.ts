@@ -19,11 +19,8 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {reducers} from "src/store/reducers";
-import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {SignupComponent} from './pages/home/components/signup/signup.component'
 import {AppEffects} from "../store/effects";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {TokenInterceptor} from "./core/token.interceptor";
 import {NgOptimizedImage} from "@angular/common";
 import {LoginComponent} from './pages/home/components/login/login.component';
 import {MobileLoginComponent} from './pages/home/components/mobile-login/mobile-login.component';

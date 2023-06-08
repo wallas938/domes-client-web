@@ -35,7 +35,7 @@ export class ClientEffects implements OnDestroy {
           }),
           switchMap((clientGetDTO) => of(AuthenticationActions.GetAuthenticationTokenFromSignupStart({clientPostDTO}))),
           catchError((err: HttpErrorResponse) => {
-            this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromSignupFailed({error: err})) // Ajouter dans l'effect de l'authentication le refreshAction
+            this.store.dispatch(ClientActions.PostClientFailed({error: err})) // Ajouter dans l'effect de l'authentication le refreshAction
             return EMPTY
           })),
       )));
@@ -50,7 +50,7 @@ export class ClientEffects implements OnDestroy {
             return of(ClientActions.GetClientSucceeded({clientGetDTO: clientGetDTO}))
           }),
           catchError((err: HttpErrorResponse) => {
-            this.store.dispatch(ClientActions.GetClientFailed({error: err})) // Ajouter dans l'effect de l'authentication le refreshAction
+            this.store.dispatch(ClientActions.GetClientFailed({error: {...err, message: "Erreur Serveur"}})) // Ajouter dans l'effect de l'authentication le refreshAction
             return EMPTY
           })
         )

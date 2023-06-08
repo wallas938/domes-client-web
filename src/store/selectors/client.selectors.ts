@@ -16,9 +16,14 @@ const selectClientErrorMessage = createSelector(client, (state) => {
   return state.errorMessage;
 });
 
+const selectHasJustSignedUpStatus = createSelector(client, (state) => {
+  return state.hasJustSignedUp;
+});
+
 export const ClientSelectors = {
   selectLoading,
   selectClient,
-  selectClientErrorMessage
+  selectClientErrorMessage,
+  selectHasJustSignedUpStatus
 }
 

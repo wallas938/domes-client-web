@@ -8,6 +8,7 @@ import {Observable, tap} from "rxjs";
 import {ClientSelectors} from "../../../../../store/selectors/client.selectors";
 import {ClientGetDTO} from "../../../../models/client";
 import {Router} from "@angular/router";
+import {AuthenticationActions} from "../../../../../store/actions/authentication.actions";
 
 @Component({
   selector: 'app-menu',
@@ -21,7 +22,7 @@ export class MenuComponent implements OnInit {
   isConnected: boolean = false;
 
   constructor(private store: Store<fromApp.AppState>, private router: Router) {
-    this.currentPath = this.store.select(RouterSelectors.selectRouterUrl).pipe(tap(source => console.log(source)))
+    this.currentPath = this.store.select(RouterSelectors.selectRouterUrl);
   }
 
   ngOnInit(): void {
@@ -34,7 +35,15 @@ export class MenuComponent implements OnInit {
     this.store.dispatch(LayoutActions.MobileMenuClosed());
   }
 
-  login() {
-    this.router.navigate(['login']).then(value => {})
+  handleClick() {
+    if (this.isConnected) {
+      this.disconnection();
+      return
+    }
+    this.router.navigate([DOMES_BASE_PATHS.LOGIN]).then()
+  }
+
+  disconnection() {
+    this.store.dispatch(AuthenticationActions.LogoutClientStart());
   }
 }

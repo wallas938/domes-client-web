@@ -4,12 +4,16 @@ import {AuthenticationTokenResponse} from "../../app/models/authentication";
 
 export interface State {
   loadingState: boolean,
-  authenticationToken: AuthenticationTokenResponse
+  authenticationToken: AuthenticationTokenResponse,
+  firstConnection: boolean | null,
+  error: any
 }
 
 const initialState: State = {
   loadingState: false,
-  authenticationToken: {} as AuthenticationTokenResponse
+  authenticationToken: {} as AuthenticationTokenResponse,
+  firstConnection: null,
+  error: null
 }
 
 
@@ -18,22 +22,23 @@ export const _authenticationReducer = createReducer(
   on(AuthenticationActions.GetAuthenticationTokenFromSignupStart, (state, {clientPostDTO}) => {
     return {
       ...state,
-      loadingState: true
+      loadingState: true,
     }
   }),
   on(AuthenticationActions.GetAuthenticationTokenFromSignupSucceeded, (state, {authenticationTokenResponse}) => {
     return {
       ...state,
       loadingState: false,
-      authenticationToken: authenticationTokenResponse
+      authenticationToken: authenticationTokenResponse,
+      firstConnection: false
     }
   }),
   on(AuthenticationActions.GetAuthenticationTokenFromSignupFailed, (state, {error}) => {
-    console.log(error)
     return {
       ...state,
       loadingState: false,
-      errorMessage: error,
+      error: error,
+      firstConnection: true
     }
   }),
   on(AuthenticationActions.GetAuthenticationTokenFromLoginStart, (state, {credentials}) => {
@@ -46,17 +51,42 @@ export const _authenticationReducer = createReducer(
     return {
       ...state,
       loadingState: false,
-      authenticationToken: authenticationTokenResponse
+      authenticationToken: authenticationTokenResponse,
+      firstConnection: false
     }
   }),
   on(AuthenticationActions.GetAuthenticationTokenFromLoginFailed, (state, {error}) => {
-    console.log(error)
     return {
       ...state,
       loadingState: false,
-      errorMessage: error,
+      error: error,
+      firstConnection: true
     }
   }),
+  on(AuthenticationActions.LogoutClientStart, (state) => {
+    return {
+      ...state,
+      loadingState: true,
+    }
+  }),
+  on(AuthenticationActions.LogoutClientSucceeded, (state) => {
+    return {
+      ...state,
+      loadingState: true,
+      authenticationToken: {} as AuthenticationTokenResponse,
+      error: null,
+      firstConnection: true
+    }
+  }),
+  on(AuthenticationActions.ResetFirstConnection, (state) => {
+    return {
+      ...state,
+      loadingState: true,
+      authenticationToken: {} as AuthenticationTokenResponse,
+      error: null,
+      firstConnection: null
+    }
+  })
 )
 
 export function authenticationReducer(state: State | undefined, action: Action) {
