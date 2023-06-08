@@ -12,7 +12,19 @@ const selectAuthenticationToken = createSelector(authentication, (state) => {
   return state.authenticationToken;
 });
 
+const selectConnectionStatus = createSelector(authentication, (state) => {
+  return state.firstConnection;
+});
+
+const selectAuthenticationError = createSelector(authentication, (state) => {
+  return state.error;
+});
+
+
+
 export const AuthenticationSelectors = {
   selectLoading,
-  selectAuthenticationToken
+  selectAuthenticationToken,
+  selectConnectionStatus,
+  selectAuthenticationError
 };

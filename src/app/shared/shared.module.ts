@@ -11,12 +11,15 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {GetPropertyValueByName} from "./pipes/GetPropertyValueByName";
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
+import { AlertMessageComponent } from './components/alert-message/alert-message.component';
 
 
 @NgModule({
   declarations: [
     DomesButtonComponent,
-    GetPropertyValueByName
+    GetPropertyValueByName,
+    AlertMessageComponent
   ],
   imports: [
     CommonModule,
@@ -29,11 +32,12 @@ import {GetPropertyValueByName} from "./pipes/GetPropertyValueByName";
     MatInputModule,
     MatIconModule,
     MatPaginatorModule,
-
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
     DomesButtonComponent,
+    AlertMessageComponent,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
@@ -42,9 +46,12 @@ import {GetPropertyValueByName} from "./pipes/GetPropertyValueByName";
     MatInputModule,
     MatIconModule,
     MatPaginatorModule,
-    GetPropertyValueByName
+    GetPropertyValueByName,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+  ],
 })
 export class SharedModule {
 }

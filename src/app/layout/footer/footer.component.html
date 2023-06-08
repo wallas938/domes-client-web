@@ -4,8 +4,11 @@
     <ul>
       <li><a routerLink="/home">Accueil</a></li>
       <li><a routerLink="/products">Voir tous les produits</a></li>
-      <li><a routerLink="/signup">Créer un compte</a></li>
-      <li><a>Se connecter</a></li>
+      <li><a *ngIf="client?.id; else noAccount;" routerLink="/user-account" routerLinkActive="active">Mon
+        Compte</a></li>
+      <ng-template #noAccount>
+        <li><a routerLink="/signup" routerLinkActive="active">Pas encore inscrit ?</a></li>
+      </ng-template>
     </ul>
   </nav>
   <div class="socials">

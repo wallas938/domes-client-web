@@ -21,6 +21,9 @@ const GET_CLIENT_START = '[Client]  GET_CLIENT_START';
 const GET_CLIENT_SUCCEEDED = '[Client]  GET_CLIENT_SUCCEEDED';
 const GET_CLIENT_FAILED = '[Client]  GET_CLIENT_FAILED';
 
+/* GET CLIENT LOGGED OUT */
+
+const LOGOUT = '[Client]  LOGOUT';
 /*******
  *
  * ACTIONS
@@ -37,6 +40,7 @@ const GetClientStart = createAction(GET_CLIENT_START, props<{ email: string }>()
 const GetClientSucceeded = createAction(GET_CLIENT_SUCCEEDED, props<{ clientGetDTO: ClientGetDTO }>());
 const GetClientFailed = createAction(GET_CLIENT_FAILED, props<{ error: HttpErrorResponse }>());
 
+const Logout = createAction(LOGOUT);
 
 export const ClientActions = {
   PostClientStart,
@@ -44,5 +48,6 @@ export const ClientActions = {
   PostClientFailed,
   GetClientStart,
   GetClientSucceeded,
-  GetClientFailed
+  GetClientFailed,
+  Logout
 };

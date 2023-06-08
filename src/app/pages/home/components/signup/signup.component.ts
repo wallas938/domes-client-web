@@ -10,6 +10,10 @@ import {ClientPostDTO} from "../../../../models/client";
 import {ClientService} from "../../../../services/client/client.service";
 import {ClientActions} from "../../../../../store/actions/client.actions";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthenticationSelectors} from "../../../../../store/selectors/authentication.selectors";
+import {ClientSelectors} from "../../../../../store/selectors/client.selectors";
+import {AlertMessageComponent} from "../../../../shared/components/alert-message/alert-message.component";
 
 
 export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -47,12 +51,27 @@ export class SignupComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromApp.AppState>,
               private fb: FormBuilder,
               private clientService: ClientService,
-              private router: Router) {
+              private router: Router,
+              private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
     this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.SIGNUP == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
+    });
+
+    this.store.select(ClientSelectors.selectClientErrorMessage).subscribe(({error}) => {
+      if (error != null) this.showSnackBar({message: error.message, style: {color: "red"}})
+    })
+
+    this.store.select(ClientSelectors.selectHasJustSignedUpStatus).subscribe(value => {
+      if (value) this.router.navigate(['home#home']).then();
+    })
+  }
+
+  showSnackBar(data: { message: string, style: any }) {
+    this._snackBar.openFromComponent(AlertMessageComponent, {
+      data: data,
     });
   }
 
@@ -71,6 +90,7 @@ export class SignupComponent implements OnInit, OnDestroy {
         email: this.signupForm.get('email')!.value!.toLowerCase(),
         password: this.signupForm.get('password')!.value!
       };
+
       // const test: ClientPostDTO = {
       //   lastname: "Dramé",
       //   firstname: "Sissako",
@@ -81,12 +101,10 @@ export class SignupComponent implements OnInit, OnDestroy {
       //     street: "3 rue des loups",
       //     zipCode: "93800",
       //   },
-      //   email: "sissako@email.fr",
+      //   email: "sidmizard1@gmail.com",
       //   password: "Password123"
       // };
       this.store.dispatch(ClientActions.PostClientStart({clientPostDTO: client}));
-      this.router.navigate(['home#home']).then(value => {
-      })
     }
   }
 

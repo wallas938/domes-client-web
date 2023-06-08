@@ -54,11 +54,26 @@ export class AuthenticationEffects implements OnDestroy {
             return of(ClientActions.GetClientStart({email: credentials.email}))
           }),
           catchError((err: HttpErrorResponse) => {
-            this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromSignupFailed({error: err})) // Ajouter dans l'effect de l'authentication le refreshAction
+            if(err.status >= 500) {
+              this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromLoginFailed({error: { ...err, message: "Erreur Serveur"}}))
+              return EMPTY
+            }
+            this.store.dispatch(AuthenticationActions.GetAuthenticationTokenFromLoginFailed({error: { ...err, message: "Email/Mot de passe erroné"}}))
             return EMPTY
           })
         )
       })
+    )
+  )
+
+  logout = createEffect(
+    () => this.actions$.pipe(
+      ofType(AuthenticationActions.LogoutClientStart),
+      switchMap(() => {
+        this.store.dispatch(AuthenticationActions.LogoutClientSucceeded());
+        localStorage.removeItem("token_id");
+        return of(ClientActions.Logout())
+      }),
     )
   )
 }

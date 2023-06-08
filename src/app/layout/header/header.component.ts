@@ -6,6 +6,7 @@ import * as fromApp from "../../../store/reducers";
 import {DOMES_BASE_PATHS} from "../../models/domes-url";
 import {RouterSelectors} from "../../../store/selectors/router.selectors";
 import {Router} from "@angular/router";
+import {AuthenticationActions} from "../../../store/actions/authentication.actions";
 
 @Component({
   selector: 'app-header',
@@ -31,9 +32,13 @@ export class HeaderComponent implements OnInit {
 
   handleClick() {
     if (this.client?.id) {
-      console.log("DISCONNECTION")
+      this.disconnection();
       return
     }
     this.router.navigate([DOMES_BASE_PATHS.LOGIN]).then()
+  }
+
+  disconnection() {
+    this.store.dispatch(AuthenticationActions.LogoutClientStart());
   }
 }
