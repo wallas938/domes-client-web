@@ -11,7 +11,6 @@ import {ClientService} from "../../../../services/client/client.service";
 import {ClientActions} from "../../../../../store/actions/client.actions";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AuthenticationSelectors} from "../../../../../store/selectors/authentication.selectors";
 import {ClientSelectors} from "../../../../../store/selectors/client.selectors";
 import {AlertMessageComponent} from "../../../../shared/components/alert-message/alert-message.component";
 
@@ -61,6 +60,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     });
 
     this.store.select(ClientSelectors.selectClientErrorMessage).subscribe(({error}) => {
+      console.log(error)
       if (error != null) this.showSnackBar({message: error.message, style: {color: "red"}})
     })
 
@@ -72,6 +72,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   showSnackBar(data: { message: string, style: any }) {
     this._snackBar.openFromComponent(AlertMessageComponent, {
       data: data,
+      duration: 4000
     });
   }
 
@@ -90,7 +91,6 @@ export class SignupComponent implements OnInit, OnDestroy {
         email: this.signupForm.get('email')!.value!.toLowerCase(),
         password: this.signupForm.get('password')!.value!
       };
-
       // const test: ClientPostDTO = {
       //   lastname: "Dramé",
       //   firstname: "Sissako",
@@ -101,8 +101,8 @@ export class SignupComponent implements OnInit, OnDestroy {
       //     street: "3 rue des loups",
       //     zipCode: "93800",
       //   },
-      //   email: "sidmizard1@gmail.com",
-      //   password: "Password123"
+      //   email: "newClient@gmail.com",
+      //   password: "Password"
       // };
       this.store.dispatch(ClientActions.PostClientStart({clientPostDTO: client}));
     }

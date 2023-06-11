@@ -81,7 +81,7 @@ export const _authenticationReducer = createReducer(
   on(AuthenticationActions.ResetFirstConnection, (state) => {
     return {
       ...state,
-      loadingState: true,
+      loadingState: false,
       authenticationToken: {} as AuthenticationTokenResponse,
       error: null,
       firstConnection: null

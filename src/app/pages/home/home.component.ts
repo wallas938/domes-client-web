@@ -5,12 +5,8 @@ import {RouterSelectors} from "../../../store/selectors/router.selectors";
 import {DOMES_BASE_PATHS} from "../../models/domes-url";
 import {LayoutActions} from "../../../store/actions/layout.actions";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ClientSelectors} from "../../../store/selectors/client.selectors";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AlertMessageComponent} from "../../shared/components/alert-message/alert-message.component";
-import {combineLatest, distinctUntilChanged, map} from "rxjs";
-import {ofType} from "@ngrx/effects";
-import {ClientActions} from "../../../store/actions/client.actions";
 import {AuthenticationSelectors} from "../../../store/selectors/authentication.selectors";
 import {AuthenticationActions} from "../../../store/actions/authentication.actions";
 

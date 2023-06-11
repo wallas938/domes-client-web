@@ -13,7 +13,7 @@ const initialState: State = {
   loadingState: false,
   client: {} as ClientGetDTO,
   errorMessage: {},
-  hasJustSignedUp: null
+  hasJustSignedUp: false
 }
 
 
@@ -35,7 +35,6 @@ export const _clientReducer = createReducer(
     }
   }),
   on(ClientActions.PostClientFailed, (state, {error}) => {
-    console.log(error, "lkcecinq")
     return {
       ...state,
       loadingState: false,
@@ -68,6 +67,7 @@ export const _clientReducer = createReducer(
       ...state,
       loadingState: false,
       client: {} as ClientGetDTO,
+      hasJustSignedUp: null
     }
   }),
 )
