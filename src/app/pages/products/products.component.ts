@@ -9,36 +9,13 @@ import {DOMES_BASE_PATHS} from "../../models/domes-url";
 import {LayoutActions} from "../../../store/actions/layout.actions";
 import {Store} from "@ngrx/store";
 import * as fromApp from "../../../store/reducers";
-
-@Injectable()
-export class MyCustomPaginatorIntl implements MatPaginatorIntl {
-  changes = new Subject<void>();
-
-  // For internationalization, the `$localize` function from
-  // the `@angular/localize` package can be used.
-  firstPageLabel = $localize`First page`;
-  itemsPerPageLabel = $localize`Items per page:`;
-  lastPageLabel = $localize`Last page`;
-
-  // You can set labels to an arbitrary string too, or dynamically compute
-  // it through other third-party internationalization libraries.
-  nextPageLabel = 'Next page';
-  previousPageLabel = 'Previous page';
-
-  getRangeLabel(page: number, pageSize: number, length: number): string {
-    if (length === 0) {
-      return $localize`Page 1 of 1`;
-    }
-    const amountPages = Math.ceil(length / pageSize);
-    return $localize`Page ${page + 1} of ${amountPages}`;
-  }
-}
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {FilterComponent} from "./filter/filter.component";
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  providers: [{provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl}],
   encapsulation: ViewEncapsulation.Emulated
 })
 export class ProductsComponent implements OnInit, OnDestroy {
@@ -98,7 +75,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   pageEvent: PageEvent = new PageEvent();
 
-  public constructor(private router: Router, private route: ActivatedRoute, private store: Store<fromApp.AppState>) {
+  public constructor(private router: Router,
+                     private route: ActivatedRoute,
+                     private store: Store<fromApp.AppState>,
+                     private _bottomSheet: MatBottomSheet) {
   }
 
   ngOnInit(): void {
@@ -108,6 +88,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+  }
+
+  openFilter() {
+    this._bottomSheet.open(FilterComponent, {
+      data: {currentCategoryNames: this.currentCategoryNames}
+    });
   }
 
   handlePageEvent(e: PageEvent) {

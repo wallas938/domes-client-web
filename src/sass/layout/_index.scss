@@ -1,7 +1,7 @@
-@use '/src/sass/colors'as c;
-@use '/src/sass/typography'as t;
-@use '/src/sass/helpers/functions'as f;
-@use '/src/sass/mixins'as m;
+@use '../colors' as c;
+@use '../typography'as t;
+@use '../helpers/functions'as f;
+@use '../mixins'as m;
 
 .domes-shadow {
   border: 2px solid #000000;
@@ -119,6 +119,10 @@
 
 .grey {
   background: c.$grey;
+}
+
+.strong-grey {
+  background: c.$strongGrey;
 }
 
 .black {

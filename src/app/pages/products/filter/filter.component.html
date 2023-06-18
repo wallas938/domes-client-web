@@ -1,0 +1,41 @@
+<div class="filter">
+  <nav>
+    <ul>
+      <li class="cat">
+        <button class="cat-button active brown">Chat</button>
+      </li>
+      <li class="dog">
+        <button class="cat-button">Chien</button>
+      </li>
+      <li class="bird">
+        <button class="cat-button">Oiseau</button>
+      </li>
+      <li class="reptile">
+        <button class="cat-button">Reptile</button>
+      </li>
+      <li class="fish">
+        <button class="cat-button">Poisson</button>
+      </li>
+    </ul>
+  </nav>
+  <div class="filter">
+    <div class="select-specie">
+      <select (change)="updateCategory()" [formControl]="category">
+        <option *ngFor="let category of data.currentCategoryNames" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+    </div>
+    <div class="ranges">
+      <div class="range price">
+        <!--  Remplacer les checkboxes par des radios -->
+      </div>
+      <div class="range age">
+
+      </div>
+    </div>
+    <div class="cta">
+      <button class="domes-btn blue">Rechercher</button>
+    </div>
+  </div>
+</div>

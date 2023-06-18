@@ -1,0 +1,72 @@
+@use "../../../../../src/sass/helpers/functions" as f;
+@use "../../../../../src/sass/colors" as c;
+@use "../../../../../src/sass/typography" as t;
+@use "../../../../../src/sass/mixins" as m;
+@use "../../../../../src/sass/layout/index" as l;
+
+.filter {
+  padding-bottom: f.toRem(24, 16);
+  nav {
+    margin-bottom: 35px;
+    margin-top: 25px;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+
+      li > .cat-button {
+        @include t.textBody;
+        font-weight: 500;
+        border-radius: 3px;
+        width: f.toRem(60, 16);
+        height: f.toRem(30, 16);
+        margin: 0 auto;
+        border: none;
+      }
+
+      li > .cat-button.active {
+        color: #FFFFFF;
+      }
+
+      .reptile > .cat-button:hover:not(.cat-button.green) {
+        background-color: #A3EBB1;
+      }
+
+      .dog > .cat-button:hover:not(.cat-button.brown) {
+        background-color: #B39A80;
+      }
+
+      .cat > .cat-button:hover:not(.cat-button.strong-grey) {
+        background-color: c.$grey;
+      }
+
+      .bird > .cat-button:hover:not(.cat-button.grey) {
+        background-color: #E4E4E4;
+      }
+
+      .fish > .cat-button:hover:not(.cat-button.blue) {
+        background-color: #ACC7F2;
+      }
+    }
+  }
+
+  .select-specie {
+    display: flex;
+    justify-content: center;
+    margin-bottom: f.toRem(20, 16);
+
+    select {
+      border: 1px solid #ccc;
+      height: 30px;
+      width: 60%;
+      background: white;
+      border-radius: 4px;
+      text-align: center;
+    }
+  }
+
+  .cta {
+    display: flex;
+    justify-content: center;
+  }
+}
