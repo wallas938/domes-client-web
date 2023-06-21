@@ -5,7 +5,7 @@
 @use "../../../sass/layout/index" as l;
 
 main {
-  padding-bottom: f.toRem(250, 16);
+  padding-bottom: f.toRem(120, 16);
 
   h1 {
     @include t.headings;
@@ -244,8 +244,6 @@ main {
     margin: f.toRem(24, 16) 0 f.toRem(32, 16) 0;
 
     @include m.breakpoint-up(medium) {
-      margin-bottom: f.toRem(71, 16);
-
       & > mat-form-field {
         width: 80%;
       }
@@ -253,128 +251,167 @@ main {
   }
 
   .products {
+    padding-top: f.toRem(50, 16);
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    height: f.toRem(550, 16);
+    column-gap: f.toRem(32, 16);
+    row-gap: f.toRem(16, 16);
+    flex-wrap: wrap;
     align-items: center;
-    padding: 0 0 f.toRem(33, 16) 0;
+    overflow-y: scroll;
 
     @include m.breakpoint-up(medium) {
-      justify-content: center;
-      flex-direction: row;
-      flex-wrap: wrap;
-      column-gap: f.toRem(50, 16);
-      row-gap: f.toRem(50, 16);
+      //justify-content: center;
+      //flex-direction: row;
+      //flex-wrap: wrap;
+      //column-gap: f.toRem(50, 16);
+      //row-gap: f.toRem(50, 16);
     }
 
     .product {
+      cursor: pointer;
+      transition: filter .2s;
       background-color: white;
+      flex-basis: f.toRem(120, 16);
+      border: 1px solid #000000;
+      border-radius: 4px;
+      @include m.breakpoint-up(medium) {
+        flex-basis: f.toRem(220, 16);
+      }
 
       .main-picture {
-
-        width: f.toRem(250, 16);
-        height: f.toRem(280, 16);
-        position: relative;
-
+        width: auto;
+        height: f.toRem(160, 16);
         @include m.breakpoint-up(medium) {
-          width: f.toRem(300, 16);
-          height: f.toRem(320, 16);
+          //width: f.toRem(300, 16);
+          height: f.toRem(240, 16);
         }
 
         img {
           height: 100%;
         }
 
-        button {
-          position: absolute;
-          bottom: 15px;
-          right: 15px;
-          width: f.toRem(30, 16);
-          height: f.toRem(30, 16);
-          border: none;
-          border-radius: f.toRem(10, 16);
-
-          img {
-            width: f.toRem(15, 16);
-            height: f.toRem(15, 16);
-          }
-        }
+        //button {
+        //  position: absolute;
+        //  bottom: 15px;
+        //  right: 15px;
+        //  width: f.toRem(30, 16);
+        //  height: f.toRem(30, 16);
+        //  border: none;
+        //  border-radius: f.toRem(10, 16);
+        //
+        //  img {
+        //    width: f.toRem(15, 16);
+        //    height: f.toRem(15, 16);
+        //  }
+        //}
       }
 
       .info {
-        color: black;
-        border-top: 2px solid #000000;
-        padding: f.toRem(11, 16) f.toRem(15, 16) f.toRem(11, 16) f.toRem(15, 16);
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        grid-template-rows: repeat(2, auto);
-        grid-template-areas:
-          "specie   cart  price"
-          "age      cart  more";
+        //color: black;
+        //border-top: 2px solid #000000;
+        //padding: f.toRem(11, 16) f.toRem(15, 16) f.toRem(11, 16) f.toRem(15, 16);
+        //display: grid;
+        //grid-template-columns: repeat(3, auto);
+        //grid-template-rows: repeat(2, auto);
+        //grid-template-areas:
+        //  "specie   cart  price"
+        //  "age      cart  more";
 
         .specie {
-          grid-area: specie;
+          //grid-area: specie;
           display: flex;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: center;
+          border-top: 2px solid black;
+          padding: f.toRem(6, 16) 0;
 
           span {
             font-style: normal;
             font-weight: 700;
-            font-size: f.toRem(13, 16);
+            font-size: f.toRem(11, 16);
             line-height: f.toRem(15, 16);
           }
         }
 
-        .more {
-          grid-area: more;
-          display: flex;
-          justify-content: flex-end;
-          color: c.$blue;
-          cursor: pointer;
-        }
+        //.more {
+        //  grid-area: more;
+        //  display: flex;
+        //  justify-content: flex-end;
+        //  color: c.$blue;
+        //  cursor: pointer;
+        //}
 
-        .price {
-          grid-area: price;
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          color: c.$orange;
+        //.price {
+        //  grid-area: price;
+        //  display: flex;
+        //  justify-content: flex-end;
+        //  align-items: center;
+        //  color: c.$orange;
+        //
+        //  span {
+        //    font-style: normal;
+        //    font-weight: 700;
+        //    font-size: f.toRem(24, 16);
+        //    line-height: f.toRem(28, 16);
+        //  }
+        //}
 
-          span {
-            font-style: normal;
-            font-weight: 700;
-            font-size: f.toRem(24, 16);
-            line-height: f.toRem(28, 16);
-          }
-        }
-
-        .age {
-          grid-area: age;
-
-          span {
-            @include t.textBody;
-          }
-        }
+        //.age {
+        //  grid-area: age;
+        //
+        //  span {
+        //    @include t.textBody;
+        //  }
+        //}
       }
 
     }
 
     .product:not(:last-of-type) {
-      margin-bottom: f.toRem(44, 16);
 
       @include m.breakpoint-up(medium) {
         margin-bottom: unset;
       }
     }
+
+    .product:hover {
+      filter: drop-shadow(8px 8px 0px #000000);
+    }
   }
 
-  .pagination > mat-paginator ::ng-deep .mat-mdc-paginator-container {
-    flex-direction: column-reverse;
+  .pagination {
+    display: flex;
+    justify-content: space-evenly;
 
-    @include m.breakpoint-up(medium) {
-      flex-direction: row;
+    .square, .circle {
+      display: flex;
       justify-content: center;
+      align-items: center;
+
+      & > span {
+        color: white;
+        font-weight: bold;
+      }
+    }
+
+    .square {
+      width: f.toRem(80, 16);
+      height: f.toRem(30, 16);
+      background: #5597FF;
+      border: 3px solid rgba(255, 139, 0, 0.8);
+      box-shadow: -4px 4px 0px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+    }
+
+    .circle {
+      width: f.toRem(30, 16);
+      height: f.toRem(30, 16);
+      border-radius: 100%;
+      background: #5597FF;
+      border: 3px solid rgba(255, 139, 0, 0.8);
+      box-shadow: -4px 4px 0px rgba(0, 0, 0, 0.6);
     }
   }
 }

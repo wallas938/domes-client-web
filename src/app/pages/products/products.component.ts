@@ -60,6 +60,84 @@ export class ProductsComponent implements OnInit, OnDestroy {
       age: 4,
       price: 29.99,
       sold: false
+    },
+    {
+      id: 'item1',
+      description: 'This is the first item',
+      mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
+      secondPicture: 'https://example.com/item1-second.jpg',
+      thirdPicture: 'https://example.com/item1-third.jpg',
+      fourthPicture: 'https://example.com/item1-fourth.jpg',
+      category: 'Category A',
+      specie: 'Specie X',
+      age: 7,
+      price: 9.99,
+      sold: false
+    },
+    {
+      id: 'item2',
+      description: 'This is the second item',
+      mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
+      secondPicture: 'https://example.com/item2-second.jpg',
+      thirdPicture: 'https://example.com/item2-third.jpg',
+      fourthPicture: 'https://example.com/item2-fourth.jpg',
+      category: 'Category B',
+      specie: 'Specie Y',
+      age: 11,
+      price: 14.99,
+      sold: true
+    },
+    {
+      id: 'item3',
+      description: 'This is the third item',
+      mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
+      secondPicture: 'https://example.com/item3-second.jpg',
+      thirdPicture: 'https://example.com/item3-third.jpg',
+      fourthPicture: 'https://example.com/item3-fourth.jpg',
+      category: 'Category C',
+      specie: 'Specie Z',
+      age: 4,
+      price: 29.99,
+      sold: false
+    },
+    {
+      id: 'item1',
+      description: 'This is the first item',
+      mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
+      secondPicture: 'https://example.com/item1-second.jpg',
+      thirdPicture: 'https://example.com/item1-third.jpg',
+      fourthPicture: 'https://example.com/item1-fourth.jpg',
+      category: 'Category A',
+      specie: 'Specie X',
+      age: 7,
+      price: 9.99,
+      sold: false
+    },
+    {
+      id: 'item2',
+      description: 'This is the second item',
+      mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
+      secondPicture: 'https://example.com/item2-second.jpg',
+      thirdPicture: 'https://example.com/item2-third.jpg',
+      fourthPicture: 'https://example.com/item2-fourth.jpg',
+      category: 'Category B',
+      specie: 'Specie Y',
+      age: 11,
+      price: 14.99,
+      sold: true
+    },
+    {
+      id: 'item3',
+      description: 'This is the third item',
+      mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
+      secondPicture: 'https://example.com/item3-second.jpg',
+      thirdPicture: 'https://example.com/item3-third.jpg',
+      fourthPicture: 'https://example.com/item3-fourth.jpg',
+      category: 'Category C',
+      specie: 'Specie Z',
+      age: 4,
+      price: 29.99,
+      sold: false
     }
   ];
   currentCategoryNames: string[] = ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Bulldog", "Beagle", "Poodle", "Rottweiler", "Siberian Husky", "Chihuahua", "Boxer", "Dachshund", "Shih Tzu", "Doberman Pinscher", "Australian Shepherd", "Border Collie", "Great Dane", "Jack Russell Terrier", "Bichon Frise", "Cocker Spaniel", "Yorkshire Terrier"];

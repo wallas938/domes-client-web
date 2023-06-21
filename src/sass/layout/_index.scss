@@ -92,33 +92,54 @@
   letter-spacing: .05em;
   color: #ffffff;
   padding: f.toRem(6, 16) f.toRem(33, 16);
+  transition: filter .2s;
+
+  &:hover {
+    filter: drop-shadow(0px 0px 0px #000000);
+    border: none;
+  }
 }
 
 .orange {
   background: c.$orange;
   &:hover {
-    background-color: orange;
+    background-color: c.$orange-hover;
   }
 }
 
 .blue {
   background: c.$blue;
+  &:hover {
+    background-color: c.$blue-hover;
+  }
 }
 
 .green {
   background: c.$green;
+  &:hover {
+    background-color: c.$green-hover;
+  }
 }
 
 .brown {
   background: c.$brown;
+  &:hover {
+    background-color: c.$brown-hover;
+  }
 }
 
 .pink {
   background: c.$pink;
+  &:hover {
+    background-color: c.$pink-hover;
+  }
 }
 
 .grey {
   background: c.$grey;
+  &:hover {
+    background-color: c.$grey-hover;
+  }
 }
 
 .strong-grey {
