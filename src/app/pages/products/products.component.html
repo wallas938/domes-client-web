@@ -36,8 +36,14 @@
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
   </div>
-  <div class="products">
-    <div class="product" *ngFor="let product of products">
+  <hr>
+  <div class="products"
+       infiniteScroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="500"
+       [scrollWindow]="false"
+       (scrolled)="onScroll()">
+    <div class="product" [@fadeInOut] *ngFor="let product of products">
       <div class="main-picture">
         <img [src]="product.mainPicture" alt="main picture of the current product">
 <!--        <button class="cart_btn pink">-->
@@ -61,6 +67,9 @@
       </div>
     </div>
   </div>
+  <ng-container *ngIf="loading">
+
+  </ng-container>
 <!--  <div class="pagination">-->
 <!--    <button class="circle first-page">-->
 <!--      <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none"-->

@@ -9,11 +9,11 @@ import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [ProductsComponent, ProductComponent, FilterComponent],
-    imports: [
-        SharedModule,
-        ProductRoutingModule,
-        NgOptimizedImage,
-    ],
+  imports: [
+    SharedModule,
+    ProductRoutingModule,
+    NgOptimizedImage,
+  ],
   exports: [ProductsComponent]
 })
 export class ProductModule {
