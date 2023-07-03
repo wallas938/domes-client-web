@@ -1,0 +1,59 @@
+<div class="filter">
+  <nav>
+    <ul>
+      <li class="cat">
+        <button (click)="updateCategory(Category.CAT)" class="cat-button"
+                [class]="{'active': category === Category.CAT, 'orange': category === Category.CAT}">Chat
+        </button>
+      </li>
+      <li class="dog">
+        <button (click)="updateCategory(Category.DOG)" class="cat-button"
+                [class]="{'active': category === Category.DOG, 'brown': category === Category.DOG}">Chien
+        </button>
+      </li>
+      <li class="bird">
+        <button (click)="updateCategory(Category.BIRD)" class="cat-button"
+                [class]="{'active': category === Category.BIRD, 'grey': category === Category.BIRD}">Oiseau
+        </button>
+      </li>
+      <li class="reptile">
+        <button (click)="updateCategory(Category.REPTILE)" class="cat-button"
+                [class]="{'active': category === Category.REPTILE, 'green': category === Category.REPTILE}">Reptile
+        </button>
+      </li>
+      <li class="fish">
+        <button (click)="updateCategory(Category.FISH)" class="cat-button"
+                [class]="{'active': category === Category.FISH, 'blue': category === Category.FISH}">Poisson
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <div class="filter">
+    <div class="select-specie">
+      <select [formControl]="specie">
+        <option *ngFor="let specie of data.currentCategoryNames; let index = index;" [ngValue]="specie">
+          {{ specie }}
+        </option>
+      </select>
+    </div>
+    <div class="radios">
+      <div class="price">
+        <div class="field" *ngFor="let price of prices">
+          <input type="radio" name="price" (change)="updatePrice(price.value)" [(ngModel)]="selectedPrice"
+                 [value]="price.value">
+          <label>{{price.label}}</label>
+        </div>
+      </div>
+      <div class="age">
+        <div class="field" *ngFor="let age of ages">
+          <input type="radio" name="age" (change)="updateAge(age.value)" [(ngModel)]="selectedAge" [value]="age.value">
+          <label>{{age.label}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="cta">
+      <button class="cancel domes-btn grey" (click)="close()">Cancel</button>
+      <button class="search domes-btn blue" (click)="submit()">Rechercher</button>
+    </div>
+  </div>
+</div>

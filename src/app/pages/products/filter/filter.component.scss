@@ -1,0 +1,99 @@
+@use "../../../../../src/sass/helpers/functions" as f;
+@use "../../../../../src/sass/colors" as c;
+@use "../../../../../src/sass/typography" as t;
+@use "../../../../../src/sass/mixins" as m;
+@use "../../../../../src/sass/layout/index" as l;
+
+.filter {
+  padding-bottom: f.toRem(18, 16);
+
+  nav {
+    margin-bottom: 35px;
+    margin-top: 25px;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+
+      li > .cat-button {
+        @include t.textBody;
+        font-weight: 500;
+        border-radius: 3px;
+        width: f.toRem(60, 16);
+        height: f.toRem(30, 16);
+        margin: 0 auto;
+        border: none;
+      }
+
+      li > .cat-button.active {
+        color: #FFFFFF;
+      }
+
+      .reptile > .cat-button:hover:not(.cat-button.green) {
+        background-color: c.$green-hover;
+      }
+
+      .dog > .cat-button:hover:not(.cat-button.brown) {
+        background-color: c.$brown-hover;
+      }
+
+      .cat > .cat-button:hover:not(.cat-button.strong-grey) {
+        background-color: c.$orange-hover;
+      }
+
+      .bird > .cat-button:hover:not(.cat-button.grey) {
+        background-color: c.$grey-hover;
+      }
+
+      .fish > .cat-button:hover:not(.cat-button.blue) {
+        background-color: c.$blue-hover;
+      }
+    }
+  }
+
+  .radios {
+    display: flex;
+    justify-content: center;
+    margin-bottom: f.toRem(15, 16);
+
+    .price, .age {
+      margin-right: f.toRem(15, 16);
+    }
+
+    .field {
+      margin: f.toRem(3, 16) 0;
+    }
+
+    .field > input {
+      margin-right: f.toRem(5, 16);
+    }
+
+    .field > label {
+      font-size: f.toRem(12, 16);
+    }
+  }
+
+  .select-specie {
+    display: flex;
+    justify-content: center;
+    margin-bottom: f.toRem(20, 16);
+
+    select {
+      border: 1px solid #ccc;
+      height: 30px;
+      width: 60%;
+      background: white;
+      border-radius: 4px;
+      text-align: center;
+    }
+  }
+
+  .cta {
+    display: flex;
+    justify-content: center;
+
+    .cancel {
+      margin-right: f.toRem(10, 16);
+    }
+  }
+}
