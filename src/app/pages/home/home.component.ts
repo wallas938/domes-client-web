@@ -9,6 +9,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {AlertMessageComponent} from "../../shared/components/alert-message/alert-message.component";
 import {AuthenticationSelectors} from "../../../store/selectors/authentication.selectors";
 import {AuthenticationActions} from "../../../store/actions/authentication.actions";
+import {AnimalSelectors} from "../../../store/selectors/animal.selectors";
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.HOME == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
     });

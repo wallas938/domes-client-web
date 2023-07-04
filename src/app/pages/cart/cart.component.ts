@@ -12,7 +12,7 @@ import {
 * Custom imports
 * */
 
-import {Article} from "../../models/animal";
+import {AnimalGetDTO, Article} from "../../models/animal/index";
 import {SECTION_NAMES} from "src/app/constants/index";
 import {RouterSelectors} from "../../../store/selectors/router.selectors";
 import {DOMES_BASE_PATHS} from "../../models/domes-url";

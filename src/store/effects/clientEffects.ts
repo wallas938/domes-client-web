@@ -35,7 +35,7 @@ export class ClientEffects implements OnDestroy {
           }),
           switchMap((clientGetDTO) => of(AuthenticationActions.GetAuthenticationTokenFromSignupStart({clientPostDTO}))),
           catchError((err: HttpErrorResponse) => {
-            this.store.dispatch(ClientActions.PostClientFailed({error: err})) // Ajouter dans l'effect de l'authentication le refreshAction
+            this.store.dispatch(ClientActions.PostClientFailed({error: err}))
             return EMPTY
           })),
       )));

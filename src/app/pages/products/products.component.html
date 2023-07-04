@@ -43,16 +43,16 @@
        [infiniteScrollThrottle]="500"
        [scrollWindow]="false"
        (scrolled)="onScroll()">
-    <div class="product" [@fadeInOut] *ngFor="let product of products">
+    <div [class]="generateCardColor(product.category.name)" [@fadeInOut] *ngFor="let product of products">
       <div class="main-picture">
-        <img [src]="product.mainPicture" alt="main picture of the current product">
+        <img [src]="product.mainPicture ? product.mainPicture : noPictureImgSrc" alt="main picture of the current product">
 <!--        <button class="cart_btn pink">-->
 <!--          <img src="assets/images/shopping_bag.png" alt="bag shopping icon">-->
 <!--        </button>-->
       </div>
       <div class="info">
         <div class="specie">
-          <span> {{product.specie}} </span>
+          <span> {{product.specie.name}} </span>
         </div>
 <!--        <div class="age">-->
 <!--          <span> {{product.age}} mois</span>-->
