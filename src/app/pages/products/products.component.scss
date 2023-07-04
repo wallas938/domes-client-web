@@ -291,34 +291,9 @@ main {
         img {
           height: 100%;
         }
-
-        //button {
-        //  position: absolute;
-        //  bottom: 15px;
-        //  right: 15px;
-        //  width: f.toRem(30, 16);
-        //  height: f.toRem(30, 16);
-        //  border: none;
-        //  border-radius: f.toRem(10, 16);
-        //
-        //  img {
-        //    width: f.toRem(15, 16);
-        //    height: f.toRem(15, 16);
-        //  }
-        //}
       }
 
       .info {
-        //color: black;
-        //border-top: 2px solid #000000;
-        //padding: f.toRem(11, 16) f.toRem(15, 16) f.toRem(11, 16) f.toRem(15, 16);
-        //display: grid;
-        //grid-template-columns: repeat(3, auto);
-        //grid-template-rows: repeat(2, auto);
-        //grid-template-areas:
-        //  "specie   cart  price"
-        //  "age      cart  more";
-
         .specie {
           //grid-area: specie;
           display: flex;
@@ -330,41 +305,10 @@ main {
           span {
             font-style: normal;
             font-weight: 700;
-            font-size: f.toRem(11, 16);
+            font-size: f.toRem(9, 16);
             line-height: f.toRem(15, 16);
           }
         }
-
-        //.more {
-        //  grid-area: more;
-        //  display: flex;
-        //  justify-content: flex-end;
-        //  color: c.$blue;
-        //  cursor: pointer;
-        //}
-
-        //.price {
-        //  grid-area: price;
-        //  display: flex;
-        //  justify-content: flex-end;
-        //  align-items: center;
-        //  color: c.$orange;
-        //
-        //  span {
-        //    font-style: normal;
-        //    font-weight: 700;
-        //    font-size: f.toRem(24, 16);
-        //    line-height: f.toRem(28, 16);
-        //  }
-        //}
-
-        //.age {
-        //  grid-area: age;
-        //
-        //  span {
-        //    @include t.textBody;
-        //  }
-        //}
       }
 
     }
@@ -377,7 +321,22 @@ main {
     }
 
     .product:hover {
-      filter: drop-shadow(8px 8px 0px #000000);
+
+      &.brown {
+        filter: drop-shadow(8px 8px 0px #744F29);
+      }
+      &.green {
+        filter: drop-shadow(8px 8px 0px #9FC3A6);
+      }
+      &.strong-grey {
+        filter: drop-shadow(8px 8px 0px #979797);
+      }
+      &.grey {
+        filter: drop-shadow(8px 8px 0px #D9D9D9);
+      }
+      &.blue {
+        filter: drop-shadow(8px 8px 0px #5597FF);
+      }
     }
   }
 
