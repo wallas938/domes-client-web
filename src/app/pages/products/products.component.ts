@@ -213,6 +213,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  generateInfoColor(categoryName: string) {
+    switch (categoryName) {
+      case "CHIEN":
+        return "info brown-info";
+      case "CHAT":
+        return "info strong-grey-info";
+      case "OISEAU":
+        return "info grey-info";
+      case "POISSON":
+        return "info blue-info";
+      case "REPTILE":
+        return "info green-info";
+      default:
+        return "info strong-grey-info"
+    }
+  }
+
   showDetail(id: String) {
     if (id) this.router.navigate([id], {relativeTo: this.route})
   }
