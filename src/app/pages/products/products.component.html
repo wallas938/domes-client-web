@@ -45,75 +45,72 @@
        (scrolled)="onScroll()">
     <div [class]="generateCardColor(product.category.name)" [@fadeInOut] *ngFor="let product of products">
       <div class="main-picture">
-        <img [src]="product.mainPicture ? product.mainPicture : noPictureImgSrc" alt="main picture of the current product">
-<!--        <button class="cart_btn pink">-->
-<!--          <img src="assets/images/shopping_bag.png" alt="bag shopping icon">-->
-<!--        </button>-->
+        <img [src]="product.mainPicture ? product.mainPicture : noPictureImgSrc"
+             alt="main picture of the current product">
       </div>
-      <div class="info">
+      <div [ngClass]="generateInfoColor(product.category.name)">
         <div class="specie">
           <span> {{product.specie.name}} </span>
         </div>
-<!--        <div class="age">-->
-<!--          <span> {{product.age}} mois</span>-->
-<!--        </div>-->
-<!--        <div class="more" (click)="showDetail(product.id)">-->
+        <div class="cta hide-for-mobile">
+          <button class="add-to-cart pink">
+            <img src="assets/images/shopping_bag.png" alt="bag shopping icon">
+          </button>
+        </div>
+<!--        <div class="more hide-for-mobile" (click)="showDetail(product.id)">-->
 <!--          <mat-icon>info</mat-icon>-->
 <!--        </div>-->
-<!--        <div class="price">-->
-<!--          <mat-icon>euro_symbol</mat-icon>-->
-<!--          <span> {{product.price}} </span>-->
-<!--        </div>-->
+        <div class="price hide-for-mobile">
+          <span> {{product.price}} </span>
+          <mat-icon>euro_symbol</mat-icon>
+        </div>
       </div>
     </div>
   </div>
-  <ng-container *ngIf="loading">
-
-  </ng-container>
-<!--  <div class="pagination">-->
-<!--    <button class="circle first-page">-->
-<!--      <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none"-->
-<!--           xmlns="http://www.w3.org/2000/svg">-->
-<!--        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>-->
-<!--        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>-->
-<!--        <g id="SVGRepo_iconCarrier">-->
-<!--          <path d="M12.5 17L8 12.5L12.5 8M16.5 17L12 12.5L16.5 8" stroke="#FFFFFF"-->
-<!--                stroke-width="1.2"></path>-->
-<!--        </g>-->
-<!--      </svg>-->
-<!--    </button>-->
-<!--    <button class="square prev">-->
-<!--      <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none"-->
-<!--           xmlns="http://www.w3.org/2000/svg">-->
-<!--        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>-->
-<!--        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>-->
-<!--        <g id="SVGRepo_iconCarrier">-->
-<!--          <path d="M14.5 17L10 12.5L14.5 8" stroke="#FFFFFF" stroke-width="1.2"></path>-->
-<!--        </g>-->
-<!--      </svg>-->
-<!--      <span>Pré</span>-->
-<!--    </button>-->
-<!--    <button class="square next">-->
-<!--      <span>Suiv</span>-->
-<!--      <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none"-->
-<!--           xmlns="http://www.w3.org/2000/svg">-->
-<!--        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>-->
-<!--        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>-->
-<!--        <g id="SVGRepo_iconCarrier">-->
-<!--          <path d="M10.5 8L15 12.5L10.5 17" stroke="#FFFFFF" stroke-width="1.2"></path>-->
-<!--        </g>-->
-<!--      </svg>-->
-<!--    </button>-->
-<!--    <button class="circle last-page">-->
-<!--      <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none"-->
-<!--           xmlns="http://www.w3.org/2000/svg" stroke="#93A2DD">-->
-<!--        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>-->
-<!--        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>-->
-<!--        <g id="SVGRepo_iconCarrier">-->
-<!--          <path d="M12.5 8L17 12.5L12.5 17M8.5 8L13 12.5L8.5 17" stroke="#FFFFFF"-->
-<!--                stroke-width="1.2"></path>-->
-<!--        </g>-->
-<!--      </svg>-->
-<!--    </button>-->
-<!--  </div>-->
+  <!--  <div class="pagination">-->
+  <!--    <button class="circle first-page">-->
+  <!--      <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none"-->
+  <!--           xmlns="http://www.w3.org/2000/svg">-->
+  <!--        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>-->
+  <!--        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>-->
+  <!--        <g id="SVGRepo_iconCarrier">-->
+  <!--          <path d="M12.5 17L8 12.5L12.5 8M16.5 17L12 12.5L16.5 8" stroke="#FFFFFF"-->
+  <!--                stroke-width="1.2"></path>-->
+  <!--        </g>-->
+  <!--      </svg>-->
+  <!--    </button>-->
+  <!--    <button class="square prev">-->
+  <!--      <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none"-->
+  <!--           xmlns="http://www.w3.org/2000/svg">-->
+  <!--        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>-->
+  <!--        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>-->
+  <!--        <g id="SVGRepo_iconCarrier">-->
+  <!--          <path d="M14.5 17L10 12.5L14.5 8" stroke="#FFFFFF" stroke-width="1.2"></path>-->
+  <!--        </g>-->
+  <!--      </svg>-->
+  <!--      <span>Pré</span>-->
+  <!--    </button>-->
+  <!--    <button class="square next">-->
+  <!--      <span>Suiv</span>-->
+  <!--      <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none"-->
+  <!--           xmlns="http://www.w3.org/2000/svg">-->
+  <!--        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>-->
+  <!--        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>-->
+  <!--        <g id="SVGRepo_iconCarrier">-->
+  <!--          <path d="M10.5 8L15 12.5L10.5 17" stroke="#FFFFFF" stroke-width="1.2"></path>-->
+  <!--        </g>-->
+  <!--      </svg>-->
+  <!--    </button>-->
+  <!--    <button class="circle last-page">-->
+  <!--      <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none"-->
+  <!--           xmlns="http://www.w3.org/2000/svg" stroke="#93A2DD">-->
+  <!--        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>-->
+  <!--        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>-->
+  <!--        <g id="SVGRepo_iconCarrier">-->
+  <!--          <path d="M12.5 8L17 12.5L12.5 17M8.5 8L13 12.5L8.5 17" stroke="#FFFFFF"-->
+  <!--                stroke-width="1.2"></path>-->
+  <!--        </g>-->
+  <!--      </svg>-->
+  <!--    </button>-->
+  <!--  </div>-->
 </main>
