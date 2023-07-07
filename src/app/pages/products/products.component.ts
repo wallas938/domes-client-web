@@ -1,6 +1,6 @@
 import {Component, Injectable, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {AnimalGetDTO} from "../../models/animal/index";
+import {AnimalGetDTO, AnimalSearchQuery, Category, Specie} from "../../models/animal/index";
 import {RouterSelectors} from "../../../store/selectors/router.selectors";
 import {AnimalSelectors} from "../../../store/selectors/animal.selectors";
 import {DOMES_BASE_PATHS} from "../../models/domes-url";
@@ -11,6 +11,7 @@ import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {FilterComponent} from "./filter/filter.component";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AnimalActions} from "../../../store/actions/animal.action";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-products',
@@ -26,130 +27,17 @@ import {AnimalActions} from "../../../store/actions/animal.action";
   ]
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  products: AnimalGetDTO [] = [
-    // {
-    //   id: 'item1',
-    //   description: 'This is the first item',
-    //   mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
-    //   secondPicture: 'https://example.com/item1-second.jpg',
-    //   thirdPicture: 'https://example.com/item1-third.jpg',
-    //   fourthPicture: 'https://example.com/item1-fourth.jpg',
-    //   category: 'Category A',
-    //   specie: 'Specie X',
-    //   age: 7,
-    //   price: 9.99,
-    //   sold: false
-    // },
-    // {
-    //   id: 'item2',
-    //   description: 'This is the second item',
-    //   mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
-    //   secondPicture: 'https://example.com/item2-second.jpg',
-    //   thirdPicture: 'https://example.com/item2-third.jpg',
-    //   fourthPicture: 'https://example.com/item2-fourth.jpg',
-    //   category: 'Category B',
-    //   specie: 'Specie Y',
-    //   age: 11,
-    //   price: 14.99,
-    //   sold: true
-    // },
-    // {
-    //   id: 'item3',
-    //   description: 'This is the third item',
-    //   mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
-    //   secondPicture: 'https://example.com/item3-second.jpg',
-    //   thirdPicture: 'https://example.com/item3-third.jpg',
-    //   fourthPicture: 'https://example.com/item3-fourth.jpg',
-    //   category: 'Category C',
-    //   specie: 'Specie Z',
-    //   age: 4,
-    //   price: 29.99,
-    //   sold: false
-    // },
-    // {
-    //   id: 'item1',
-    //   description: 'This is the first item',
-    //   mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
-    //   secondPicture: 'https://example.com/item1-second.jpg',
-    //   thirdPicture: 'https://example.com/item1-third.jpg',
-    //   fourthPicture: 'https://example.com/item1-fourth.jpg',
-    //   category: 'Category A',
-    //   specie: 'Specie X',
-    //   age: 7,
-    //   price: 9.99,
-    //   sold: false
-    // },
-    // {
-    //   id: 'item2',
-    //   description: 'This is the second item',
-    //   mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
-    //   secondPicture: 'https://example.com/item2-second.jpg',
-    //   thirdPicture: 'https://example.com/item2-third.jpg',
-    //   fourthPicture: 'https://example.com/item2-fourth.jpg',
-    //   category: 'Category B',
-    //   specie: 'Specie Y',
-    //   age: 11,
-    //   price: 14.99,
-    //   sold: true
-    // },
-    // {
-    //   id: 'item3',
-    //   description: 'This is the third item',
-    //   mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
-    //   secondPicture: 'https://example.com/item3-second.jpg',
-    //   thirdPicture: 'https://example.com/item3-third.jpg',
-    //   fourthPicture: 'https://example.com/item3-fourth.jpg',
-    //   category: 'Category C',
-    //   specie: 'Specie Z',
-    //   age: 4,
-    //   price: 29.99,
-    //   sold: false
-    // },
-    // {
-    //   id: 'item1',
-    //   description: 'This is the first item',
-    //   mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
-    //   secondPicture: 'https://example.com/item1-second.jpg',
-    //   thirdPicture: 'https://example.com/item1-third.jpg',
-    //   fourthPicture: 'https://example.com/item1-fourth.jpg',
-    //   category: 'Category A',
-    //   specie: 'Specie X',
-    //   age: 7,
-    //   price: 9.99,
-    //   sold: false
-    // },
-    // {
-    //   id: 'item2',
-    //   description: 'This is the second item',
-    //   mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
-    //   secondPicture: 'https://example.com/item2-second.jpg',
-    //   thirdPicture: 'https://example.com/item2-third.jpg',
-    //   fourthPicture: 'https://example.com/item2-fourth.jpg',
-    //   category: 'Category B',
-    //   specie: 'Specie Y',
-    //   age: 11,
-    //   price: 14.99,
-    //   sold: true
-    // },
-    // {
-    //   id: 'item3',
-    //   description: 'This is the third item',
-    //   mainPicture: 'https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2',
-    //   secondPicture: 'https://example.com/item3-second.jpg',
-    //   thirdPicture: 'https://example.com/item3-third.jpg',
-    //   fourthPicture: 'https://example.com/item3-fourth.jpg',
-    //   category: 'Category C',
-    //   specie: 'Specie Z',
-    //   age: 4,
-    //   price: 29.99,
-    //   sold: false
-    // }
-  ];
-  currentCategoryNames: string[] = ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Bulldog", "Beagle", "Poodle", "Rottweiler", "Siberian Husky", "Chihuahua", "Boxer", "Dachshund", "Shih Tzu", "Doberman Pinscher", "Australian Shepherd", "Border Collie", "Great Dane", "Jack Russell Terrier", "Bichon Frise", "Cocker Spaniel", "Yorkshire Terrier"];
+  products: AnimalGetDTO [] = [];
+  // currentSpecieNames: string[] = ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Bulldog", "Beagle", "Poodle", "Rottweiler", "Siberian Husky", "Chihuahua", "Boxer", "Dachshund", "Shih Tzu", "Doberman Pinscher", "Australian Shepherd", "Border Collie", "Great Dane", "Jack Russell Terrier", "Bichon Frise", "Cocker Spaniel", "Yorkshire Terrier"];
+  categories: Category[] = [];
+  species: Specie[] = [];
   loading = false;
-  batch = 0;
+  pageNumber = 0;
   isFirstDataLoading: boolean = true;
   noPictureImgSrc = 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg'
+  searchValue: string = '';
+  isSearchValueChange: boolean = false;
+  searchFormControl: FormControl = new FormControl('');
 
   public constructor(private router: Router,
                      private route: ActivatedRoute,
@@ -159,40 +47,69 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.store.select(AnimalSelectors.selectIsFirstDataLoading).subscribe(value => {
-      this.isFirstDataLoading = value;
-      if (this.isFirstDataLoading) {
-        this.store.dispatch(AnimalActions.GetAnimalsStart({batch: this.batch}));
-      }
-    })
+    // this.searchFormControl.valueChanges.subscribe((value) => {
+    //
+    //   this.searchValue = this.searchFormControl.value;
+    //
+    //   if (value !== this.searchValue) {
+    //     this.store.dispatch(AnimalActions.ResetPageNumber())
+    //   }
+    //   this.store.dispatch(AnimalActions.GetAnimalsBySearchStart({pageNumber: this.pageNumber, searchValue: this.searchValue}))
+    //
+    // })
+
+    this.store.select(AnimalSelectors.selectSearchValue).subscribe((value) => {
+      this.searchValue = value;
+    });
+
+    this.store.select(AnimalSelectors.selectIsSearchValueChange).subscribe((value) => {
+      this.isSearchValueChange = value;
+    });
 
     this.store.select(AnimalSelectors.selectAnimals).subscribe((value) => {
       this.products = value;
     });
 
-    this.store.select(AnimalSelectors.selectBatch).subscribe(value => {
-      this.batch = value;
+    this.store.select(AnimalSelectors.selectPageNumber).subscribe(value => {
+      this.pageNumber = value;
     });
 
     this.store.select(AnimalSelectors.selectLoading).subscribe(value => {
       this.loading = value;
     });
 
+    this.store.select(AnimalSelectors.selectCategories).subscribe(value => this.categories = value);
+
+    this.store.select(AnimalSelectors.selectSpecies).subscribe(value => this.species = value);
+
+    this.store.select(AnimalSelectors.selectIsFirstDataLoading).subscribe(value => {
+      this.isFirstDataLoading = value;
+      if (this.isFirstDataLoading) {
+        this.store.dispatch(AnimalActions.GetAnimalsStart({
+          pageNumber: this.pageNumber
+        }));
+        this.store.dispatch(AnimalActions.GetCategoriesStart());
+        this.store.dispatch(AnimalActions.ResetPageNumber())
+      }
+    });
+
     this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.PRODUCTS == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
-    })
+    });
   }
 
   ngOnDestroy(): void {
   }
 
-  async onScroll() {
-    this.store.dispatch(AnimalActions.GetAnimalsStart({batch: this.batch}));
+  onScroll() {
+    this.store.dispatch(AnimalActions.GetAnimalsStart({
+      pageNumber: this.pageNumber,
+    }));
   }
 
   openFilter() {
     this._bottomSheet.open(FilterComponent, {
-      data: {currentCategoryNames: this.currentCategoryNames}
+      data: {categories: this.categories, species: this.species}
     });
   }
 

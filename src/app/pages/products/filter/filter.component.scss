@@ -23,6 +23,11 @@
         height: f.toRem(30, 16);
         margin: 0 auto;
         border: none;
+        @include m.breakpoint-up(medium) {
+          text-align: center;
+          width: f.toRem(80, 16);
+          height: f.toRem(45, 16);
+        }
       }
 
       li > .cat-button.active {

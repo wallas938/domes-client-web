@@ -3,8 +3,8 @@
   <div class="scrolling-banner">
     <div class="banner-bg"></div>
     <div class="banner">
-    <span class="specie-name" *ngFor="let name of currentCategoryNames">
-      {{name}}
+    <span class="specie-name" *ngFor="let specie of species">
+      {{specie.name}}
     </span>
     </div>
   </div>
@@ -32,7 +32,7 @@
   <div class="search-bar">
     <mat-form-field appearance="outline">
       <mat-label>Tapez votre recherche</mat-label>
-      <input type="search" matInput placeholder="ex: Yorkshire">
+      <input type="search" matInput placeholder="ex: Yorkshire" [formControl]="searchFormControl">
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
   </div>

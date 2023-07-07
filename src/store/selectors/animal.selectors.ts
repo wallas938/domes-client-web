@@ -8,12 +8,29 @@ const selectLoading = createSelector(animal, (state) => {
   return state.loadingState;
 });
 
+const selectSearchValue = createSelector(animal, (state) => {
+  return state.searchValue;
+});
+
+const selectIsSearchValueChange = createSelector(animal, (state) => {
+  return state.searchDataChange;
+});
+
+
+const selectSpecies = createSelector(animal, (state) => {
+  return state.species;
+});
+
+const selectCategories = createSelector(animal, (state) => {
+  return state.categories;
+});
+
 const selectIsFirstDataLoading = createSelector(animal, (state) => {
   return state.isFirstDataLoading;
 });
 
-const selectBatch = createSelector(animal, (state) => {
-  return state.batch;
+const selectPageNumber = createSelector(animal, (state) => {
+  return state.pageNumber;
 });
 
 const selectAnimals = createSelector(animal, (state) => {
@@ -27,8 +44,12 @@ const selectClientErrorMessage = createSelector(animal, (state) => {
 export const AnimalSelectors = {
   selectLoading,
   selectAnimals,
-  selectBatch,
+  selectPageNumber,
   selectClientErrorMessage,
-  selectIsFirstDataLoading
+  selectIsFirstDataLoading,
+  selectSpecies,
+  selectCategories,
+  selectSearchValue,
+  selectIsSearchValueChange
 }
 

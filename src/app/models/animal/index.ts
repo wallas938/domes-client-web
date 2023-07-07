@@ -1,3 +1,5 @@
+import {CategoryName} from "./category";
+
 export interface AnimalGetDTO {
   id: String,
   description: String;
@@ -27,3 +29,14 @@ export interface Article {
   age: number;
   price: number;
 };
+
+export interface AnimalSearchQuery {
+  minPrice: number;
+  maxPrice: number;
+  minAge: number;
+  maxAge: number;
+  category: Category;
+  specie: Specie;
+  pageNumber: number;
+  pageSize: number;
+}
