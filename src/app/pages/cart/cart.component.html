@@ -19,10 +19,17 @@
         <div class="articles" *ngIf="cart.length>0; else emptyCartBlock">
           <div class="article" *ngFor="let article of cart">
             <span
-              class="specie-name">{{article.specie.name.length < 20 ? article.specie.name : article.specie.name.substring(0, 20) + "..."}}</span>
+              class="specie-name">
+              {{
+              article.specie.name.length < 20 ?
+                article.specie.name :
+                article.specie.name.substring(0, 20) + "..."
+              }}
+            </span>
             <span class="age">{{article.age}} mois</span>
             <span class="reference">ref: {{article.specie.id}}</span>
             <span class="price">$ {{article.price}}</span>
+            <button (click)="removeFromCart(article.id)">X</button>
           </div>
         </div>
         <ng-template #emptyCartBlock>
