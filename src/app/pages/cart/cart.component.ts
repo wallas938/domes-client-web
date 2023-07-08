@@ -12,8 +12,8 @@ import {
 * Custom imports
 * */
 
-import {AnimalGetDTO, Article} from "../../models/animal/index";
-import {SECTION_NAMES} from "src/app/constants/index";
+import {AnimalGetDTO, Article} from "../../models/animal";
+import {SECTION_NAMES} from "../../constants";
 import {RouterSelectors} from "../../../store/selectors/router.selectors";
 import {DOMES_BASE_PATHS} from "../../models/domes-url";
 import {LayoutActions} from "../../../store/actions/layout.actions";
@@ -22,6 +22,7 @@ import * as fromApp from "../../../store/reducers";
 import {CartSelectors} from "../../../store/selectors/cart.selectors";
 import {FormBuilder, Validators} from "@angular/forms";
 import {passwordMatchValidator} from "../home/components/signup/signup.component";
+import {CartActions} from "../../../store/actions/cart.action";
 
 @Component({
   selector: 'app-cart',
@@ -63,7 +64,46 @@ export class CartComponent implements OnInit, OnDestroy {
     payment: true
   }
 
-  cart: AnimalGetDTO[] = []
+  cart: AnimalGetDTO[] = [
+    // {
+    //   id: '0d7fdd41-2402-4897-9978-6f49f19ce4e1',
+    //   description: 'CHIEN/Teckel/11 months',
+    //   mainPicture: 'https://www.akc.org/wp-content/themes/akc/component-library/assets/img/welcome.jpg',
+    //   secondPicture: '',
+    //   thirdPicture: '',
+    //   fourthPicture: '',
+    //   category: {
+    //     id: '24ce8652-33a2-418e-89c5-630a89a782ab',
+    //     name: 'CHIEN'
+    //   },
+    //   specie: {
+    //     id: '373ce6a4-8a41-4474-9819-a864267e2919',
+    //     name: 'Teckel',
+    //   },
+    //   price: 265,
+    //   age: 11,
+    //   sold: false,
+    // },
+    // {
+    //   id: '5c47631f-4317-4272-b6a0-f639b6451c4e',
+    //   description: 'CHIEN/Staffordshire bull terrier/16 months',
+    //   mainPicture: 'https://www.akc.org/wp-content/themes/akc/component-library/assets/img/welcome.jpg',
+    //   secondPicture: '',
+    //   thirdPicture: '',
+    //   fourthPicture: '',
+    //   category: {
+    //     id: '24ce8652-33a2-418e-89c5-630a89a782ab',
+    //     name: 'CHIEN'
+    //   },
+    //   specie: {
+    //     id: '09ec6b9e-ea28-4123-a863-8d7305ca2cf9',
+    //     name: 'Staffordshire bull terrier',
+    //   },
+    //   price: 886,
+    //   age: 16,
+    //   sold: false,
+    // },
+  ]
 
   months: string[] = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 
@@ -91,7 +131,9 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.store.select(CartSelectors.selectCart).subscribe(value => this.cart = value);
+
     this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.CART == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
     })
@@ -115,6 +157,10 @@ export class CartComponent implements OnInit, OnDestroy {
         break;
       }
     }
+  }
+
+  removeFromCart(id: string) {
+    this.store.dispatch(CartActions.RemoveFromCart({id}));
   }
 
   getTotal(): number {

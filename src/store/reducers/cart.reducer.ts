@@ -24,7 +24,7 @@ export const _cartReducer = createReducer(
   on(CartActions.RemoveFromCart, (state, {id}) => {
     return {
       ...state,
-      cart: [...state.cart].filter(value => value.id === id)
+      cart: [...state.cart].filter(value => value.id !== id)
     }
   }),
 )
