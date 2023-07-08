@@ -16,18 +16,21 @@
       </div>
       <!-- RESUME ORDER DROPDOWN BAR -->
       <div @openClose *ngIf="sectionStates.resume" class="section-container">
-        <div class="articles">
-          <div class="article" *ngFor="let article of articles">
-          <span
-            class="specie-name">{{article.specie.length < 20 ? article.specie : article.specie.substring(0, 20) + "..."}}</span>
+        <div class="articles" *ngIf="cart.length>0; else emptyCartBlock">
+          <div class="article" *ngFor="let article of cart">
+            <span
+              class="specie-name">{{article.specie.name.length < 20 ? article.specie.name : article.specie.name.substring(0, 20) + "..."}}</span>
             <span class="age">{{article.age}} mois</span>
-            <span class="reference">ref: {{article.id}}</span>
+            <span class="reference">ref: {{article.specie.id}}</span>
             <span class="price">$ {{article.price}}</span>
           </div>
         </div>
+        <ng-template #emptyCartBlock>
+          <p class="empty-cart"> Votre Panier est vide</p>
+        </ng-template>
         <div class="total">
           <span>Total</span>
-          <span>$387</span>
+          <span>${{getTotal()}}</span>
         </div>
         <div class="cta">
           <button class="buy">Confirmer la commande</button>
@@ -49,40 +52,58 @@
       </div>
       <!-- SHIPPING INFO DROPDOWN BAR -->
       <div @openClose *ngIf="sectionStates.shippingInfo" class="section-container">
-        <div class="fields">
-          <div class="field lastname">
-            <label>Nom</label>
-            <input class="domes-input" type="text"/>
+        <form [formGroup]="shippingInfoForm">
+          <div class="fields">
+            <div class="field lastname">
+              <label>Nom</label>
+              <input class="domes-input" type="text" formControlName="lastname"/>
+              <small *ngIf="shippingInfoForm.get('lastname')?.invalid &&
+          shippingInfoForm.get('lastname')?.touched">Champ obligatoire</small>
+            </div>
+            <div class="field firstname">
+              <label>Prénom</label>
+              <input class="domes-input" type="text" formControlName="firstname"/>
+              <small *ngIf="shippingInfoForm.get('firstname')?.invalid &&
+          shippingInfoForm.get('firstname')?.touched">Champ obligatoire</small>
+            </div>
+            <div class="field phoneNumber">
+              <label>Tél</label>
+              <input class="domes-input" type="tel" formControlName="phoneNumber"/>
+              <small *ngIf="shippingInfoForm.get('phoneNumber')?.invalid &&
+          shippingInfoForm.get('phoneNumber')?.touched">Champ obligatoire</small>
+            </div>
+            <div class="field email">
+              <label>Email</label>
+              <input class="domes-input" type="email" formControlName="email"/>
+              <small *ngIf="shippingInfoForm.get('email')?.invalid && shippingInfoForm.get('email')?.touched">Email non
+                conforme</small>
+            </div>
+            <div class="field country">
+              <label>Pays</label>
+              <input class="domes-input" type="text" formControlName="country"/>
+              <small *ngIf="shippingInfoForm.get('country')?.invalid &&
+          shippingInfoForm.get('country')?.touched">Champ obligatoire</small>
+            </div>
+            <div class="field city">
+              <label>Ville</label>
+              <input class="domes-input" type="text" formControlName="city"/>
+              <small *ngIf="shippingInfoForm.get('city')?.invalid &&
+          shippingInfoForm.get('city')?.touched">Champ obligatoire</small>
+            </div>
+            <div class="field street">
+              <label>Rue</label>
+              <input class="domes-input" type="text" formControlName="street"/>
+              <small *ngIf="shippingInfoForm.get('street')?.invalid &&
+          shippingInfoForm.get('street')?.touched">Champ obligatoire</small>
+            </div>
+            <div class="field zipcode">
+              <label>Code Postal</label>
+              <input class="domes-input" type="text" formControlName="zipCode"/>
+              <small *ngIf="shippingInfoForm.get('zipCode')?.invalid &&
+          shippingInfoForm.get('zipCode')?.touched">Champ obligatoire</small>
+            </div>
           </div>
-          <div class="field firstname">
-            <label>Prénom</label>
-            <input class="domes-input" type="text"/>
-          </div>
-          <div class="field phone">
-            <label>Tél</label>
-            <input class="domes-input" type="tel"/>
-          </div>
-          <div class="field email">
-            <label>Email</label>
-            <input class="domes-input" type="email"/>
-          </div>
-          <div class="field country">
-            <label>Pays</label>
-            <input class="domes-input" type="text"/>
-          </div>
-          <div class="field city">
-            <label>Ville</label>
-            <input class="domes-input" type="text"/>
-          </div>
-          <div class="field street">
-            <label>Rue</label>
-            <input class="domes-input" type="text"/>
-          </div>
-          <div class="field zipcode">
-            <label>Code Postal</label>
-            <input class="domes-input" type="text"/>
-          </div>
-        </div>
+        </form>
       </div>
     </section>
     <section class="payment">
@@ -100,31 +121,39 @@
       </div>
       <!-- PAYMENT DROPDOWN BAR -->
       <div @openClose *ngIf="sectionStates.payment" class="section-container">
-        <div class="fields">
-          <div class="field card-number">
-            <label>N° carte bancaire</label>
-            <input class="domes-input" type="text"/>
-          </div>
-          <div class="field owner">
-            <label>Nom sur la carte</label>
-            <input class="domes-input" type="text"/>
-          </div>
-          <div class="field cvv">
-            <label>Code de sécurité (CVV)</label>
-            <input class="domes-input" type="text"/>
-          </div>
-          <div class="field expiration">
-            <label>Date d'expiration</label>
-            <div class="select-fields">
-              <select class="month-select domes-select">
-                <option *ngFor="let month of months" [value]="month">{{month}}</option>
-              </select>
-              <select class="year-select domes-select">
-                <option *ngFor="let year of years" [value]="year">{{year}}</option>
-              </select>
+        <form [formGroup]="paymentInfoForm">
+          <div class="fields">
+            <div class="field card-number">
+              <label>N° carte bancaire</label>
+              <input class="domes-input" type="text" formControlName="cardNumber"/>
+              <small *ngIf="paymentInfoForm.get('cardNumber')?.invalid &&
+          paymentInfoForm.get('cardNumber')?.touched">Numéro de cart incorrect (10 max)</small>
+            </div>
+            <div class="field owner">
+              <label>Nom sur la carte</label>
+              <input class="domes-input" type="text" formControlName="lastname"/>
+              <small *ngIf="paymentInfoForm.get('lastname')?.invalid &&
+          paymentInfoForm.get('lastname')?.touched">Entrez le nom sur votre carte</small>
+            </div>
+            <div class="field cvv">
+              <label>Code de sécurité (CVV)</label>
+              <input class="domes-input" type="text" formControlName="cvv"/>
+              <small *ngIf="paymentInfoForm.get('cvv')?.invalid &&
+          paymentInfoForm.get('cvv')?.touched">Code de sécurité incorrect (3 max)</small>
+            </div>
+            <div class="field expiration">
+              <label>Date d'expiration</label>
+              <div class="select-fields">
+                <select class="month-select domes-select">
+                  <option *ngFor="let month of months" [value]="month">{{month}}</option>
+                </select>
+                <select class="year-select domes-select">
+                  <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </section>
   </div>

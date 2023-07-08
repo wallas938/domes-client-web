@@ -1,12 +1,12 @@
 import {CategoryName} from "./category";
 
 export interface AnimalGetDTO {
-  id: String,
-  description: String;
-  mainPicture: String;
-  secondPicture: String;
-  thirdPicture: String;
-  fourthPicture: String;
+  id: string,
+  description: string;
+  mainPicture: string;
+  secondPicture: string;
+  thirdPicture: string;
+  fourthPicture: string;
   category: Category;
   specie: Specie;
   age: number;
@@ -24,8 +24,8 @@ export interface Category {
   name: string
 }
 export interface Article {
-  id: String,
-  specie: String;
+  id: string,
+  specie: string;
   age: number;
   price: number;
 };

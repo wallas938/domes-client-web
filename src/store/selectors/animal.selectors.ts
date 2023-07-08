@@ -8,6 +8,10 @@ const selectLoading = createSelector(animal, (state) => {
   return state.loadingState;
 });
 
+const selectAnimal = createSelector(animal, (state) => {
+  return state.animal;
+});
+
 const selectSearchValue = createSelector(animal, (state) => {
   return state.searchValue;
 });
@@ -44,6 +48,7 @@ const selectClientErrorMessage = createSelector(animal, (state) => {
 export const AnimalSelectors = {
   selectLoading,
   selectAnimals,
+  selectAnimal,
   selectPageNumber,
   selectClientErrorMessage,
   selectIsFirstDataLoading,

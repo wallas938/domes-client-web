@@ -42,7 +42,10 @@ export class AnimalEffects implements OnDestroy {
       ofType(AnimalActions.GetAnimalsBySearchStart),
       mergeMap(({pageNumber, searchValue}) => {
         return this.animalService.getAnimals(pageNumber, searchValue).pipe(
-          map(((data: any) => AnimalActions.GetAnimalsBySearchSucceeded({payload: data.animals, searchValue: searchValue})))
+          map(((data: any) => AnimalActions.GetAnimalsBySearchSucceeded({
+            payload: data.animals,
+            searchValue: searchValue
+          })))
         )
       }),
       catchError((err: HttpErrorResponse) => {
@@ -50,11 +53,11 @@ export class AnimalEffects implements OnDestroy {
         return EMPTY
       })))
 
-  getSpecies$ = createEffect(() =>
+  getSpeciesByCategory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AnimalActions.GetSpeciesByCategoryStart),
       mergeMap((data) => {
-        return this.animalService.getSpecies(data.category.id).pipe(
+        return this.animalService.getSpeciesByCategory(data.category.id).pipe(
           map((species: Specie[]) => {
             return AnimalActions.GetSpeciesByCategorySucceeded({payload: species})
           })
@@ -62,6 +65,21 @@ export class AnimalEffects implements OnDestroy {
       }),
       catchError((err: HttpErrorResponse) => {
         this.store.dispatch(AnimalActions.GetSpeciesByCategoryFailed({error: err}))
+        return EMPTY
+      })))
+
+  getSpecies$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AnimalActions.GetSpeciesStart),
+      mergeMap((data) => {
+        return this.animalService.getSpecies().pipe(
+          map((species: Specie[]) => {
+            return AnimalActions.GetSpeciesSucceeded({payload: species})
+          })
+        )
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.store.dispatch(AnimalActions.GetSpeciesFailed({error: err}))
         return EMPTY
       })))
 

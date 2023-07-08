@@ -7,6 +7,8 @@ import {DOMES_BASE_PATHS} from "../../models/domes-url";
 import {RouterSelectors} from "../../../store/selectors/router.selectors";
 import {Router} from "@angular/router";
 import {AuthenticationActions} from "../../../store/actions/authentication.actions";
+import {AnimalGetDTO} from "../../models/animal";
+import {CartSelectors} from "../../../store/selectors/cart.selectors";
 
 @Component({
   selector: 'app-header',
@@ -17,11 +19,14 @@ export class HeaderComponent implements OnInit {
   DOMES_BASE_PATHS = DOMES_BASE_PATHS
   client: ClientGetDTO | undefined
   currentPath: string | undefined;
-
+  cart: AnimalGetDTO[] = [];
   constructor(private store: Store<fromApp.AppState>, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.store.select(CartSelectors.selectCart).subscribe(value => {
+      this.cart = value
+    });
     this.store.select(ClientSelectors.selectClient).subscribe(value => {
       this.client = value;
     })

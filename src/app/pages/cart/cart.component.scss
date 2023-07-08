@@ -51,6 +51,7 @@
       justify-content: space-around;
       margin-bottom: f.toRem(28, 16);
       cursor: pointer;
+
       .bar, .arrow {
         cursor: pointer;
       }
@@ -75,6 +76,13 @@
       border: 1px solid #000000;
       border-radius: 4px;
       background-color: white;
+
+      .empty-cart {
+        text-align: center;
+        margin-bottom: f.toRem(35, 16);;
+        font-weight: bold;
+        font-size: f.toRem(18, 16);
+      }
     }
 
     .resume {
@@ -212,6 +220,7 @@
           }
         }
 
+
         .lastname {
           margin-bottom: f.toRem(21, 16);
           @include m.breakpoint-up(medium) {
@@ -226,7 +235,7 @@
           }
         }
 
-        .phone {
+        .phoneNumber {
           margin-bottom: f.toRem(21, 16);
           @include m.breakpoint-up(medium) {
             grid-area: phone;
@@ -347,6 +356,12 @@
 
         }
       }
+    }
+
+    .field > small {
+      color: red;
+      font-size: f.toRem(11, 16);
+      font-weight: 500;
     }
   }
 }
