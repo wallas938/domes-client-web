@@ -4,6 +4,7 @@ import {DomesButtonComponent} from './components/domes-button/domes-button.compo
 import {RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatBadgeModule} from '@angular/material/badge';
 
 import {MatSelectModule} from '@angular/material/select';
 import {MatSliderModule} from '@angular/material/slider';
@@ -36,7 +37,8 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
     MatPaginatorModule,
     MatSnackBarModule,
     MatBottomSheetModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatBadgeModule
   ],
   exports: [
     CommonModule,
@@ -53,7 +55,8 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
     GetPropertyValueByName,
     MatSnackBarModule,
     MatBottomSheetModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatBadgeModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},

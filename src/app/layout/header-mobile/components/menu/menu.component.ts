@@ -9,6 +9,8 @@ import {ClientSelectors} from "../../../../../store/selectors/client.selectors";
 import {ClientGetDTO} from "../../../../models/client";
 import {Router} from "@angular/router";
 import {AuthenticationActions} from "../../../../../store/actions/authentication.actions";
+import {CartSelectors} from "../../../../../store/selectors/cart.selectors";
+import {AnimalGetDTO} from "../../../../models/animal";
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +18,7 @@ import {AuthenticationActions} from "../../../../../store/actions/authentication
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-
+  cart: AnimalGetDTO[] = [];
   DOMES_BASE_PATHS = DOMES_BASE_PATHS
   currentPath: Observable<string>;
   isConnected: boolean = false;
@@ -26,6 +28,10 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(CartSelectors.selectCart).subscribe(value => {
+      this.cart = value
+    });
+
     this.store.select(ClientSelectors.selectClient).subscribe((clientGetDTO: ClientGetDTO) => {
       this.isConnected = !!clientGetDTO.id;
     });

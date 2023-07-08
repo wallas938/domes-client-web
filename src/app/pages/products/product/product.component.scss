@@ -66,16 +66,17 @@ main {
       grid-area: age;
       @include t.textBody;
       text-align: right;
+      font-size: 24px;
       padding-right: f.toRem(22, 16);
-
+      align-self: flex-end;
       @include m.breakpoint-up(medium) {
         font-style: normal;
         font-weight: 400;
-        font-size: 24px;
         line-height: 25px;
         color: c.$grayText;
         padding-right: unset;
         text-align: left;
+        align-self: unset;
       }
     }
 
@@ -87,10 +88,11 @@ main {
       line-height: f.toRem(20, 16);
       color: c.$orange;
       padding-left: f.toRem(22, 16);
-
+      align-self: flex-end;
       @include m.breakpoint-up(medium) {
         font-size: f.toRem(38, 16);
         text-align: right;
+        align-self: unset;
       }
     }
   }

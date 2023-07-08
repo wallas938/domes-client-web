@@ -12,6 +12,8 @@ import {ClientSelectors} from "../../../../../store/selectors/client.selectors";
 import {AuthenticationSelectors} from "../../../../../store/selectors/authentication.selectors";
 import {AlertMessageComponent} from "../../../../shared/components/alert-message/alert-message.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {CartSelectors} from "../../../../../store/selectors/cart.selectors";
+import {AnimalGetDTO} from "../../../../models/animal";
 
 @Component({
   selector: 'app-mobile-login',
@@ -32,6 +34,7 @@ export class MobileLoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.store.select(ClientSelectors.selectClient).subscribe(value => {
       if (value.id) {
         this.router.navigate(['home']).then();

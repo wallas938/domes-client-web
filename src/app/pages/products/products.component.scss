@@ -91,6 +91,9 @@ main {
 
   .scrolling-banner {
     overflow: clip;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
     @include m.breakpoint-up(medium) {
       overflow: hidden;
     }
@@ -104,7 +107,6 @@ main {
       z-index: -1;
       left: -2px;
       right: -2px;
-
       @include m.breakpoint-up(medium) {
         overflow: hidden;
         height: f.toRem(55, 16);
@@ -112,11 +114,13 @@ main {
     }
 
     .banner {
-      animation: scroll 20s linear infinite alternate;
+      animation: scroll 180s linear infinite backwards;
       display: flex;
+      justify-content: flex-start;
       background-color: c.$orange;
       border-top: 2px solid black;
       padding-top: f.toRem(7, 16);
+      width: fit-content;
 
       @include m.breakpoint-up(medium) {
         padding: f.toRem(15, 16) f.toRem(20, 16);
@@ -270,7 +274,6 @@ main {
     }
 
     .product {
-      cursor: pointer;
       transition: filter .2s;
       background-color: white;
       flex-basis: f.toRem(120, 16);
@@ -283,11 +286,13 @@ main {
       }
 
       .main-picture {
+        cursor: pointer;
         width: auto;
         height: f.toRem(160, 16);
         @include m.breakpoint-up(medium) {
           //width: f.toRem(300, 16);
           height: f.toRem(200, 16);
+          width: 200px;
         }
 
         img {
@@ -336,6 +341,7 @@ main {
           border: none;
           width: 32px;
           height: 32px;
+          cursor: pointer;
         }
 
         .cta > .add-to-cart > img {

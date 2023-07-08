@@ -6,7 +6,7 @@ import {CategoryName} from "../../app/models/animal/category";
 export interface State {
   loadingState: boolean,
   animals: AnimalGetDTO[],
-  animal: AnimalGetDTO | null,
+  animal: AnimalGetDTO,
   species: Specie[],
   categories: Category[],
   isFirstDataLoading: boolean,
@@ -26,7 +26,7 @@ const initialState: State = {
   searchValue: '',
   pageNumber: 0,
   animals: [],
-  animal: {} as AnimalGetDTO | null,
+  animal: {} as AnimalGetDTO,
   errorMessage: {},
 }
 
@@ -47,6 +47,12 @@ export const _animalReducer = createReducer(
       loadingState: false,
       pageNumber: payload.length > 0 ? state.pageNumber + 1 : state.pageNumber,
       isFirstDataLoading: state.isFirstDataLoading === true && false
+    }
+  }),
+  on(AnimalActions.GetCurrentAnimal, (state, {id}) => {
+    return {
+      ...state,
+      animal: state.animals.find(a => a.id === id)!
     }
   }),
   on(AnimalActions.GetAnimalsFailed, (state, {error}) => {
@@ -99,18 +105,25 @@ export const _animalReducer = createReducer(
       errorMessage: error,
     }
   }),
-  on(AnimalActions.GetSpeciesByCategoryStart, (state,{category}) => {
+  on(AnimalActions.GetSpeciesStart, (state) => {
     return {
       ...state,
       loadingState: true,
     }
   }),
-  on(AnimalActions.GetSpeciesByCategorySucceeded, (state, {payload}) => {
+  on(AnimalActions.GetSpeciesSucceeded, (state, {payload}) => {
     return {
       ...state,
       errorMessage: '',
       loadingState: false,
       species: payload,
+    }
+  }),
+  on(AnimalActions.GetSpeciesFailed, (state, {error}) => {
+    return {
+      ...state,
+      errorMessage: error,
+      loadingState: false,
     }
   }),
   on(AnimalActions.GetAnimalsBySearchStart, (state, {pageNumber}) => {

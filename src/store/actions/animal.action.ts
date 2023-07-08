@@ -12,6 +12,12 @@ import {CategoryName} from "../../app/models/animal/category";
 
 /* GET ANIMALS IDENTIFIERS */
 
+const GET_ANIMAL_START = '[Animals]  GET_ANIMAL_START';
+const GET_ANIMAL_SUCCEEDED = '[Animals]  GET_ANIMAL_SUCCEEDED';
+const GET_ANIMAL_FAILED = '[Animals]  GET_ANIMAL_FAILED';
+
+/* GET ANIMALS IDENTIFIERS */
+
 const GET_ANIMALS_START = '[Animals]  GET_ANIMALS_START';
 const GET_ANIMALS_SUCCEEDED = '[Animals]  GET_ANIMALS_SUCCEEDED';
 const GET_ANIMALS_FAILED = '[Animals]  GET_ANIMALS_FAILED';
@@ -27,6 +33,12 @@ const GET_ANIMALS_BY_FILTERING_FAILED = '[Animals]  GET_ANIMALS_BY_FILTERING_FAI
 const GET_SPECIES_BY_CATEGORY_START = '[Animals]  GET_SPECIES_BY_CATEGORY_START';
 const GET_SPECIES_BY_CATEGORY_SUCCEEDED = '[Animals]  GET_SPECIES_BY_CATEGORY_SUCCEEDED';
 const GET_SPECIES_BY_CATEGORY_FAILED = '[Animals]  GET_SPECIES_BY_CATEGORY_FAILED';
+
+/* GET SPECIES IDENTIFIERS */
+
+const GET_SPECIES_START = '[Animals]  GET_SPECIES_START';
+const GET_SPECIES_SUCCEEDED = '[Animals]  GET_SPECIES_SUCCEEDED';
+const GET_SPECIES_FAILED = '[Animals]  GET_SPECIES_FAILED';
 
 /* GET CATEGORIES IDENTIFIERS */
 
@@ -63,6 +75,10 @@ const GetAnimalsFailed = createAction(GET_ANIMALS_FAILED, props<{
   error: HttpErrorResponse
 }>());
 
+const GetCurrentAnimal = createAction(GET_ANIMAL_START, props<{
+  id: string
+}>());
+
 const GetAnimalsBySearchStart = createAction(GET_ANIMALS_BY_SEARCH_START, props<{
   pageNumber: number, searchValue: string
 }>());
@@ -80,6 +96,15 @@ const GetAnimalsByFilteringSucceeded = createAction(GET_ANIMALS_BY_FILTERING_SUC
   payload: AnimalGetDTO[]
 }>());
 const GetAnimalsByFilteringFailed = createAction(GET_ANIMALS_BY_FILTERING_FAILED, props<{
+  error: HttpErrorResponse
+}>());
+
+const GetSpeciesStart = createAction(GET_SPECIES_START);
+
+const GetSpeciesSucceeded = createAction(GET_SPECIES_SUCCEEDED, props<{
+  payload: Specie[]
+}>());
+const GetSpeciesFailed = createAction(GET_SPECIES_FAILED, props<{
   error: HttpErrorResponse
 }>());
 
@@ -108,9 +133,13 @@ export const AnimalActions = {
   GetAnimalsStart,
   GetAnimalsSucceeded,
   GetAnimalsFailed,
+  GetCurrentAnimal,
   GetAnimalsByFilteringStart,
   GetAnimalsByFilteringSucceeded,
   GetAnimalsByFilteringFailed,
+  GetSpeciesStart,
+  GetSpeciesSucceeded,
+  GetSpeciesFailed,
   GetSpeciesByCategoryStart,
   GetSpeciesByCategorySucceeded,
   GetSpeciesByCategoryFailed,

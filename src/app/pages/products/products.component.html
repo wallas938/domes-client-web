@@ -3,8 +3,8 @@
   <div class="scrolling-banner">
     <div class="banner-bg"></div>
     <div class="banner">
-    <span class="specie-name" *ngFor="let specie of species">
-      {{specie.name}}
+    <span class="specie-name" *ngFor="let specie of currentSpecieNames">
+      {{specie}}
     </span>
     </div>
   </div>
@@ -44,16 +44,15 @@
        [scrollWindow]="false"
        (scrolled)="onScroll()">
     <div [class]="generateCardColor(product.category.name)" [@fadeInOut] *ngFor="let product of products">
-      <div class="main-picture">
-        <img [src]="product.mainPicture ? product.mainPicture : noPictureImgSrc"
-             alt="main picture of the current product">
+      <div class="main-picture" (click)="showDetail(product.id)">
+        <img [src]="product.mainPicture ? product.mainPicture : noPictureImgSrc" alt="main picture of the current product">
       </div>
       <div [ngClass]="generateInfoColor(product.category.name)">
         <div class="specie">
           <span> {{product.specie.name}} </span>
         </div>
         <div class="cta hide-for-mobile">
-          <button class="add-to-cart pink">
+          <button class="add-to-cart pink" [ngStyle]="{backgroundColor: isAlreadyAdded(product.id) && '#ccc'}" (click)="addToCart(product)" [disabled]="isAlreadyAdded(product.id)">
             <img src="assets/images/shopping_bag.png" alt="bag shopping icon">
           </button>
         </div>

@@ -19,6 +19,9 @@ import {DOMES_BASE_PATHS} from "../../models/domes-url";
 import {LayoutActions} from "../../../store/actions/layout.actions";
 import {Store} from "@ngrx/store";
 import * as fromApp from "../../../store/reducers";
+import {CartSelectors} from "../../../store/selectors/cart.selectors";
+import {FormBuilder, Validators} from "@angular/forms";
+import {passwordMatchValidator} from "../home/components/signup/signup.component";
 
 @Component({
   selector: 'app-cart',
@@ -52,6 +55,7 @@ import * as fromApp from "../../../store/reducers";
   ]
 })
 export class CartComponent implements OnInit, OnDestroy {
+  SECTION_NAMES = SECTION_NAMES;
 
   sectionStates = {
     resume: true,
@@ -59,35 +63,35 @@ export class CartComponent implements OnInit, OnDestroy {
     payment: true
   }
 
-  SECTION_NAMES = SECTION_NAMES;
-  articles: Article[] = [
-    {
-      id: '0b016d38-c176-4065-8f3e-d754a3c3876d',
-      specie: 'Specie X',
-      age: 7,
-      price: 9.99,
-    },
-    {
-      id: '0b016d38-c176-4065-8f3e-d754a3c3876d',
-      specie: 'Specie X',
-      age: 7,
-      price: 9.99,
-    },
-    {
-      id: '0b016d38-c176-4065-8f3e-d754a3c3876d',
-      specie: 'Specie X',
-      age: 7,
-      price: 9.99,
-    },
-  ]
+  cart: AnimalGetDTO[] = []
+
   months: string[] = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+
   years: string[] = ["2032", "2031", "2030", "2029", "2028", "2027", "2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012"];
 
+  shippingInfoForm = this.fb.group({
+    lastname: ['', Validators.required],
+    firstname: ['', Validators.required],
+    phoneNumber: ['', Validators.required],
+    email: ['', [Validators.required, Validators.pattern(new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))]],
+    country: ['', Validators.required],
+    city: ['', Validators.required],
+    street: ['', Validators.required],
+    zipCode: ['', Validators.required],
+  });
 
-  constructor(private store: Store<fromApp.AppState>) {
+  paymentInfoForm = this.fb.group({
+    cardNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+    lastname: ['', Validators.required],
+    cvv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+    expirationDate: ['', Validators.required],
+  });
+
+  constructor(private store: Store<fromApp.AppState>, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.store.select(CartSelectors.selectCart).subscribe(value => this.cart = value);
     this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.CART == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
     })
@@ -111,5 +115,11 @@ export class CartComponent implements OnInit, OnDestroy {
         break;
       }
     }
+  }
+
+  getTotal(): number {
+    if (this.cart.length > 0)
+      return this.cart.map(value => value.price).reduce((a, b) => a + b);
+    return 0;
   }
 }

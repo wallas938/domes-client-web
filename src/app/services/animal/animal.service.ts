@@ -27,7 +27,15 @@ export class AnimalService {
     )
   }
 
-  getSpecies(categoryId: string): Observable<Specie[]> {
+  getSpecies(): Observable<Specie[]> {
+    return this.http.get<Specie[]>(`${this.specieUrl}`,
+      {
+        headers: {'Content-Type': 'application/json'}
+      }
+    )
+  }
+
+  getSpeciesByCategory(categoryId: string): Observable<Specie[]> {
     return this.http.get<Specie[]>(`${this.specieUrl}/${categoryId}`,
       {
         headers: {'Content-Type': 'application/json'}

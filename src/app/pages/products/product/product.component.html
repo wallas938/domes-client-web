@@ -3,41 +3,40 @@
     Info Produit
   </h1>
   <div class="top">
-    <p class="specie-name">Berger Allemand</p>
-    <p class="age">8 mois</p>
-    <p class="price">$129</p>
+    <p class="specie-name">{{currentAnimal.specie!.name}}</p>
+    <p class="age">{{currentAnimal.age}} mois</p>
+    <p class="price">{{currentAnimal.price}}<mat-icon>euro_symbol</mat-icon></p>
   </div>
   <section class="detail">
-    <button class="cart_btn pink">
+    <button class="cart_btn pink" [ngStyle]="{backgroundColor: isAlreadyAdded(currentAnimal.id) && '#ccc'}" (click)="addToCart(currentAnimal)" [disabled]="isAlreadyAdded(currentAnimal.id)">
       <img src="assets/images/shopping_bag.png" alt="bag shopping icon">
     </button>
     <div class="gallery">
       <div class="main-picture domes-shadow brown">
         <img
-          src="https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2"
-          alt="">
+          [src]="currentAnimal.mainPicture ? currentAnimal.mainPicture : noPictureImgSrc"
+          alt="product image">
       </div>
       <div class="others">
         <div class="picture second-picture">
           <img
-            src="https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2"
-            alt="">
+            [src]="currentAnimal.secondPicture ? currentAnimal.secondPicture : noPictureImgSrc"
+            alt="Image 2">
         </div>
         <div class="picture third-picture">
           <img
-            src="https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2"
-            alt="Image 2">
+            [src]="currentAnimal.thirdPicture ? currentAnimal.thirdPicture : noPictureImgSrc"
+            alt="Image 3">
         </div>
         <div class="picture fourth-picture">
           <img
-            src="https://mag.bullebleue.fr/sites/mag/files/styles/breed_image_large/public/img/races/chien/berger-allemand.jpg?itok=usY0pUo2"
-            alt="Image 3">
+            [src]="currentAnimal.fourthPicture ? currentAnimal.fourthPicture : noPictureImgSrc"
+            alt="Image 4">
         </div>
       </div>
     </div>
     <p class="description">
-      Le berger allemand est une race de chiens tirant son nom de son pays d'origine, l'Allemagne, où elle est apparue à
-      la fin du XIXᵉ siècle.
+      {{currentAnimal.description}}
     </p>
   </section>
 </main>
