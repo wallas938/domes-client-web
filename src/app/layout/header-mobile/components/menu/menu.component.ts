@@ -32,8 +32,8 @@ export class MenuComponent implements OnInit {
       this.cart = value
     });
 
-    this.store.select(ClientSelectors.selectClient).subscribe((clientGetDTO: ClientGetDTO) => {
-      this.isConnected = !!clientGetDTO.id;
+    this.store.select(ClientSelectors.selectClient).subscribe((clientGetDTO: (ClientGetDTO | null)) => {
+      this.isConnected = !!clientGetDTO;
     });
   }
 
@@ -51,5 +51,6 @@ export class MenuComponent implements OnInit {
 
   disconnection() {
     this.store.dispatch(AuthenticationActions.LogoutClientStart());
+    this.router.navigate([DOMES_BASE_PATHS.LOGIN]).then()
   }
 }

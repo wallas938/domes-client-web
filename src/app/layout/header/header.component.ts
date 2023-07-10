@@ -17,7 +17,7 @@ import {CartSelectors} from "../../../store/selectors/cart.selectors";
 })
 export class HeaderComponent implements OnInit {
   DOMES_BASE_PATHS = DOMES_BASE_PATHS
-  client: ClientGetDTO | undefined
+  client: ClientGetDTO | null = null;
   currentPath: string | undefined;
   cart: AnimalGetDTO[] = [];
   constructor(private store: Store<fromApp.AppState>, private router: Router) {

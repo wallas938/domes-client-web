@@ -11,7 +11,7 @@ import {RouterSelectors} from "../../../store/selectors/router.selectors";
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit{
-  client: ClientGetDTO | undefined;
+  client: ClientGetDTO | null = null;
   currentPath: string | undefined;
 
   constructor(private store: Store<fromApp.AppState>) {

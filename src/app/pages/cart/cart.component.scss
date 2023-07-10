@@ -105,6 +105,7 @@
           grid-template-areas:
           "specie age price"
           "ref    ref rmv";
+          justify-content: space-between;
         }
 
         .article > button {
@@ -116,6 +117,7 @@
           font-weight: 700;
           border-radius: 4px;
           padding: 2px;
+          width: 35px;
         }
         .article:not(:last-of-type) {
           margin-bottom: f.toRem(44, 16);
@@ -164,7 +166,7 @@
 
       .total {
         padding: f.toRem(24, 16) 0 f.toRem(46, 16) 0;
-        border-top: 1px solid #000000;
+        border-top: 3px solid c.$orange;
         display: flex;
         justify-content: space-between;
 
@@ -188,6 +190,10 @@
           font-weight: 500;
           color: white;
           font-size: f.toRem(12, 16);
+
+          &.disabled {
+            background-color: rgba(grey, 0.4);
+          }
         }
       }
     }

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 
 import {Store} from "@ngrx/store";
 import * as fromApp from 'src/store/reducers';
@@ -19,7 +19,7 @@ import {Router} from "@angular/router";
 export class HeaderMobileComponent implements OnInit, OnDestroy {
 
   mobileMenuOpened$: Observable<boolean> | undefined;
-  client$: Observable<ClientGetDTO> | undefined
+  client$: Observable<ClientGetDTO | null> = of()
 
   constructor(private store: Store<fromApp.AppState>, private router: Router) {
   }

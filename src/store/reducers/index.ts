@@ -4,8 +4,10 @@ import * as fromClient from 'src/store/reducers/client.reducer';
 import * as fromAnimal from 'src/store/reducers/animal.reducer';
 import * as fromCart from 'src/store/reducers/cart.reducer';
 import * as fromAuthentication from 'src/store/reducers/authentication.reducer';
+import * as fromOrder from 'src/store/reducers/order.reducer';
 import * as fromRouter from "@ngrx/router-store";
 import {RouterSelectors, RouterStateUrl} from "../selectors/router.selectors";
+import {orderReducer} from "./order.reducer";
 
 export const rootReducer = {};
 
@@ -16,6 +18,7 @@ export interface AppState {
   authentication: fromAuthentication.State;
   animal: fromAnimal.State,
   cart: fromCart.State
+  order: fromOrder.State
 
 }
 
@@ -25,5 +28,6 @@ export const reducers: ActionReducerMap<AppState, any> = {
   client: fromClient.clientReducer,
   animal: fromAnimal.animalReducer,
   cart: fromCart.cartReducer,
+  order: fromOrder.orderReducer,
   authentication: fromAuthentication.authenticationReducer
 };

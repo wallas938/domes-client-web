@@ -36,7 +36,7 @@ export class MobileLoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.store.select(ClientSelectors.selectClient).subscribe(value => {
-      if (value.id) {
+      if (value) {
         this.router.navigate(['home']).then();
       }
     })
