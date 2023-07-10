@@ -4,14 +4,14 @@ import {AuthenticationTokenResponse} from "../../app/models/authentication";
 
 export interface State {
   loadingState: boolean,
-  authenticationToken: AuthenticationTokenResponse,
+  authenticationToken: AuthenticationTokenResponse | null,
   firstConnection: boolean | null,
   error: any
 }
 
 const initialState: State = {
   loadingState: false,
-  authenticationToken: {} as AuthenticationTokenResponse,
+  authenticationToken: null,
   firstConnection: null,
   error: null
 }
@@ -73,7 +73,7 @@ export const _authenticationReducer = createReducer(
     return {
       ...state,
       loadingState: true,
-      authenticationToken: {} as AuthenticationTokenResponse,
+      authenticationToken: null,
       error: null,
       firstConnection: true
     }
@@ -82,7 +82,7 @@ export const _authenticationReducer = createReducer(
     return {
       ...state,
       loadingState: false,
-      authenticationToken: {} as AuthenticationTokenResponse,
+      authenticationToken: null,
       error: null,
       firstConnection: null
     }

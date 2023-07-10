@@ -33,14 +33,16 @@
           </div>
         </div>
         <ng-template #emptyCartBlock>
-          <p class="empty-cart"> Votre Panier est vide</p>
+          <p class="empty-cart"> Votre panier est vide</p>
         </ng-template>
         <div class="total">
           <span>Total</span>
           <span>${{getTotal()}}</span>
         </div>
         <div class="cta">
-          <button class="buy">Confirmer la commande</button>
+          <button class="buy" type="button" (click)="submit()" [ngClass]="{'disabled': shippingInfoForm.invalid || paymentInfoForm.invalid}" [disabled]="shippingInfoForm.invalid || paymentInfoForm.invalid">Confirmer
+            la commande
+          </button>
         </div>
       </div>
     </section>
@@ -61,30 +63,6 @@
       <div @openClose *ngIf="sectionStates.shippingInfo" class="section-container">
         <form [formGroup]="shippingInfoForm">
           <div class="fields">
-            <div class="field lastname">
-              <label>Nom</label>
-              <input class="domes-input" type="text" formControlName="lastname"/>
-              <small *ngIf="shippingInfoForm.get('lastname')?.invalid &&
-          shippingInfoForm.get('lastname')?.touched">Champ obligatoire</small>
-            </div>
-            <div class="field firstname">
-              <label>Prénom</label>
-              <input class="domes-input" type="text" formControlName="firstname"/>
-              <small *ngIf="shippingInfoForm.get('firstname')?.invalid &&
-          shippingInfoForm.get('firstname')?.touched">Champ obligatoire</small>
-            </div>
-            <div class="field phoneNumber">
-              <label>Tél</label>
-              <input class="domes-input" type="tel" formControlName="phoneNumber"/>
-              <small *ngIf="shippingInfoForm.get('phoneNumber')?.invalid &&
-          shippingInfoForm.get('phoneNumber')?.touched">Champ obligatoire</small>
-            </div>
-            <div class="field email">
-              <label>Email</label>
-              <input class="domes-input" type="email" formControlName="email"/>
-              <small *ngIf="shippingInfoForm.get('email')?.invalid && shippingInfoForm.get('email')?.touched">Email non
-                conforme</small>
-            </div>
             <div class="field country">
               <label>Pays</label>
               <input class="domes-input" type="text" formControlName="country"/>
@@ -138,7 +116,7 @@
             </div>
             <div class="field owner">
               <label>Nom sur la carte</label>
-              <input class="domes-input" type="text" formControlName="lastname"/>
+              <input class="domes-input" type="text" formControlName="name"/>
               <small *ngIf="paymentInfoForm.get('lastname')?.invalid &&
           paymentInfoForm.get('lastname')?.touched">Entrez le nom sur votre carte</small>
             </div>
@@ -148,13 +126,13 @@
               <small *ngIf="paymentInfoForm.get('cvv')?.invalid &&
           paymentInfoForm.get('cvv')?.touched">Code de sécurité incorrect (3 max)</small>
             </div>
-            <div class="field expiration">
+            <div class="field expiration" formGroupName="expirationDate">
               <label>Date d'expiration</label>
               <div class="select-fields">
-                <select class="month-select domes-select">
+                <select class="month-select domes-select" formControlName="month">
                   <option *ngFor="let month of months" [value]="month">{{month}}</option>
                 </select>
-                <select class="year-select domes-select">
+                <select class="year-select domes-select" formControlName="year">
                   <option *ngFor="let year of years" [value]="year">{{year}}</option>
                 </select>
               </div>

@@ -23,6 +23,13 @@ import {CartSelectors} from "../../../store/selectors/cart.selectors";
 import {FormBuilder, Validators} from "@angular/forms";
 import {passwordMatchValidator} from "../home/components/signup/signup.component";
 import {CartActions} from "../../../store/actions/cart.action";
+import {ClientSelectors} from "../../../store/selectors/client.selectors";
+import {Address, ClientGetDTO} from "../../models/client";
+import {OrderGetDTO, OrderPostDTO, PaymentInfo} from "../../models/order";
+import {Router} from "@angular/router";
+import {AlertMessageComponent} from "../../shared/components/alert-message/alert-message.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {OrderActions} from "../../../store/actions/order.action";
 
 @Component({
   selector: 'app-cart',
@@ -110,10 +117,10 @@ export class CartComponent implements OnInit, OnDestroy {
   years: string[] = ["2032", "2031", "2030", "2029", "2028", "2027", "2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012"];
 
   shippingInfoForm = this.fb.group({
-    lastname: ['', Validators.required],
-    firstname: ['', Validators.required],
-    phoneNumber: ['', Validators.required],
-    email: ['', [Validators.required, Validators.pattern(new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))]],
+    // lastname: ['', Validators.required],
+    // firstname: ['', Validators.required],
+    // phoneNumber: ['', Validators.required],
+    // email: ['', [Validators.required, Validators.pattern(new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))]],
     country: ['', Validators.required],
     city: ['', Validators.required],
     street: ['', Validators.required],
@@ -122,17 +129,29 @@ export class CartComponent implements OnInit, OnDestroy {
 
   paymentInfoForm = this.fb.group({
     cardNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-    lastname: ['', Validators.required],
+    name: ['', Validators.required],
     cvv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
-    expirationDate: ['', Validators.required],
+    expirationDate: this.fb.group({
+      month: [this.months[0], Validators.required],
+      year: [this.years[this.years.length - 1], Validators.required]
+    }),
   });
 
-  constructor(private store: Store<fromApp.AppState>, private fb: FormBuilder) {
+  client: ClientGetDTO | null = null;
+
+  constructor(private store: Store<fromApp.AppState>,
+              private fb: FormBuilder,
+              private router: Router,
+              private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
 
     this.store.select(CartSelectors.selectCart).subscribe(value => this.cart = value);
+
+    this.store.select(ClientSelectors.selectClient).subscribe(value => {
+      this.client = value;
+    })
 
     this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       if (DOMES_BASE_PATHS.CART == value) this.store.dispatch(LayoutActions.MobileMenuClosed());
@@ -167,5 +186,53 @@ export class CartComponent implements OnInit, OnDestroy {
     if (this.cart.length > 0)
       return this.cart.map(value => value.price).reduce((a, b) => a + b);
     return 0;
+  }
+
+  showSnackBar(data: { message: string, style: any }) {
+    this._snackBar.openFromComponent(AlertMessageComponent, {
+      data: data,
+      duration: 8000
+    });
+  }
+
+
+  protected readonly onsubmit = onsubmit;
+
+  submit() {
+    if (this.client) {
+      const order: OrderPostDTO = {
+        cart: this.cart,
+        client: this.client,
+        numberOfArticles: this.cart.length,
+        total: this.getTotal(),
+        shippingAddress: {
+          country: this.shippingInfoForm.get('country')?.value,
+          city: this.shippingInfoForm.get('city')?.value,
+          street: this.shippingInfoForm.get('street')?.value,
+          zipCode: this.shippingInfoForm.get('zipCode')?.value,
+        } as Address
+      }
+
+      const paymentInfo: PaymentInfo = {
+        expirationDate: {
+          month: this.paymentInfoForm.value.expirationDate?.month,
+          year: this.paymentInfoForm.value.expirationDate?.year,
+        },
+        cvv: this.paymentInfoForm.value.cvv,
+        cardNumber: this.paymentInfoForm.value.cardNumber,
+        name: this.paymentInfoForm.value.name
+      }
+
+      console.log(order) // A envoyé vers l'API de paiement Banque Populaire
+
+      this.store.dispatch(OrderActions.PostOrderStart({order: order}));
+      // this.router.navigate(['login']).then()
+    } else {
+
+      this.showSnackBar({message: "Veuillez vous connecter ou créer un compte", style: {color: "white"}});
+
+      this.router.navigate(['login']).then();
+
+    }
   }
 }

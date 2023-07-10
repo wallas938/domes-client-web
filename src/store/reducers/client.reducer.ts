@@ -4,14 +4,14 @@ import {ClientGetDTO} from "../../app/models/client";
 
 export interface State {
   loadingState: boolean,
-  client: ClientGetDTO,
+  client: ClientGetDTO | null,
   errorMessage: any,
   hasJustSignedUp: boolean | null
 }
 
 const initialState: State = {
   loadingState: false,
-  client: {} as ClientGetDTO,
+  client: null,
   errorMessage: {},
   hasJustSignedUp: false
 }
@@ -66,7 +66,7 @@ export const _clientReducer = createReducer(
     return {
       ...state,
       loadingState: false,
-      client: {} as ClientGetDTO,
+      client: null,
       hasJustSignedUp: null
     }
   }),
