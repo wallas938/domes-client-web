@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, of} from "rxjs";
+import {map, Observable, of} from "rxjs";
 
 import {Store} from "@ngrx/store";
 import * as fromApp from 'src/store/reducers';
@@ -26,7 +26,9 @@ export class HeaderMobileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.mobileMenuOpened$ = this.store.select(LayoutSelectors.selectMobileMenuOpened);
-    this.client$ = this.store.select(ClientSelectors.selectClient)
+    this.client$ = this.store.select(ClientSelectors.selectClient).pipe(map((value: any) => {
+      return value?.payload ? value?.payload : value;
+    }));
 
   }
 

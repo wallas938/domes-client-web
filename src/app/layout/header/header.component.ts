@@ -27,8 +27,11 @@ export class HeaderComponent implements OnInit {
     this.store.select(CartSelectors.selectCart).subscribe(value => {
       this.cart = value
     });
-    this.store.select(ClientSelectors.selectClient).subscribe(value => {
-      this.client = value;
+    this.store.select(ClientSelectors.selectClient).subscribe((value: any) => {
+      if (value?.payload)
+        this.client = value?.payload;
+      else
+        this.client = value
     })
     this.store.select(RouterSelectors.selectRouterUrl).subscribe(value => {
       this.currentPath = value;

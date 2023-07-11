@@ -60,7 +60,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     });
 
     this.store.select(ClientSelectors.selectClientErrorMessage).subscribe(({error}) => {
-      console.log(error)
       if (error != null) this.showSnackBar({message: error.message, style: {color: "red"}})
     })
 

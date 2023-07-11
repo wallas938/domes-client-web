@@ -82,7 +82,6 @@ export const _authenticationReducer = createReducer(
     return {
       ...state,
       loadingState: false,
-      authenticationToken: null,
       error: null,
       firstConnection: null
     }
