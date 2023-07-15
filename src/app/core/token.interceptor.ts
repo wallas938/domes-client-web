@@ -3,8 +3,6 @@ import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from 
 import {first, last, Observable} from 'rxjs';
 import {Store} from "@ngrx/store";
 import * as fromApp from "../../store/reducers";
-import {AuthenticationSelectors} from 'src/store/selectors/authentication.selectors';
-import {AuthenticationTokenResponse} from "../models/authentication";
 
 
 @Injectable()
@@ -25,17 +23,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
       return next.handle(clone);
     }
-    // this.store.select(AuthenticationSelectors.selectAuthenticationToken)
-    //   .pipe(last())
-    //   .subscribe(
-    //     (authenticationToken: AuthenticationTokenResponse) => {
-    //       if (authenticationToken) {
-    //         const token = authenticationToken.accessToken;
-    //         const headers: HttpHeaders = new HttpHeaders();
-    //         return req.clone({headers});
-    //       }
-    //       return;
-    //     });
     return next.handle(req);
   }
 }
