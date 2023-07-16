@@ -171,9 +171,14 @@
         justify-content: space-between;
 
         span {
+          display: flex;
           @include t.textBody;
           color: black;
           font-weight: 600;
+
+          &>mat-icon {
+            font-size: 1rem;
+          }
         }
       }
 
