@@ -1,6 +1,6 @@
 import {Component, Injectable, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {AnimalGetDTO, AnimalSearchQuery, Category, Specie} from "../../models/animal/index";
+import {AnimalGetDTO, AnimalSearchQuery, Category, Specie} from "../../models/animal";
 import {RouterSelectors} from "../../../store/selectors/router.selectors";
 import {AnimalSelectors} from "../../../store/selectors/animal.selectors";
 import {DOMES_BASE_PATHS} from "../../models/domes-url";
@@ -125,7 +125,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       case "REPTILE":
         return "product green";
       default:
-        return "strong-grey"
+        return ""
     }
   }
 

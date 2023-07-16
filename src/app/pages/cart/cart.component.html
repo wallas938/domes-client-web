@@ -37,7 +37,12 @@
         </ng-template>
         <div class="total">
           <span>Total</span>
-          <span>${{getTotal()}}</span>
+          <span>
+            <span>
+              {{getTotal()}}
+            </span>
+            <mat-icon>euro_symbol</mat-icon>
+          </span>
         </div>
         <div class="cta">
           <button class="buy" type="button" (click)="submit()" [ngClass]="{'disabled': shippingInfoForm.invalid || paymentInfoForm.invalid}" [disabled]="shippingInfoForm.invalid || paymentInfoForm.invalid">Confirmer
@@ -112,7 +117,7 @@
               <label>N° carte bancaire</label>
               <input class="domes-input" type="text" formControlName="cardNumber"/>
               <small *ngIf="paymentInfoForm.get('cardNumber')?.invalid &&
-          paymentInfoForm.get('cardNumber')?.touched">Numéro de cart incorrect (10 max)</small>
+          paymentInfoForm.get('cardNumber')?.touched">Numéro de carte incorrect (10 chiffres)</small>
             </div>
             <div class="field owner">
               <label>Nom sur la carte</label>
@@ -124,7 +129,7 @@
               <label>Code de sécurité (CVV)</label>
               <input class="domes-input" type="text" formControlName="cvv"/>
               <small *ngIf="paymentInfoForm.get('cvv')?.invalid &&
-          paymentInfoForm.get('cvv')?.touched">Code de sécurité incorrect (3 max)</small>
+          paymentInfoForm.get('cvv')?.touched">Code de sécurité incorrect (3 chiffres)</small>
             </div>
             <div class="field expiration" formGroupName="expirationDate">
               <label>Date d'expiration</label>

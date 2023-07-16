@@ -19,12 +19,16 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {reducers} from "src/store/reducers";
-import {SignupComponent} from './pages/home/components/signup/signup.component'
 import {AppEffects} from "../store/effects";
 import {NgOptimizedImage} from "@angular/common";
+import {CoreModule} from "./core/core.modules";
+
+/*
+* Components
+* */
+import {SignupComponent} from './pages/home/components/signup/signup.component'
 import {LoginComponent} from './pages/home/components/login/login.component';
 import {MobileLoginComponent} from './pages/home/components/mobile-login/mobile-login.component';
-import {CoreModule} from "./core/core.modules";
 
 @NgModule({
   declarations: [
@@ -36,7 +40,7 @@ import {CoreModule} from "./core/core.modules";
     MenuComponent,
     SignupComponent,
     LoginComponent,
-    MobileLoginComponent
+    MobileLoginComponent,
   ],
   imports: [
     SharedModule,
